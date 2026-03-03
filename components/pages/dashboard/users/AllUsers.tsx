@@ -1,7 +1,13 @@
 'use client';
 import GenericAllTable from '@/components/organism/GenericAllTable';
 
-const AllUsers = ({ value }: { value: string }) => {
+const AllUsers = ({
+  value,
+  onTabChange,
+}: {
+  value: string;
+  onTabChange: (val: string) => void;
+}) => {
   return (
     <GenericAllTable
       value={value}
@@ -10,6 +16,7 @@ const AllUsers = ({ value }: { value: string }) => {
       tableName="profiles"
       placeholder="Search for email..."
       deleteLocation="Users"
+      onTabChange={onTabChange}
       showEdit={false}
     />
   );
