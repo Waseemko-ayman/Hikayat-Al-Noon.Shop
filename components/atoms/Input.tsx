@@ -34,6 +34,7 @@ const Input = ({
   isRequired = false,
   accept,
   required,
+  FileUploadText,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
   const StyledInput = `w-[280px] px-2.5 bg-(--white-color) outline-none transition-all duration-300 ${
@@ -123,6 +124,7 @@ const Input = ({
           control={control}
           render={({ field }) => (
             <FileUpload
+              text={FileUploadText}
               value={field.value ?? ''}
               onChange={(files) => {
                 const selectedFile = files[0] || null;

@@ -22,9 +22,11 @@ const mainVariant = {
 export const FileUpload = ({
   onChange,
   value,
+  text,
 }: {
   onChange: (files: File[]) => void;
   value?: File | string | null | any;
+  text: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -154,8 +156,7 @@ export const FileUpload = ({
                   <div className="flex flex-cols items-center justify-center gap-3">
                     <ImagePlus size={24} />
                     <div className="text-(--text-secondary) space-y-2">
-                      <p className="font-medium">Main image</p>
-                      {/* <p className="text-sm">PNG, JPG (maximum 5 MB)</p> */}
+                      <p className="font-medium">{text}</p>
                     </div>
                   </div>
                 )}
