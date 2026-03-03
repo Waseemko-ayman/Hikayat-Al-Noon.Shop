@@ -223,7 +223,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   onChange?: (e: React.ChangeEvent<any>) => void;
   accept?: string;
   required?: boolean;
-  FileUploadText: string;
+  FileUploadText?: string;
 }
 
 export interface AccountOrderCardProps {

@@ -26,7 +26,7 @@ export const FileUpload = ({
 }: {
   onChange: (files: File[]) => void;
   value?: File | string | null | any;
-  text: string;
+  text?: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
