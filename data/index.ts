@@ -760,3 +760,28 @@ export const rolesOptions = [
   { id: 'ADMIN', name: 'Admin' },
   { id: 'USER', name: 'User' },
 ];
+
+export const CreateUsersFields = [
+  ...profileSecInputs,
+  {
+    id: 'password',
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    placeholder: 'Enter password',
+  },
+  {
+    id: 'role',
+    name: 'role',
+    label: 'Role',
+    placeholder: 'Select role',
+    type: 'select',
+  },
+  {
+    id: 'avatar_file',
+    name: 'avatar_file',
+    label: 'Image',
+    placeholder: 'Add Image',
+    type: 'file',
+  },
+];
