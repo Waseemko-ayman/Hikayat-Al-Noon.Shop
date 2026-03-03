@@ -223,6 +223,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   onChange?: (e: React.ChangeEvent<any>) => void;
   accept?: string;
   required?: boolean;
+  FileUploadText?: string;
 }
 
 export interface AccountOrderCardProps {
@@ -477,4 +478,22 @@ export interface GridWrapperProps {
 export interface BackgroundGradientProps {
   opacity?: number;
   showLastTwo?: boolean;
+}
+
+export interface CreateUsersTableProps {
+  value: string;
+  onEditIdChange: (id: string | number | null) => void;
+  onTabChange: (val: string) => void;
+}
+
+export interface CreateUsersProps {
+  id?: string | number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: number;
+  password: string;
+  role: string;
+  avatar_file: File | null; // Selected image file (do not upload here)
+  avatar_url: string;
 }

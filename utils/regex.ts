@@ -1,5 +1,5 @@
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export const phoneReqExp = /^\+?[0-9\s\-\(\)]{8,}$/;
+export const phoneReqExp = /^\+[1-9]\d{7,14}$/;
 export const alphanumericWithArabicRegex = /^[A-Za-z\u0621-\u064A0-9_ ]{2,}$/;
 export const messageRegex = /^[\s\S]{20,}$/;
 export const passwordRegex =

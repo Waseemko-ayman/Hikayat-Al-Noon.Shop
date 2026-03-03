@@ -108,10 +108,32 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
   const add = async (body: any) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const { data, error } = await supabase.from(tableName).insert([body]);
-      if (error) throw error;
-      dispatch({ type: API_ACTIONS.POST, payload: data || [] });
-      return data;
+      if (tableName === 'auth.users') {
+        // Create user from server
+        const res = await fetch('/api/create-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw data;
+        }
+
+        return data;
+      } else {
+        // Normal insert
+        const { data, error } = await supabase
+          .from(tableName)
+          .insert([body])
+          .select();
+
+        if (error) throw error;
+
+        dispatch({ type: API_ACTIONS.POST, payload: data || [] });
+        return data;
+      }
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }

@@ -334,6 +334,7 @@ const CreateProducts = ({
                       control={control}
                       isMulti={isMultiSelect}
                       error={errors}
+                      FileUploadText="Main image"
                     />
                   );
                 },
