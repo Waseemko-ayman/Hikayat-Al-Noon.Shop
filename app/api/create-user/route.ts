@@ -24,8 +24,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    console.log(user);
-
     if (error) throw error;
 
     // 2. Insert in profiles
