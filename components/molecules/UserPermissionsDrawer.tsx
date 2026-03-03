@@ -82,7 +82,7 @@ const UserPermissionsDrawer: React.FC<UserRolesDrawerProps> = ({
       setOpen={setOpen}
       isMobile={isMobile}
       trigger={trigger}
-      contentClassName="px-4! pb-10!"
+      contentClassName="px-4! max-sm:pb-10!"
       showLastTwo={false}
     >
       {isLoading ? (

@@ -141,7 +141,7 @@ const DataTableBody = <T extends { id: string | number }>({
                             setOpenDeleteId(val ? String(row.id) : null)
                           }
                           isMobile={isMobile}
-                          contentClassName="px-4! pb-10!"
+                          contentClassName="px-4! max-sm:pb-10!"
                           showLastTwo={false}
                         >
                           <DeleteWarningContent
