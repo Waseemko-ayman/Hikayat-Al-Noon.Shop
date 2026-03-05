@@ -162,7 +162,10 @@ const Input = ({
               className={inputClasses}
               aria-label={ariaLabel}
               {...(typeof register === 'function' ? register(inputName) : {})}
-              onChange={onChange}
+              onChange={(e) => {
+                register?.(inputName).onChange(e); // Maintains RHF
+                onChange?.(e); // Executes any additional onChange you have
+              }}
               value={value}
               accept={accept}
               {...props}

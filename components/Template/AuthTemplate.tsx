@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 
 const AuthTemplate: React.FC<AuthTemplateProps> = ({
   error,
-  control,
+  register,
   handleFormSubmit,
   headerTitle,
   headerDescription,
@@ -37,7 +37,7 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
             {formChildren ? (
               formChildren
             ) : (
-              <Form fieldsTypes={fieldsTypes} error={error} control={control} />
+              <Form fieldsTypes={fieldsTypes} error={error} register={register} />
             )}
             <Button
               type="submit"

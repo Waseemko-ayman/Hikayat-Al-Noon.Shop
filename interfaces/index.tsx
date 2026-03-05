@@ -162,11 +162,13 @@ export interface AuthTemplateProps {
   loading: boolean;
   fieldsTypes?: FieldType[];
   otherClassName?: string;
+  register?: UseFormRegister<any>;
 }
 
 export interface FormProps {
   error?: string | Record<string, any>;
   control?: any;
+  register?: UseFormRegister<any>;
   fieldsTypes?: FieldType[];
 }
 
