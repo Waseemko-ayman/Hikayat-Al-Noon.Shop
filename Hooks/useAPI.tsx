@@ -142,14 +142,29 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
   const edit = async (id: string | number, body: any) => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const { data, error } = await supabase
-        .from(tableName)
-        .update(body)
-        .eq('id', id)
-        .select();
-      if (error) throw error;
-      dispatch({ type: API_ACTIONS.PUT, payload: data });
-      return data;
+      if (tableName === 'auth.users') {
+        const res = await fetch('/api/update-profile', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: id, ...body }),
+        });
+
+        const dataRes = await res.json();
+        if (!res.ok) {
+          throw dataRes;
+        }
+        dispatch({ type: API_ACTIONS.PUT, payload: { id, ...body } });
+        return dataRes;
+      } else {
+        const { data, error } = await supabase
+          .from(tableName)
+          .update(body)
+          .eq('id', id)
+          .select();
+        if (error) throw error;
+        dispatch({ type: API_ACTIONS.PUT, payload: data?.[0] });
+        return data?.[0];
+      }
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
@@ -167,6 +182,7 @@ const useAPI = <T extends { id?: string | number }>(tableName: string) => {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Failed to delete user');
+        dispatch({ type: API_ACTIONS.DEL, payload: id });
       } else {
         // Normal deletion from other tables
         const { data, error } = await supabase
