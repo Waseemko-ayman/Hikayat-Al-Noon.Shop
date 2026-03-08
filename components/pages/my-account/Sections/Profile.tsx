@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import React from 'react';
 import Input from '@/components/atoms/Input';
 import AccountSectionHeader from '@/components/molecules/AccountSectionHeader';
 import { profileSecInputs } from '@/data';
-import { Control, FieldErrors } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import Loading from '@/components/atoms/Loading';
 import Button from '@/components/atoms/Button';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
@@ -12,12 +11,12 @@ import CardWrapper from '@/components/Template/CardWrapper';
 
 interface FormProps {
   errors: FieldErrors<any>;
-  control: Control<any>;
+  register?: UseFormRegister<any>;
   isLoading: boolean;
   loading: boolean;
 }
 
-const Profile = ({ errors, control, isLoading, loading }: FormProps) => {
+const Profile = ({ errors, register, isLoading, loading }: FormProps) => {
   return (
     <div>
       <AccountSectionHeader
@@ -39,7 +38,7 @@ const Profile = ({ errors, control, isLoading, loading }: FormProps) => {
                   inputName={input.name}
                   placeholder={input.placeholder}
                   otherClassName="w-full"
-                  control={control}
+                  register={register}
                   error={errors}
                 />
               </div>
