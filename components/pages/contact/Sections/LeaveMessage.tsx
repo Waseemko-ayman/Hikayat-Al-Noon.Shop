@@ -23,7 +23,7 @@ const LeaveMessage = () => {
   const {
     handleSubmit,
     reset,
-    control,
+    register,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(formSchema),
@@ -72,7 +72,7 @@ const LeaveMessage = () => {
                   type={type}
                   inputName={name}
                   placeholder={placeholder}
-                  control={control}
+                  register={register}
                   error={errors}
                   otherClassName={`rounded-md! ${
                     errors[name as keyof FormValues] ? '!border-red-600' : ''

@@ -15,11 +15,12 @@ const LoginPage = () => {
 
   const {
     handleSubmit,
-    control,
+    register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginScheme),
     defaultValues: { email: '', password: '' },
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: LoginFormData) => {
@@ -31,7 +32,7 @@ const LoginPage = () => {
       headerTitle="Welcome Back"
       headerDescription="Sign in to your account to continue"
       error={errors}
-      control={control}
+      register={register}
       fieldsTypes={loginInputs}
       handleFormSubmit={handleSubmit(onSubmit)}
       submitBtnText="Sign In"

@@ -7,36 +7,36 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
-export async function POST(req: NextRequest) {
+export async function PUT(req: NextRequest) {
   try {
-    const { display_name, email, phone, role, avatar_url, password } =
-      await req.json();
+    const body = await req.json();
+    const { userId, display_name, email, phone, avatar_url } = body;
+
+    if (!userId)
+      return NextResponse.json({ error: 'Missing userId' }, { status: 400 });
 
     // 1. Create user in auth.users
-    const { data: user, error } = await supabaseAdmin.auth.admin.createUser({
-      email,
-      password,
-      email_confirm: true,
-      phone,
-
-      user_metadata: {
-        display_name,
+    const { data: user, error } = await supabaseAdmin.auth.admin.updateUserById(
+      userId,
+      {
+        email,
+        phone,
+        user_metadata: { display_name, phone },
       },
-    });
+    );
 
     if (error) throw error;
 
-    // 2. Insert in profiles
+    // 2️⃣ update profiles
     const { error: profileError } = await supabaseAdmin
       .from('profiles')
-      .upsert({
-        id: user.user.id,
-        display_name,
-        role,
-        avatar_url,
+      .update({
         email,
         phone,
-      });
+        display_name,
+        avatar_url,
+      })
+      .eq('id', userId);
 
     if (profileError) throw profileError;
 

@@ -246,7 +246,6 @@ const CreateProducts = ({
       (async () => {
         try {
           const res = await getSingle(editId);
-          console.log(res);
           if (res) {
             reset({
               title: res[0]?.title ?? '',

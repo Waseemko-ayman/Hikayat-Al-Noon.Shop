@@ -26,16 +26,16 @@ const AccountSidebar = ({
 
   const { setValue } = useFormContext<any>();
 
-  const userName = userProfile?.[0]?.display_name;
-  const userEmail = userProfile?.[0]?.email;
-  const avatarUrl = userProfile?.[0]?.avatar_url;
-  const userRole = userProfile?.[0]?.role;
+  const userName = userProfile?.display_name;
+  const userEmail = userProfile?.email;
+  const avatarUrl = userProfile?.avatar_url;
+  const userRole = userProfile?.role;
   const emailVerified =
     session?.user?.identities?.[0]?.identity_data.email_verified;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !userProfile?.[0]?.id) return;
+    if (!file || !userProfile?.id) return;
 
     const previewUrl = URL.createObjectURL(file);
     setAvatarPreview(previewUrl);

@@ -450,7 +450,7 @@ export const profileSecInputs = [
     type: 'tel',
     label: 'Phone Number',
     name: 'phone',
-    placeholder: '+1 (555) 123-4567',
+    placeholder: '+1xxxxxxxxxxx',
   },
 ];
 

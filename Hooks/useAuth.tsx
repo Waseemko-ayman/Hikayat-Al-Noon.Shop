@@ -102,15 +102,8 @@ const useAuth = () => {
       }
 
       if (data?.user) {
-        if ('phone' in body) {
-          showToast('OTP sent to your phone');
-          router.replace(PATHS.AUTH.VERIFY_OTP);
-        } else {
-          showToast(
-            'Account created successfully. Check your email to verify.',
-          );
-          router.replace(PATHS.AUTH.LOGIN);
-        }
+        showToast('Account created successfully. Check your email to verify.');
+        router.replace(PATHS.AUTH.LOGIN);
       }
     } catch (error: any) {
       const errorMsg = error.response?.data?.message || error.message;

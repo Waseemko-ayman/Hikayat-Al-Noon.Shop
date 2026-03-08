@@ -15,7 +15,7 @@ const SignupPage = () => {
   const { signup, isLoading } = useAuthContext();
 
   const {
-    control,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -26,6 +26,7 @@ const SignupPage = () => {
       password: '',
       password_confirmation: '',
     },
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: signupFormData) => {
@@ -43,7 +44,7 @@ const SignupPage = () => {
       headerTitle="Create Your Account"
       headerDescription="Sign up to get started and enjoy all features"
       error={errors}
-      control={control}
+      register={register}
       fieldsTypes={signupInputs}
       handleFormSubmit={handleSubmit(onSubmit)}
       submitBtnText="Sign Up"

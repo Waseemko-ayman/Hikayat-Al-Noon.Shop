@@ -10,14 +10,13 @@ import Settings from './Sections/Settings';
 import AccountSidebar from './Sections/AccountSidebar';
 import Layer from '@/components/atoms/Layer';
 import Container from '@/components/atoms/Container';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from '@/utils/profileSchema';
 import { useToast } from '@/lib/toast';
 import supabase from '@/config/api';
-import { useSession } from '@/Hooks/useSession';
 import { useUserInfo } from '@/context/UserInfoContext';
+import useAPI from '@/Hooks/useAPI';
 
 const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -27,30 +26,23 @@ const MyAccountPage = () => {
   // Notifications
   const { showToast } = useToast();
 
-  // Subapase Hook
-  const session = useSession();
-  const {
-    data: userProfile,
-    refetch,
-    isLoading,
-  }: any = useSupabaseClient('profiles', {
-    id: session?.user?.id,
-  });
+  // Hook
+  const { edit } = useAPI('auth.users');
 
-  const { setUser } = useUserInfo();
+  // Context
+  const { user: userProfile, setUser, isLoading } = useUserInfo();
 
-  const userInfo = userProfile?.[0];
-  const userName = userInfo?.display_name || '';
+  const userName = userProfile?.display_name || '';
   const [firstName, ...rest] = userName?.split(' ');
   const lastName = rest.join(' ');
 
   const initialUserInfo = {
     firstName: firstName || '',
     lastName: lastName || '',
-    email: userInfo?.email || null,
-    phone: userInfo?.phone || null,
+    email: userProfile?.email || null,
+    phone: userProfile?.phone || null,
     avatar_file: null, // Selected image file (do not upload here)
-    avatar_url: userInfo?.avatar_url || '', // Image link coming from the API (for display only)
+    avatar_url: userProfile?.avatar_url || '', // Image link coming from the API (for display only)
   };
 
   const methods = useForm<any>({
@@ -60,7 +52,7 @@ const MyAccountPage = () => {
 
   const {
     handleSubmit,
-    control,
+    register,
     reset,
     formState: { errors, dirtyFields },
   } = methods;
@@ -72,7 +64,7 @@ const MyAccountPage = () => {
       // Upload the image if available
       // avatar_file came from AccountSidebar via useFormContext
       if (data.avatar_file) {
-        const filePath = `avatars/${userProfile[0].id}-${Date.now()}`;
+        const filePath = `${userProfile?.id}-${Date.now()}`;
         const { error: uploadError } = await supabase.storage
           .from('avatars')
           .upload(filePath, data.avatar_file, { upsert: true }); // upsert: true → If the file already exists with the same name, it will be replaced.
@@ -105,13 +97,8 @@ const MyAccountPage = () => {
        */
       if (!Object.keys(payload).length) return;
 
-      // Updating data in Supabase
-      const { error } = await supabase
-        .from('profiles')
-        .update(payload)
-        .eq('id', userProfile[0].id);
-
-      if (error) throw error;
+      // Update Function
+      await edit(userProfile.id, payload);
 
       // ✅ Update context only after success
       setUser((prev: any) => ({
@@ -119,7 +106,7 @@ const MyAccountPage = () => {
         ...payload,
       }));
       showToast('Successfully updated');
-      refetch();
+      // await refetch();
     } catch (err: any) {
       showToast(err.message || 'Update failed', 'error');
     } finally {
@@ -128,9 +115,7 @@ const MyAccountPage = () => {
   };
 
   useEffect(() => {
-    if (userProfile?.length) {
-      reset(initialUserInfo);
-    }
+    reset(initialUserInfo);
   }, [userProfile, reset]);
 
   return (
@@ -152,7 +137,7 @@ const MyAccountPage = () => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Profile
                   errors={errors}
-                  control={control}
+                  register={register}
                   isLoading={isLoading}
                   loading={loading}
                 />

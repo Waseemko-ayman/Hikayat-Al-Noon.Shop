@@ -162,11 +162,13 @@ export interface AuthTemplateProps {
   loading: boolean;
   fieldsTypes?: FieldType[];
   otherClassName?: string;
+  register?: UseFormRegister<any>;
 }
 
 export interface FormProps {
   error?: string | Record<string, any>;
   control?: any;
+  register?: UseFormRegister<any>;
   fieldsTypes?: FieldType[];
 }
 
@@ -410,7 +412,7 @@ export interface UserInfoProps {
 export interface AccountSidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  data: UserInfoProps[];
+  data: UserInfoProps;
   isLoading: boolean;
   uploading: boolean;
 }

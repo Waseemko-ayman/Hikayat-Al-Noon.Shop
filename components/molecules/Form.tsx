@@ -16,7 +16,7 @@ const passwordFields = [
 // Type for password field names / Converts the array to a Union Type
 type PasswordField = (typeof passwordFields)[number];
 
-const Form = ({ error, control, fieldsTypes }: FormProps) => {
+const Form = ({ error, register, fieldsTypes }: FormProps) => {
   const [showPassword, setShowPassword] = useState<
     Record<PasswordField, boolean>
   >({
@@ -63,7 +63,7 @@ const Form = ({ error, control, fieldsTypes }: FormProps) => {
             otherClassName="w-full rounded-md!"
             iconClassName="text-(--forth-color)"
             isRequired
-            control={control}
+            register={register}
             error={error}
           />
         );
