@@ -1,7 +1,7 @@
 'use client';
-import { GoalProgress } from '@/components/ui/goal-progress';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
+import { VisitorsStats } from '@/components/molecules/VisitorsStat';
 
 const data = [
   {
@@ -79,8 +79,9 @@ const DashboardPage = () => {
             addLoading={addLoading}
           /> */}
         </div>
-        <div className="md:col-span-1 lg:col-span-2">
-          <GoalProgress />
+        <div className="md:col-span-1 lg:col-span-2 space-y-4">
+          {/* <GoalProgress /> */}
+          <VisitorsStats />
         </div>
       </div>
     </div>
