@@ -100,7 +100,7 @@ const Clothes = () => {
   return (
     <Layer>
       <Container>
-        {(isLoading || (products && products.length > 0)) && (
+        {(isLoading || products !== undefined) && (
           <ProductFilter
             filters={filters}
             setFilters={setFilters}
@@ -135,13 +135,18 @@ const Clothes = () => {
         </ProdcutsContainer>
 
         {/* EmptyState خارج الـ container */}
-        {!isLoading && !error && (!products || products.length === 0) && (
+        {!isLoading && !error && products?.length === 0 && (
           <EmptyState
             imageSrc="no-products.png"
-            messageText="Oops! There are no products available at the moment."
-            buttonText="Go to homepage"
+            messageText={
+              !hasActiveFilters
+                ? 'Oops! There are no products in the store yet.'
+                : 'No products match your filters. Try adjusting them.'
+            }
             Icon={FaBoxOpen}
-            buttonHref={PATHS.HOME}
+            buttonText={!hasActiveFilters ? 'Go to home page' : 'Reset filters'}
+            buttonHref={!hasActiveFilters ? PATHS.HOME : undefined}
+            handleClick={hasActiveFilters ? handleReset : undefined}
           />
         )}
       </Container>

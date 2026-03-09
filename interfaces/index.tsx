@@ -453,7 +453,7 @@ export interface EmptyStateProps {
   description?: string;
   handleClick?: () => void;
   Icon?: React.ElementType;
-  buttonHref: string;
+  buttonHref: string | undefined;
 }
 
 export interface AttachmentsUploaderProps {
