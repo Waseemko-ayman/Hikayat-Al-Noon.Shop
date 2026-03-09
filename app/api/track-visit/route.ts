@@ -18,6 +18,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const { data: profile } = await supabaseAdmin
+      .from('profiles')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
+    // Here, only success is returned without entering any row, and this prevents the admin from registering in page_views.
+    if (profile?.role === 'ADMIN') {
+      return NextResponse.json({ success: true });
+    }
+
     /**
      * Reason for adding visitor_id:
       - Now we can track unique visitors even if they are not logged in.
