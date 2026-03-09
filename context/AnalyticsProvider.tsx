@@ -39,7 +39,7 @@ export default function AnalyticsProvider({
 
         // Goal: The same tab will use the same visitor_id throughout the session.
         sessionStorage.setItem('visitor_id', visitorId);
-        
+
         /**
          * For unregistered users
          * Therefore, an unregistered visitor will remain the same person upon returning to the site.
@@ -58,9 +58,17 @@ export default function AnalyticsProvider({
       const lastVisit = sessionStorage.getItem(`last_visit_${pathname}`);
       const now = Date.now();
 
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+
       if (!lastVisit || now - Number(lastVisit) > 2000) {
         sessionStorage.setItem(`last_visit_${pathname}`, now.toString());
 
+        if (profile?.role === 'ADMIN') return;
+        
         // Calling the API route instead of the front end directly
         await fetch('/api/track-visit', {
           method: 'POST',
