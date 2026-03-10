@@ -14,7 +14,7 @@ const ButtonLoading = ({
       <span
         className={`animate-spin border-2 ${borderColor} border-t-transparent rounded-full w-4 h-4 inline-block ${otherClassName}`}
       />
-      <span>{text}</span>
+      {text && <span>{text}</span>}
     </div>
   );
 };
