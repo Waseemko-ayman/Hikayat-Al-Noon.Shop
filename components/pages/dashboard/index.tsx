@@ -12,7 +12,7 @@ const DashboardPage = () => {
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-        <div className="md:col-span-2 lg:col-span-5 space-y-5">
+        <div className="md:col-span-2 lg:col-span-5 space-y-5 overflow-x-auto">
           <LineMultiple />
         </div>
         <div className="md:col-span-1 lg:col-span-2 space-y-4">
