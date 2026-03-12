@@ -39,7 +39,7 @@ const Banner = ({
     );
 
   return (
-    <WobbleCard bgImage={bgImage}>
+    <WobbleCard bgImage={bgImage} containerClassName={height}>
       <div
         className={`relative text-(--white-color) bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
       >

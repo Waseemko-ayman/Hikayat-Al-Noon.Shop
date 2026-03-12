@@ -6,6 +6,7 @@ import Layer from '../atoms/Layer';
 import { motion } from 'framer-motion';
 import Container from '../atoms/Container';
 import { RepairServicesProps } from '@/interfaces';
+import Image from 'next/image';
 
 const RepairServicesComp = ({
   title,
@@ -16,10 +17,14 @@ const RepairServicesComp = ({
   buttonHref,
 }: RepairServicesProps) => {
   return (
-    <Layer
-      otherClassName="min-h-[40vh] bg-no-repeat bg-center bg-cover text-center flex items-center justify-center"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
+    <Layer otherClassName="relative min-h-[40vh] text-center flex items-center justify-center">
+      <Image
+        src={bgImage}
+        alt={title || 'banner'}
+        fill
+        className="object-cover"
+        priority
+      />
       <div className="absolute top-0 left-0 w-full h-full backdrop-blur-[3px] rgb(255, 255, 255)"></div>
       <Container>
         <motion.div
