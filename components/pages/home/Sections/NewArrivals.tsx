@@ -8,8 +8,8 @@ import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import ProductSkeletons from '@/components/molecules/ProductSkeletons';
-import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
-import GridWrapper from '@/components/organism/GridWrapper';
+import Layer from '@/components/atoms/Layer';
+import Container from '@/components/atoms/Container';
 
 const NewArrivals = () => {
   const router = useRouter();
@@ -22,37 +22,37 @@ const NewArrivals = () => {
   } = useSupabaseClient('products', {
     section: 'newArrivals',
   });
-  
+
   return (
-    <ResponsiveWrapper>
-      <MainTitle
-        title="New Arrivals"
-        description="Summer Collection New Modern Design"
-      />
-      {isLoading ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <ProductSkeletons count={products?.length} />
+    <Layer>
+      <Container>
+        <MainTitle
+          title="New Arrivals"
+          description="Summer Collection New Modern Design"
+        />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
+          {isLoading ? (
+            <ProductSkeletons count={products?.length} />
+          ) : error ? (
+            <ErrorFetching error={error} />
+          ) : (
+            products?.map((item: ProductCardProps, index: number) => (
+              <AnimatedWrapper key={item?.id} custom={index}>
+                <ProductCard
+                  key={item?.id}
+                  image={item.image}
+                  title={item.title}
+                  productData={item}
+                  handleClick={() =>
+                    item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                  }
+                />
+              </AnimatedWrapper>
+            ))
+          )}
         </div>
-      ) : error ? (
-        <ErrorFetching error={error} />
-      ) : (
-        <GridWrapper isScrollable>
-          {products?.map((item: ProductCardProps, index: number) => (
-            <AnimatedWrapper key={item?.id} custom={index}>
-              <ProductCard
-                key={item?.id}
-                image={item.image}
-                title={item.title}
-                productData={item}
-                handleClick={() =>
-                  item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
-                }
-              />
-            </AnimatedWrapper>
-          ))}
-        </GridWrapper>
-      )}
-    </ResponsiveWrapper>
+      </Container>
+    </Layer>
   );
 };
 
