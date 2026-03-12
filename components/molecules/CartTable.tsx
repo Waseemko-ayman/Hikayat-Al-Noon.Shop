@@ -40,7 +40,7 @@ const CartTable: React.FC<CartTableProps> = ({
               </td>
               <td className={commonClassName}>
                 <Image
-                  src={`/assets/products/${item.image}.jpg`}
+                  src={item.image}
                   alt={item.title}
                   className="max-w-full w-[100px] mx-auto rounded-lg"
                   width={100}

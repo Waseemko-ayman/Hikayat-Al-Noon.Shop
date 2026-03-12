@@ -19,7 +19,7 @@ const CartCards: React.FC<CartCardseProps> = ({
             <div className="relative flex flex-col sm:flex-row justify-between gap-4 p-4 md:p-5">
               <div className="relative flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6">
                 <Image
-                  src={`/assets/products/${item.image}.jpg`}
+                  src={item.image}
                   alt={item.title}
                   width={150}
                   height={150}

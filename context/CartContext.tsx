@@ -90,7 +90,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         .from('carts')
         .select('id')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
       if (!cart) {
         // If there is no cart, we create one
