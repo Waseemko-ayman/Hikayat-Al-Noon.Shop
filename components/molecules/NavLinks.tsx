@@ -19,7 +19,7 @@ const NavLinks = ({
   const MobileLinkTextColor = isMobile ? 'text-white' : 'text-(--fifth-color)';
 
   return (
-    <nav className="">
+    <nav className={isMobile ? 'mt-5' : ''}>
       <ul
         className={`${
           !isMobile ? 'flex items-center justify-center gap-7' : ''
@@ -43,9 +43,13 @@ const NavLinks = ({
               'after:absolute after:left-0 after:bottom-0 after:bg-(--forth-color) after:w-0 after:h-0.5 hover:after:w-1/2 after:transition-all after:duration-300'
             } ${isMobile ? 'text-lg mb-4' : ''} ${
               pathname === '/' && item.name.toLowerCase() === 'home'
-                ? 'after:w-1/2 text-(--forth-color)'
+                ? isMobile
+                  ? 'bg-(--forth-color) p-2 rounded-lg'
+                  : 'after:w-1/2 text-(--forth-color)'
                 : pathname.slice(1) === item.name.toLowerCase()
-                  ? 'after:w-1/2 text-(--forth-color)'
+                  ? isMobile
+                    ? 'bg-(--forth-color) p-2 rounded-lg'
+                    : 'after:w-1/2 text-(--forth-color)'
                   : ''
             }`}
             onClick={onLinkClick}
