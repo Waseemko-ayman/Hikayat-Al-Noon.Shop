@@ -66,9 +66,9 @@ const ProductCard = ({
           <span className="text-base text-(--first-color)">
             {trade_mark && trade_mark}
           </span>
-          <h4 className="text-(--forth-color) text-base mt-2 font-bold">
+          <h3 className="text-(--forth-color) text-base mt-2 font-bold">
             {title}
-          </h4>
+          </h3>
 
           <div className="flex items-center gap-1">
             {renderStars(averageRating)}
