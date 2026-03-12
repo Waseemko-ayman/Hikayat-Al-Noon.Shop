@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-(--first-color) py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.12)]">
+    <header className="bg-(--header-bg-color) py-5 sticky top-0 z-50 shadow-[0_30px_60px_rgba(0,0,0,0.10)]">
       {isMobile ? (
         <Sheet open={open} onOpenChange={setOpen}>
           <Container otherClassName="flex items-center justify-between h-10">
