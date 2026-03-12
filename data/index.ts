@@ -612,7 +612,7 @@ export const sidebarLinks = [
 export const BANNERS_DATA = [
   {
     id: 1,
-    bgImage: '/assets/banner/b4.jpg',
+    bgImage: '/assets/banner/b4.webp',
     subTitle: 'crazy deals',
     title: 'buy 1 get 1 free',
     description: 'The best classic dress is on sale at cara',
@@ -622,7 +622,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 2,
-    bgImage: '/assets/banner/b3.jpg',
+    bgImage: '/assets/banner/b3.webp',
     subTitle: 'spring/summer',
     title: 'upcomming season',
     description: 'The best classic dress is on sale at cara',
@@ -632,7 +632,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 3,
-    bgImage: '/assets/banner/b5.jpg',
+    bgImage: '/assets/banner/b5.webp',
     subTitle: 'Seasonal sale',
     title: 'Winter Collection -50% Off',
     type: 'small',
@@ -640,7 +640,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 4,
-    bgImage: '/assets/banner/b6.jpg',
+    bgImage: '/assets/banner/b6.webp',
     subTitle: 'New Footwear Collection',
     title: 'Spring/Summer 2023',
     type: 'small',
@@ -648,7 +648,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 5,
-    bgImage: '/assets/banner/b7.jpg',
+    bgImage: '/assets/banner/b7.webp',
     subTitle: 'T-Shirt',
     title: 'New Trandy Prinls',
     type: 'small',
