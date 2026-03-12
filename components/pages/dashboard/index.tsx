@@ -1,6 +1,15 @@
 'use client';
-import LineMultiple from '@/components/charts/line-multiple';
-import { VisitorsStats } from '@/components/molecules/VisitorsStat';
+
+import dynamic from 'next/dynamic';
+
+const LineMultiple = dynamic(
+  () => import('@/components/charts/line-multiple'),
+  { ssr: false },
+);
+const VisitorsStats = dynamic(
+  () => import('@/components/molecules/VisitorsStat'),
+  { ssr: false },
+);
 
 const DashboardPage = () => {
   return (

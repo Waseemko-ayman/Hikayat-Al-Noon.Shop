@@ -1,9 +1,15 @@
 'use client';
-import React from 'react';
-import ProductsTable from './Sections/ProductsTable';
+import dynamic from 'next/dynamic';
+
 import RepairServices from './Sections/RepairServices';
-import ApplyCoupon from './Sections/ApplyCoupon';
 import { useCartContext } from '@/context/CartContext';
+
+const ProductsTable = dynamic(() => import('./Sections/ProductsTable'), {
+  ssr: false,
+});
+const ApplyCoupon = dynamic(() => import('./Sections/ApplyCoupon'), {
+  ssr: false,
+});
 
 const CartPage = () => {
   const { cartItems } = useCartContext();

@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { useToast } from '@/lib/toast';
 import useAPI from '@/Hooks/useAPI';
 import ButtonLoading from '../atoms/ButtonLoading';
+import Image from 'next/image';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -31,10 +32,13 @@ const NewsletterSignup = () => {
     }
   };
   return (
-    <Layer
-      otherClassName="overflow-hidden bg-center bg-cover bg-no-repeat min-h-[25vh] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black/20 flex"
-      style={{ backgroundImage: 'url(/assets/banner/signUp.jpg)' }}
-    >
+    <Layer otherClassName="overflow-hidden min-h-[25vh] flex">
+      <Image
+        src="/assets/banner/signUp.webp"
+        alt="Sign Up Banner"
+        fill
+        className="absolute inset-0 object-cover"
+      />
       <Container otherClassName="w-full flex flex-col items-center justify-center lg:flex-row lg:justify-between gap-2.5">
         <motion.div
           initial={{ opacity: 0, x: -60 }}

@@ -28,18 +28,18 @@ const Banner = ({
   const renderTitle = () =>
     type === 'big' ? (
       <>
-        <h2 className="text-xl font-light">{subTitle}</h2>
-        <h4 className="text-3xl font-extrabold">{title}</h4>
+        <h3 className="text-xl font-light">{subTitle}</h3>
+        <h2 className="text-3xl font-extrabold">{title}</h2>
       </>
     ) : (
       <>
-        <h2 className="text-xl font-extrabold uppercase">{subTitle}</h2>
-        <h3 className="text-sm font-bold text-red-500">{title}</h3>
+        <h3 className="text-xl font-extrabold uppercase">{subTitle}</h3>
+        <h4 className="text-sm font-bold text-red-500">{title}</h4>
       </>
     );
 
   return (
-    <WobbleCard bgImage={bgImage}>
+    <WobbleCard bgImage={bgImage} containerClassName={height}>
       <div
         className={`relative text-(--white-color) bg-cover bg-center max-w-full ${height} flex flex-col items-start justify-center p-8 ${otherClassNameContainer}`}
       >

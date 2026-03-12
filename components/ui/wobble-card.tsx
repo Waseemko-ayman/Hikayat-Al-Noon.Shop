@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
+import Image, { StaticImageData } from 'next/image';
 
 export const WobbleCard = ({
   children,
@@ -12,7 +13,7 @@ export const WobbleCard = ({
   children: React.ReactNode;
   containerClassName?: string;
   className?: string;
-  bgImage: string;
+  bgImage: string | StaticImageData;
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -37,13 +38,21 @@ export const WobbleCard = ({
           ? `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0) scale3d(1, 1, 1)`
           : 'translate3d(0px, 0px, 0) scale3d(1, 1, 1)',
         transition: 'transform 0.1s ease-out',
-        backgroundImage: `url(${bgImage})`,
       }}
       className={cn(
-        'max-w-full relative rounded-2xl overflow-hidden bg-cover bg-center',
-        containerClassName
+        'max-w-full relative rounded-2xl overflow-hidden',
+        containerClassName,
       )}
     >
+      <div className="absolute inset-0 -z-10 w-full h-full">
+        <Image
+          src={bgImage}
+          alt="Background"
+          fill
+          className="object-cover rounded-2xl"
+          sizes="100vw"
+        />
+      </div>
       <div
         className="relative h-full [background-image:radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] sm:mx-0 sm:rounded-2xl overflow-hidden"
         style={{

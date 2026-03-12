@@ -1,7 +1,12 @@
-import React from 'react';
+'use client';
+
+import dynamic from 'next/dynamic';
 import RepairServices from './Sections/RepairServices';
-import KnowUs from './Sections/KnowUs';
-import FeatursSec from '@/components/organism/FeatursSec';
+
+const KnowUs = dynamic(() => import('./Sections/KnowUs'), { ssr: false });
+const FeatursSec = dynamic(() => import('@/components/organism/FeatursSec'), {
+  ssr: false,
+});
 
 const AboutPage = () => {
   return (

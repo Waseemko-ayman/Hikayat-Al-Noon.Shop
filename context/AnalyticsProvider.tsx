@@ -58,17 +58,21 @@ export default function AnalyticsProvider({
       const lastVisit = sessionStorage.getItem(`last_visit_${pathname}`);
       const now = Date.now();
 
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', userId)
-        .single();
+      let profile = null;
+      if (userId) {
+        const { data } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', userId)
+          .single();
+        profile = data;
+      }
 
       if (!lastVisit || now - Number(lastVisit) > 2000) {
         sessionStorage.setItem(`last_visit_${pathname}`, now.toString());
 
         if (profile?.role === 'ADMIN') return;
-        
+
         // Calling the API route instead of the front end directly
         await fetch('/api/track-visit', {
           method: 'POST',

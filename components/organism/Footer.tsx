@@ -98,7 +98,7 @@ const Footer = () => {
                 Secured Payment Gateays
               </motion.p>
               <Link href="#">
-                <motion.img
+                <MotionImage
                   src="/assets/pay/pay.png"
                   alt="pay"
                   width={224}

@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import supabase from '@/config/api';
+import { Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 
-export const useSession = () => {
-  const [session, setSession] = useState<any>(null);
+export const useSession = (): Session | null => {
+  const [session, setSession] = useState<Session | null>(null);
 
   const fetchSession = async () => {
     const { data } = await supabase.auth.getSession();
@@ -16,7 +16,7 @@ export const useSession = () => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
-      }
+      },
     );
 
     return () => {

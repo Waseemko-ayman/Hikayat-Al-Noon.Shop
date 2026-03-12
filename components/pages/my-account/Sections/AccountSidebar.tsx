@@ -31,7 +31,7 @@ const AccountSidebar = ({
   const avatarUrl = userProfile?.avatar_url;
   const userRole = userProfile?.role;
   const emailVerified =
-    session?.user?.identities?.[0]?.identity_data.email_verified;
+    session?.user?.identities?.[0]?.identity_data?.email_verified;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

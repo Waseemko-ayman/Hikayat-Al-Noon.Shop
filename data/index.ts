@@ -88,31 +88,37 @@ export const FOOTER_LINKS_DATA = {
       id: 1,
       url: 'https://github.com/Waseemko-ayman',
       icon: FaGithub,
+      ariaLabel: 'Visit my GitHub profile',
     },
     {
       id: 2,
       url: 'https://twitter.com/waseemabdalhady',
       icon: FaTwitter,
+      ariaLabel: 'Visit my Twitter profile',
     },
     {
       id: 3,
       url: 'https://www.linkedin.com/in/waseem-abd-elhadi-1b293624b/',
       icon: FaLinkedin,
+      ariaLabel: 'Visit my LinkedIn profile',
     },
     {
       id: 4,
       url: 'https://www.instagram.com/waseem.abdalhady/',
       icon: FaInstagram,
+      ariaLabel: 'Visit my Instagram profile',
     },
     {
       id: 5,
       url: 'https://t.me/waseem_abdalhady',
       icon: FaTelegram,
+      ariaLabel: 'Visit my Telegram profile',
     },
     {
       id: 6,
       url: 'mailto:wasimabdelhadi78@gmail.com',
       icon: FaEnvelope,
+      ariaLabel: 'Send me an email',
     },
   ],
   About: [
@@ -606,7 +612,7 @@ export const sidebarLinks = [
 export const BANNERS_DATA = [
   {
     id: 1,
-    bgImage: '/assets/banner/b4.jpg',
+    bgImage: '/assets/banner/b4.webp',
     subTitle: 'crazy deals',
     title: 'buy 1 get 1 free',
     description: 'The best classic dress is on sale at cara',
@@ -616,7 +622,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 2,
-    bgImage: '/assets/banner/b3.jpg',
+    bgImage: '/assets/banner/b3.webp',
     subTitle: 'spring/summer',
     title: 'upcomming season',
     description: 'The best classic dress is on sale at cara',
@@ -626,7 +632,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 3,
-    bgImage: '/assets/banner/b5.jpg',
+    bgImage: '/assets/banner/b5.webp',
     subTitle: 'Seasonal sale',
     title: 'Winter Collection -50% Off',
     type: 'small',
@@ -634,7 +640,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 4,
-    bgImage: '/assets/banner/b6.jpg',
+    bgImage: '/assets/banner/b6.webp',
     subTitle: 'New Footwear Collection',
     title: 'Spring/Summer 2023',
     type: 'small',
@@ -642,7 +648,7 @@ export const BANNERS_DATA = [
   },
   {
     id: 5,
-    bgImage: '/assets/banner/b7.jpg',
+    bgImage: '/assets/banner/b7.webp',
     subTitle: 'T-Shirt',
     title: 'New Trandy Prinls',
     type: 'small',

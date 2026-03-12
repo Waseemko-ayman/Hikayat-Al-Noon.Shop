@@ -18,11 +18,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { data: profile } = await supabaseAdmin
-      .from('profiles')
-      .select('role')
-      .eq('id', userId)
-      .single();
+    let profile = null;
+    if (userId) {
+      const { data } = await supabaseAdmin
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+      profile = data;
+    }
 
     // Here, only success is returned without entering any row, and this prevents the admin from registering in page_views.
     if (profile?.role === 'ADMIN') {

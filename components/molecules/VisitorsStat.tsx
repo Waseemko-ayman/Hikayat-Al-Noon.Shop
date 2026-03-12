@@ -7,7 +7,7 @@ import { Card } from '../ui/card';
 import CardHeaderContent from '../ui/display/CardHeader';
 import { VisitorsStatsChartConfig } from '@/config/charts';
 
-export function VisitorsStats() {
+const VisitorsStats = () => {
   const [chartData, setChartData] = useState<
     { name: string; value: number; fill: string }[]
   >([]);
@@ -71,4 +71,6 @@ export function VisitorsStats() {
       </ChartContainer>
     </Card>
   );
-}
+};
+
+export default VisitorsStats;
