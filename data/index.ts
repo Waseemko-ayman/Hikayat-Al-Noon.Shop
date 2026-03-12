@@ -193,7 +193,7 @@ export const CONTACT_INFO = [
 export const NEVER_READ = [
   {
     id: 1,
-    src: 'b1.jpg',
+    src: 'b1.webp',
     imgTitle: 'The Cotton - Jersy Zip - Up hoodie',
     title: 'The Cotton - Jersy Zip - Up hoodie',
     description:
@@ -202,7 +202,7 @@ export const NEVER_READ = [
   },
   {
     id: 2,
-    src: 'b2.jpg',
+    src: 'b2.webp',
     imgTitle: 'How to Style a Quiff',
     title: 'How to Style a Quiff',
     description:
@@ -211,7 +211,7 @@ export const NEVER_READ = [
   },
   {
     id: 3,
-    src: 'b3.jpg',
+    src: 'b3.webp',
     imgTitle: 'Must - Have Skater girl Items',
     title: 'Must - Have Skater girl Items',
     description:
@@ -220,21 +220,12 @@ export const NEVER_READ = [
   },
   {
     id: 4,
-    src: 'b4.jpg',
+    src: 'b4.webp',
     imgTitle: 'Runway - Inspired Trends',
     title: 'Runway - Inspired Trends',
     description:
       'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
     beforeContent: '16/01',
-  },
-  {
-    id: 5,
-    src: 'b6.jpg',
-    imgTitle: 'AW20 Mensweare Trends',
-    title: 'AW20 Mensweare Trends',
-    description:
-      'Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr walf chartreuse hexagan irony. godard_',
-    beforeContent: '10/03',
   },
 ];
 

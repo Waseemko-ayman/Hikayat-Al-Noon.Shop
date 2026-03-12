@@ -12,9 +12,8 @@ const KnowUs = () => {
       <Container>
         <div className="flex items-center justify-center gap-8 mb-[60px] max-[992px]:flex-wrap max-[992px]:text-center">
           <motion.img
-            src="/assets/about/a6.jpg"
+            src="/assets/about/a1.webp"
             alt="about img"
-            data-aos="fade-right"
             className="max-w-full w-[550px]"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

@@ -6,7 +6,7 @@ const RepairServices = () => {
     <RepairServicesComp
       subTitle="#cart"
       description="Add your coupon code & upto 70!"
-      bgImage="/assets/about/banner.png"
+      bgImage="/assets/about/banner.webp"
     />
   );
 };

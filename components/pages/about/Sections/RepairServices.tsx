@@ -6,7 +6,7 @@ const RepairServices = () => {
     <RepairServicesComp
       subTitle="#KnowUs"
       description="Lorem ipsum dolor sit amet consectetur"
-      bgImage="/assets/about/banner.png"
+      bgImage="/assets/about/banner.webp"
     />
   );
 };

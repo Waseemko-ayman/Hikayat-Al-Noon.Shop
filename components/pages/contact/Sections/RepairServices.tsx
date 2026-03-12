@@ -6,7 +6,7 @@ const RepairServices = () => {
     <RepairServicesComp
       subTitle="#let's_talk"
       description="LEAVE A MESSAGE. We love to hear from you!"
-      bgImage="/assets/about/banner.png"
+      bgImage="/assets/about/banner.webp"
     />
   );
 };
