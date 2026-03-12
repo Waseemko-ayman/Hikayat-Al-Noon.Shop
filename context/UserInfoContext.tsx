@@ -18,7 +18,11 @@ export const UserInfoProvider = ({
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
-    if (!session?.user?.id) return;
+    if (!session || !session?.user?.id) {
+      setIsLoading(false); // Important to stop loading state if no user
+      setUser(null);
+      return;
+    }
 
     setIsLoading(true);
     const { data } = await supabase
