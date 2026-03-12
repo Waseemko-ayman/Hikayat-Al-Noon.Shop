@@ -1,9 +1,26 @@
+'use client';
+import dynamic from 'next/dynamic';
+
 import Hero from './Sections/Hero';
 import FeatursSec from '../../organism/FeatursSec';
-import FeaturedProducts from './Sections/FeaturedProducts';
-import RepairServices from './Sections/RepairServices';
-import NewArrivals from './Sections/NewArrivals';
-import Banners from './Sections/Banners';
+import Loading from '@/components/atoms/Loading';
+
+const FeaturedProducts = dynamic(() => import('./Sections/FeaturedProducts'), {
+  ssr: false,
+  loading: () => <Loading loadingText="Loading featured products..." />,
+});
+const RepairServices = dynamic(() => import('./Sections/RepairServices'), {
+  ssr: false,
+  loading: () => <Loading loadingText="Loading repair services..." />,
+});
+const NewArrivals = dynamic(() => import('./Sections/NewArrivals'), {
+  ssr: false,
+  loading: () => <Loading loadingText="Loading new arrivals..." />,
+});
+const Banners = dynamic(() => import('./Sections/Banners'), {
+  ssr: false,
+  loading: () => <Loading loadingText="Loading banners..." />,
+});
 
 const HomePage = () => {
   return (

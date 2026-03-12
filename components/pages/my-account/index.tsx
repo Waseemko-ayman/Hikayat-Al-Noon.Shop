@@ -2,11 +2,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import { useEffect, useState } from 'react';
 import Profile from './Sections/Profile';
-import Orders from './Sections/Orders';
-import Addresses from './Sections/Addresses';
-import Settings from './Sections/Settings';
 import AccountSidebar from './Sections/AccountSidebar';
 import Layer from '@/components/atoms/Layer';
 import Container from '@/components/atoms/Container';
@@ -17,6 +16,10 @@ import { useToast } from '@/lib/toast';
 import supabase from '@/config/api';
 import { useUserInfo } from '@/context/UserInfoContext';
 import useAPI from '@/Hooks/useAPI';
+
+const Orders = dynamic(() => import('./Sections/Orders'), { ssr: false });
+const Addresses = dynamic(() => import('./Sections/Addresses'), { ssr: false });
+const Settings = dynamic(() => import('./Sections/Settings'), { ssr: false });
 
 const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');

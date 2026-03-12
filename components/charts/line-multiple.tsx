@@ -16,7 +16,7 @@ import Loading from '../atoms/Loading';
 import ButtonLoading from '../atoms/ButtonLoading';
 import { LineMultipleChartConfig } from '@/config/charts';
 
-export function LineMultiple() {
+export const LineMultiple = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState<
     {
@@ -150,6 +150,6 @@ export function LineMultiple() {
       </div>
     </Card>
   );
-}
+};
 
 export default LineMultiple;

@@ -1,7 +1,11 @@
-import React from 'react';
+"use client"
+import dynamic from 'next/dynamic';
 import RepairServices from './Sections/RepairServices';
-import Visit from './Sections/Visit';
-import LeaveMessage from './Sections/LeaveMessage';
+
+const Visit = dynamic(() => import('./Sections/Visit'), { ssr: false });
+const LeaveMessage = dynamic(() => import('./Sections/LeaveMessage'), {
+  ssr: false,
+});
 
 const ContactPage = () => {
   return (
