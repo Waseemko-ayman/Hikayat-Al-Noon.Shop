@@ -35,7 +35,7 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
 
   return (
     <motion.div
-      style={{ overflow: 'visible' }}
+      style={{ overflow: 'visible', willChange: 'transform' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
