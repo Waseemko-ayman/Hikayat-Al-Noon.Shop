@@ -6,7 +6,7 @@ const RepairServices = () => {
     <RepairServicesComp
       subTitle="#readmore"
       description="Read all case studies about our products!"
-      bgImage="/assets/banner/b8.jpg"
+      bgImage="/assets/banner/b8.webp"
     />
   );
 };

@@ -114,7 +114,7 @@ const Clothes = () => {
 
         <ProdcutsContainer>
           {isLoading ? (
-            <ProductSkeletons count={8} />
+            <ProductSkeletons count={products?.length} />
           ) : error ? (
             <ErrorFetching error={error} />
           ) : products?.length > 0 ? (

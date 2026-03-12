@@ -13,7 +13,7 @@ const RepairServices = () => {
         </>
       }
       bntText="Explore More"
-      bgImage="/assets/banner/b2.jpg"
+      bgImage="/assets/banner/b2.webp"
       buttonHref={PATHS.SHOP.ROOT}
     />
   );

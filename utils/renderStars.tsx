@@ -8,14 +8,14 @@ export const renderStars = (rating: number) => {
   // Full stars
   for (let i = 0; i < fullStars; i++) {
     stars.push(
-      <FaStar key={`full-${i}`} className="text-lg text-yellow-500" />,
+      <FaStar key={`full-${i}`} className="text-sm md:text-lg text-yellow-500" />,
     );
   }
 
   // Half star if available
   if (hasHalfStar) {
     stars.push(
-      <FaStarHalfStroke key="half" className="text-lg text-yellow-500" />,
+      <FaStarHalfStroke key="half" className="text-sm md:text-lg text-yellow-500" />,
     );
   }
 
@@ -23,7 +23,7 @@ export const renderStars = (rating: number) => {
   const emptyStars = 5 - (fullStars + (hasHalfStar ? 1 : 0));
   for (let i = 0; i < emptyStars; i++) {
     stars.push(
-      <FaRegStar key={`empty-${i}`} className="text-lg text-gray-400" />,
+      <FaRegStar key={`empty-${i}`} className="text-sm md:text-lg text-gray-400" />,
     );
   }
 
