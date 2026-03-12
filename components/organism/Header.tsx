@@ -82,6 +82,7 @@ const Header = () => {
                   <FaAlignLeft
                     fontSize="large"
                     className="text-2xl text-(--fifth-color) hover:text-(--forth-color) transition duration-200 cursor-pointer"
+                    aria-label="Open side menu"
                   />
                 </SheetTrigger>
               </motion.div>
