@@ -28,6 +28,9 @@ const FooterLinks = ({
             <Link
               href={item.url}
               className="text-(--seconde-color) hover:pl-1 transition-all duration-300"
+              aria-label={
+                'icon' in item ? item.ariaLabel : undefined
+              }
             >
               {/* By type guard To check if an item is of a type that contains icon or text */}
               {'icon' in item ? (

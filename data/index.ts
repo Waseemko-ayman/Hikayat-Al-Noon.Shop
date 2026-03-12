@@ -88,31 +88,37 @@ export const FOOTER_LINKS_DATA = {
       id: 1,
       url: 'https://github.com/Waseemko-ayman',
       icon: FaGithub,
+      ariaLabel: 'Visit my GitHub profile',
     },
     {
       id: 2,
       url: 'https://twitter.com/waseemabdalhady',
       icon: FaTwitter,
+      ariaLabel: 'Visit my Twitter profile',
     },
     {
       id: 3,
       url: 'https://www.linkedin.com/in/waseem-abd-elhadi-1b293624b/',
       icon: FaLinkedin,
+      ariaLabel: 'Visit my LinkedIn profile',
     },
     {
       id: 4,
       url: 'https://www.instagram.com/waseem.abdalhady/',
       icon: FaInstagram,
+      ariaLabel: 'Visit my Instagram profile',
     },
     {
       id: 5,
       url: 'https://t.me/waseem_abdalhady',
       icon: FaTelegram,
+      ariaLabel: 'Visit my Telegram profile',
     },
     {
       id: 6,
       url: 'mailto:wasimabdelhadi78@gmail.com',
       icon: FaEnvelope,
+      ariaLabel: 'Send me an email',
     },
   ],
   About: [
