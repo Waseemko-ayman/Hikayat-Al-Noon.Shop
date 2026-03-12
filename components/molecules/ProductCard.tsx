@@ -36,7 +36,7 @@ const ProductCard = ({
 
   return (
     <div
-      className={`relative max-w-full p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
+      className={`relative max-w-full p-2.5 md:p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
     >
       <GlowingEffect
         spread={40}
@@ -57,8 +57,8 @@ const ProductCard = ({
             />
           </div>
           {discount && (
-            <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-semibold px-2 py-1 rounded-lg shadow-md z-10">
-              rival %{discount}
+            <span className="absolute top-2 right-2 bg-red-600 text-white text-[10px] md:text-xs font-semibold px-2 py-1 rounded-lg shadow-md z-10">
+              -%{discount}
             </span>
           )}
         </div>
@@ -66,11 +66,11 @@ const ProductCard = ({
           <span className="text-base text-(--first-color)">
             {trade_mark && trade_mark}
           </span>
-          <h3 className="text-(--forth-color) text-base mt-2 font-bold">
+          <h3 className="text-(--forth-color) text-sm md:text-base mt-2 font-bold">
             {title}
           </h3>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 mb-4">
             {renderStars(averageRating)}
             <span className="ml-1 font-semibold">
               {averageRating.toFixed(1)}
@@ -99,7 +99,7 @@ const ProductCard = ({
         trigger={
           <Button
             variant="circle"
-            otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center"
+            otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center w-9! h-9! md:w-10! md:h-10!"
             ariaLabel={`Add ${productData?.title} to cart`}
             handleClick={(e) => {
               e.stopPropagation();
@@ -108,7 +108,7 @@ const ProductCard = ({
               setOpen(true);
             }}
           >
-            <FaCartShopping size="20px" />
+            <FaCartShopping className='text-lg md:text-xl' />
           </Button>
         }
         open={open}
