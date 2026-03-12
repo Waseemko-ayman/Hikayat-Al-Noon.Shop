@@ -79,18 +79,18 @@ const ProductCard = ({
 
           <div className={old_price ? 'flex items-center gap-2' : ''}>
             {price && (
-              <h5 className="text-(--forth-color) text-lg font-bold">
+              <h4 className="text-(--forth-color) text-lg font-bold">
                 ${price}
-              </h5>
+              </h4>
             )}
             {old_price && (
-              <h4
+              <h5
                 className={`font-semibold ${
                   price ? 'line-through text-gray-400 text-sm' : 'text-[15px]'
                 }`}
               >
                 ${old_price}
-              </h4>
+              </h5>
             )}
           </div>
         </div>

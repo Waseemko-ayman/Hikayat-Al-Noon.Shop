@@ -36,9 +36,9 @@ const RepairServicesComp = ({
         >
           {title && <h2 className="text-xl text-(--white-color)">{title}</h2>}
           {subTitle && (
-            <h4 className="text-3xl md:text-5xl text-(--white-color) my-5">
+            <h5 className="text-3xl md:text-5xl text-(--white-color) my-5">
               {subTitle}
-            </h4>
+            </h5>
           )}
           {description && (
             <p className="text-(--white-color) text-base font-normal my-5">
