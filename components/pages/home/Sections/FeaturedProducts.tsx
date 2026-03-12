@@ -30,13 +30,15 @@ const FeaturedProducts = () => {
         title="Featured Product"
         description="Summer Collection New Modern Design"
       />
-      <GridWrapper isScrollable>
-        {isLoading ? (
-          <ProductSkeletons count={4} />
-        ) : error ? (
-          <ErrorFetching error={error} />
-        ) : (
-          products?.map((item: ProductCardProps, index: number) => (
+      {isLoading ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <ProductSkeletons count={products?.length} />
+        </div>
+      ) : error ? (
+        <ErrorFetching error={error} />
+      ) : (
+        <GridWrapper isScrollable>
+          {products?.map((item: ProductCardProps, index: number) => (
             <AnimatedWrapper key={item?.id} custom={index}>
               <ProductCard
                 key={item?.id}
@@ -48,9 +50,9 @@ const FeaturedProducts = () => {
                 }
               />
             </AnimatedWrapper>
-          ))
-        )}
-      </GridWrapper>
+          ))}
+        </GridWrapper>
+      )}
     </ResponsiveWrapper>
   );
 };
