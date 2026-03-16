@@ -4,7 +4,7 @@
 
 import dynamic from 'next/dynamic';
 
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Profile from './Sections/Profile';
 import AccountSidebar from './Sections/AccountSidebar';
 import Layer from '@/components/atoms/Layer';
@@ -17,9 +17,13 @@ import supabase from '@/config/api';
 import { useUserInfo } from '@/context/UserInfoContext';
 import useAPI from '@/Hooks/useAPI';
 
-const Orders = dynamic(() => import('./Sections/Orders'), { ssr: false });
-const Addresses = dynamic(() => import('./Sections/Addresses'), { ssr: false });
-const Settings = dynamic(() => import('./Sections/Settings'), { ssr: false });
+const Orders = memo(dynamic(() => import('./Sections/Orders'), { ssr: false }));
+const Addresses = memo(
+  dynamic(() => import('./Sections/Addresses'), { ssr: false }),
+);
+const Settings = memo(
+  dynamic(() => import('./Sections/Settings'), { ssr: false }),
+);
 
 const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -125,7 +129,7 @@ const MyAccountPage = () => {
     <FormProvider {...methods}>
       <Layer>
         <Container>
-          <div className="grid lg:grid-cols-[300px_1fr] gap-8">
+          <div className="grid md:grid-cols-[300px_1fr] gap-8">
             {/* Sidebar */}
             <AccountSidebar
               activeTab={activeTab}
@@ -136,7 +140,7 @@ const MyAccountPage = () => {
             />
 
             {/* Profile Tab */}
-            {activeTab === 'profile' && (
+            <div className={activeTab === 'profile' ? 'block' : 'hidden'}>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Profile
                   errors={errors}
@@ -145,16 +149,19 @@ const MyAccountPage = () => {
                   loading={loading}
                 />
               </form>
-            )}
+            </div>
 
-            {/* Orders Tab */}
-            {activeTab === 'orders' && <Orders />}
+            <div className={activeTab === 'orders' ? 'block' : 'hidden'}>
+              <Orders />
+            </div>
 
-            {/* Addresses Tab */}
-            {activeTab === 'addresses' && <Addresses />}
+            <div className={activeTab === 'addresses' ? 'block' : 'hidden'}>
+              <Addresses />
+            </div>
 
-            {/* Settings Tab */}
-            {activeTab === 'settings' && <Settings />}
+            <div className={activeTab === 'settings' ? 'block' : 'hidden'}>
+              <Settings />
+            </div>
           </div>
         </Container>
       </Layer>
