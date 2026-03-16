@@ -499,3 +499,9 @@ export interface CreateUsersProps {
   avatar_file: File | null; // Selected image file (do not upload here)
   avatar_url: string;
 }
+
+export interface PasswordFormValues {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
