@@ -15,12 +15,14 @@ const DashboardPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Orders</h1>
+        <h1 className="text-2xl font-bold tracking-tight">
+          Analytics Dashboard
+        </h1>
         <p className="text-muted-foreground">
-          Welcome to your order management orders
+          Track visitor activity and performance insights
         </p>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7 max-md:mb-7">
         <div className="md:col-span-2 lg:col-span-5 space-y-5 overflow-x-auto">
           <LineMultiple />
         </div>

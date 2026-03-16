@@ -12,7 +12,7 @@ export function DashboardSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const rawPathname = usePathname();
   const pathname = rawPathname.replace(/^\/(en|ar)(?=\/|$)/, '') || '/';
-  const isMobile = useIsMobile(991);
+  const isMobile = useIsMobile(639);
   // const { user, isLoading, error } = useUserInfo();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export function DashboardSidebar() {
       )}
 
       {!isMobile && (
-        <div className="hidden lg:flex h-screen w-64 flex-col justify-between border border-gray-300 bg-white rounded-br-lg">
+        <div className="hidden sm:flex h-screen w-16 lg:w-64 flex-col justify-between border border-gray-300 bg-white rounded-br-lg">
           <SidebarContent pathname={pathname} />
         </div>
       )}

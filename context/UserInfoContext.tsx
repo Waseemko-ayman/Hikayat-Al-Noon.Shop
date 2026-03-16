@@ -15,6 +15,7 @@ export const UserInfoProvider = ({
 }) => {
   const session = useSession();
   const [user, setUser] = useState<any>(null);
+  const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
@@ -25,13 +26,14 @@ export const UserInfoProvider = ({
     }
 
     setIsLoading(true);
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', session.user.id)
       .single();
 
     setUser(data);
+    setError(error);
     setIsLoading(false);
   };
 
@@ -43,6 +45,7 @@ export const UserInfoProvider = ({
     <UserInfoContext.Provider
       value={{
         user,
+        error,
         isLoading,
         refresh: fetchUser,
         setUser, // 🔥 مهم للتحديث المباشر

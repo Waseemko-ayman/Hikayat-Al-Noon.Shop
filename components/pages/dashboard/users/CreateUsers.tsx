@@ -75,6 +75,7 @@ const CreateUsers = ({
         phone: data.phone || null,
         role: data.role,
         avatar_url: data.avatar_url || '',
+        password: data.password,
       };
 
       // -------------------------------- USER AVATAR
