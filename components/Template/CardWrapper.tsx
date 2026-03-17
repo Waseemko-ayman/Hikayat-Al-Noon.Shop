@@ -1,14 +1,12 @@
+import { CardWrapperProps } from '@/interfaces';
 import React from 'react';
 
 const CardWrapper = ({
   children,
   otherClassName,
+  contentClassName,
   withFlex = true,
-}: {
-  children: React.ReactNode;
-  otherClassName?: string;
-  withFlex?: boolean;
-}) => {
+}: CardWrapperProps) => {
   return (
     <div
       className={`bg-white border border-(--seven-color) rounded-xl overflow-hidden hover:shadow-lg hover:border-(--forth-color)/30 transition-all duration-300 group ${otherClassName}`}
@@ -16,7 +14,7 @@ const CardWrapper = ({
       <div
         className={`
           ${withFlex ? 'flex items-start justify-between max-[426px]:flex-col max-[426px]:items-center max-[426px]:text-center' : ''}
-          gap-4 p-5
+          gap-4 p-5 ${contentClassName}
         `}
       >
         {children}
