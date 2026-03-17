@@ -1,43 +1,45 @@
 'use client';
-import supabase from '@/config/api';
 import { useEffect, useState } from 'react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart';
 import { Cell, Pie, PieChart } from 'recharts';
 import { Card } from '../ui/card';
 import CardHeaderContent from '../ui/display/CardHeader';
 import { VisitorsStatsChartConfig } from '@/config/charts';
+import useAPI from '@/Hooks/useAPI';
+import { VisitorsStatsProps } from '@/interfaces';
 
 const VisitorsStats = () => {
+  const { data, get } = useAPI<VisitorsStatsProps>('get_visitors_stats', true);
+
   const [chartData, setChartData] = useState<
     { name: string; value: number; fill: string }[]
   >([]);
 
   useEffect(() => {
-    const fetchVisitors = async () => {
-      const { data, error } = await supabase.rpc('get_visitors_stats');
-      if (error || !data) return;
+    if (!data) return;
+    setChartData([
+      {
+        name: 'Total Visitors',
+        value: (data as unknown as VisitorsStatsProps)?.total_visits ?? 0,
+        fill: 'var(--chart-1)',
+      },
+      {
+        name: 'Total Unique Visitors',
+        value: (data as unknown as VisitorsStatsProps)?.unique_visitors ?? 0,
+        fill: 'var(--chart-2)',
+      },
+      {
+        name: 'Today Unique Visitors',
+        value:
+          (data as unknown as VisitorsStatsProps)?.today_unique_visitors ?? 0,
+        fill: 'var(--chart-3)',
+      },
+    ]);
+  }, [data]);
 
-      setChartData([
-        {
-          name: 'Total Visitors',
-          value: data.total_visits ?? 0,
-          fill: 'var(--chart-1)',
-        },
-        {
-          name: 'Total Unique Visitors',
-          value: data.unique_visitors ?? 0,
-          fill: 'var(--chart-2)',
-        },
-        {
-          name: 'Today Unique Visitors',
-          value: data.today_unique_visitors ?? 0,
-          fill: 'var(--chart-3)',
-        },
-      ]);
-    };
-
-    fetchVisitors();
-  }, []);
+  useEffect(() => {
+    get();
+  }, [get]);
 
   return (
     <Card className="col-span-3">
