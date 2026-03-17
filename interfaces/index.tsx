@@ -505,3 +505,22 @@ export interface PasswordFormValues {
   newPassword: string;
   confirmNewPassword: string;
 }
+
+export interface StatsCardProps {
+  title: string;
+  value: number | string;
+  icon: React.ElementType;
+}
+
+export interface CardWrapperProps {
+  children: React.ReactNode;
+  otherClassName?: string;
+  contentClassName?: string;
+  withFlex?: boolean;
+}
+
+export interface VisitorsStatsProps {
+  total_visits: number;
+  unique_visitors: number;
+  today_unique_visitors: number;
+}
