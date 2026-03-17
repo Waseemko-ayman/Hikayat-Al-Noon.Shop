@@ -6,13 +6,14 @@ import Link from 'next/link';
 import InlineError from './InlineError';
 import Loading from '../atoms/Loading';
 import { useUserInfo } from '@/context/UserInfoContext';
+import { Crown, Shield } from 'lucide-react';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
   // Session Hook
   const { user, isLoading, error } = useUserInfo();
 
   const userName = user?.display_name;
-  const role = user?.role;
+  const userRole = user?.role;
   const avatar = user?.avatar_url;
 
   return (
@@ -80,7 +81,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             <InlineError textColor="text-black" />
           ) : (
             <div
-              title={`${userName} - ${role}`}
+              title={`${userName} - ${userRole}`}
               className="min-sm:w-[40px] min-sm:h-[40px] max-lg:w-[40px] max-lg:h-[40px] 
               max-md:w-[50px] max-md:h-[50px] lg:w-[50px] lg:h-[50px]
               rounded-full overflow-hidden border-2 border-(--forth-color)"
@@ -98,7 +99,21 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             <p className="text-sm font-medium">
               {isLoading ? 'Loading...' : userName}
             </p>
-            <p className="text-xs">{isLoading ? 'Loading...' : role}</p>
+            <div
+              className={`flex item-center justify-center gap-1 w-fit mt-1 px-3 py-1 rounded-full ${
+                userRole === 'ADMIN'
+                  ? 'bg-red-100 text-red-700'
+                  : userRole === 'MANAGER'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'bg-gray-100 text-gray-600'
+              }`}
+            >
+              {userRole === 'ADMIN' && <Shield size={14} />}
+              {userRole === 'MANAGER' && <Crown size={14} />}
+              <span className="text-xs">
+                {isLoading ? 'Loading...' : userRole}
+              </span>
+            </div>
           </div>
         </div>
       </div>
