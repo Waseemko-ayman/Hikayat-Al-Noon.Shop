@@ -18,9 +18,9 @@ import { useUserInfo } from '@/context/UserInfoContext';
 import useAPI from '@/Hooks/useAPI';
 
 const Orders = memo(dynamic(() => import('./Sections/Orders'), { ssr: false }));
-const Addresses = memo(
-  dynamic(() => import('./Sections/Addresses'), { ssr: false }),
-);
+// const Addresses = memo(
+//   dynamic(() => import('./Sections/Addresses'), { ssr: false }),
+// );
 const Settings = memo(
   dynamic(() => import('./Sections/Settings'), { ssr: false }),
 );
@@ -155,9 +155,9 @@ const MyAccountPage = () => {
               <Orders />
             </div>
 
-            <div className={activeTab === 'addresses' ? 'block' : 'hidden'}>
+            {/* <div className={activeTab === 'addresses' ? 'block' : 'hidden'}>
               <Addresses />
-            </div>
+            </div> */}
 
             <div className={activeTab === 'settings' ? 'block' : 'hidden'}>
               <Settings />
