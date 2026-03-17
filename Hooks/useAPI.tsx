@@ -79,20 +79,30 @@ const reduce = <T extends { id?: string | number }>(
 // ⚠️ Issue: How do we know that all items returned from the API have an 'id'?
 // TypeScript has no guarantee that type T contains the 'id' property.
 // ✔️ Fix: Constrain type T to { id: string | number } so TypeScript knows 'id' exists
-const useAPI = <T extends { id?: string | number }>(tableName: string) => {
+const useAPI = <T extends object>(
+  tableName: string,
+  isRPC = false,
+) => {
   const [state, dispatch] = useReducer(reduce<T>, initialState);
 
   const get = useCallback(async () => {
     try {
       dispatch({ type: API_ACTIONS.SET_LOADING });
-      const { data, error } = await supabase.from(tableName).select('*');
+      let data, error;
+      if (isRPC) {
+        // RPC call
+        ({ data, error } = await supabase.rpc(tableName));
+      } else {
+        // Regular table call
+        ({ data, error } = await supabase.from(tableName).select('*'));
+      }
       if (error) throw error;
       dispatch({ type: API_ACTIONS.GET, payload: data });
       return data;
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
     }
-  }, [tableName]);
+  }, [tableName, isRPC]);
 
   const getSingle = async (id: string | number) => {
     try {
