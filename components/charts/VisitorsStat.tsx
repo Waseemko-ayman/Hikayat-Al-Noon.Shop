@@ -42,7 +42,7 @@ const VisitorsStats = () => {
   }, [get]);
 
   return (
-    <Card className="col-span-3">
+    <Card className="col-span-3 h-full">
       <CardHeaderContent
         title="Unique Visitors"
         description="Number of unique visitors today and in total"
