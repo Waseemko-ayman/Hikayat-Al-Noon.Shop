@@ -55,7 +55,7 @@ export const LineMultiple = () => {
   }, []);
 
   return (
-    <Card>
+    <Card className='h-full'>
       <div className="w-full h-full flex flex-col p-4">
         <div className="text-center mb-4">
           <h3 className="text-lg font-semibold">

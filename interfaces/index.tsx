@@ -524,3 +524,31 @@ export interface VisitorsStatsProps {
   unique_visitors: number;
   today_unique_visitors: number;
 }
+
+export interface AuthProvidersStatsProps {
+  success: boolean;
+  stats: {
+    email: number;
+    phone: number;
+    email_phone: number;
+  };
+}
+
+export interface ProvidersStatsCardProps {
+  iconBgColor: string;
+  Icon: React.ElementType;
+  name: string;
+  value: string | number;
+}
+
+export interface AccountTabsProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+export interface AccountInfoCardProps {
+  userRole?: string;
+  userName?: string;
+  userEmail?: string;
+  emailVerified?: boolean;
+}

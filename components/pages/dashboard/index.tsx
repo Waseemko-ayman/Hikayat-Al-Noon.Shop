@@ -1,5 +1,6 @@
 'use client';
 
+import AuthProvidersStats from '@/components/charts/AuthProvidersStats';
 import DashboardStats from '@/components/organism/DashboardStats';
 import dynamic from 'next/dynamic';
 
@@ -8,7 +9,7 @@ const LineMultiple = dynamic(
   { ssr: false },
 );
 const VisitorsStats = dynamic(
-  () => import('@/components/molecules/VisitorsStat'),
+  () => import('@/components/charts/VisitorsStat'),
   { ssr: false },
 );
 
@@ -24,6 +25,7 @@ const DashboardPage = () => {
         </p>
       </div>
       <DashboardStats />
+      <AuthProvidersStats />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7 max-md:mb-7">
         <div className="md:col-span-2 lg:col-span-5 space-y-5 overflow-x-auto">
           <LineMultiple />

@@ -35,3 +35,18 @@ export const LineMultipleChartConfig = {
     color: chartColors.chart3,
   },
 } satisfies ChartConfig;
+
+export const AuthProvidersChartConfig = {
+  email: {
+    label: 'Email',
+    color: 'var(--chart-1)',
+  },
+  phone: {
+    label: 'Phone',
+    color: 'var(--chart-2)',
+  },
+  email_phone: {
+    label: 'Email & Phone',
+    color: 'var(--chart-3)',
+  },
+};
