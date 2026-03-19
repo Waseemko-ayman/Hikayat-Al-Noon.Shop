@@ -524,3 +524,19 @@ export interface VisitorsStatsProps {
   unique_visitors: number;
   today_unique_visitors: number;
 }
+
+export interface AuthProvidersStatsProps {
+  success: boolean;
+  stats: {
+    email: number;
+    phone: number;
+    email_phone: number;
+  };
+}
+
+export interface ProvidersStatsCardProps {
+  iconBgColor: string;
+  Icon: React.ElementType;
+  name: string;
+  value: string | number;
+}
