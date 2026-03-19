@@ -32,7 +32,9 @@ const AccountTabs: React.FC<AccountTabsProps> = ({
               key={btn.id}
               variant="primary"
               otherClassName={`w-full justify-start ${
-                isActive ? '!bg-(--first-color) !text-(--forth-color)' : ''
+                isActive
+                  ? '!bg-(--first-color) !text-(--forth-color)'
+                  : 'hover:translate-x-1'
               }`}
               handleClick={() => handleTabChange(tabValue)}
             >
