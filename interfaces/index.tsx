@@ -540,3 +540,15 @@ export interface ProvidersStatsCardProps {
   name: string;
   value: string | number;
 }
+
+export interface AccountTabsProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+export interface AccountInfoCardProps {
+  userRole?: string;
+  userName?: string;
+  userEmail?: string;
+  emailVerified?: boolean;
+}
