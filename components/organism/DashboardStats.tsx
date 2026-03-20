@@ -40,16 +40,18 @@ const DashboardStats = () => {
   }, [get]);
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="flex gap-4 overflow-x-auto scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-3">
       {isLoading || items.length === 0
         ? Array.from({ length: 3 }).map((_, i) => <StatsCardSkeleton key={i} />)
         : items.map((stat, index) => (
-            <StatsCard
-              key={index}
-              title={stat.name}
-              value={stat.value}
-              icon={stat.icon}
-            />
+            <div key={stat.name} className="min-w-[250px]">
+              <StatsCard
+                key={index}
+                title={stat.name}
+                value={stat.value}
+                icon={stat.icon}
+              />
+            </div>
           ))}
     </div>
   );

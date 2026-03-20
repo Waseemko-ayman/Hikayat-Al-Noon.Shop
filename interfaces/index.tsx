@@ -3,6 +3,7 @@ import {
   ButtonIconPosition,
   ButtonTypes,
   ButtonVarinats,
+  flexVariant,
   InputTypes,
   ToastType,
 } from '@/utils/types';
@@ -517,6 +518,7 @@ export interface CardWrapperProps {
   otherClassName?: string;
   contentClassName?: string;
   withFlex?: boolean;
+  flexVariant?: flexVariant;
 }
 
 export interface VisitorsStatsProps {

@@ -77,6 +77,14 @@ html {
   border-radius: 10px;
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE و Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 ul {
   list-style: none;
 }
