@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/context/CartContext';
-import { ProductsProvider } from '@/context/ProductsContext';
 import { UpdateContentProvider } from '@/context/updateContentContext';
 import AuthProvider from '@/context/AuthContext';
 import { UserInfoProvider } from '@/context/UserInfoContext';
@@ -52,9 +51,7 @@ export default function RootLayout({
           <AuthProvider>
             <UserInfoProvider>
               <UpdateContentProvider>
-                <ProductsProvider>
-                  <CartProvider>{children}</CartProvider>
-                </ProductsProvider>
+                <CartProvider>{children}</CartProvider>
               </UpdateContentProvider>
             </UserInfoProvider>
           </AuthProvider>
