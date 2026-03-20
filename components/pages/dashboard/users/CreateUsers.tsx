@@ -12,7 +12,7 @@ import Input from '@/components/atoms/Input';
 import { useUpdateContent } from '@/context/updateContentContext';
 import supabase from '@/config/api';
 import { CreateUsersFields, rolesOptions } from '@/data';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { InputTypes } from '@/utils/types';
 import { Eye, EyeOff } from 'lucide-react';
 import { CreateUsersProps, CreateUsersTableProps } from '@/interfaces';
@@ -38,6 +38,8 @@ const CreateUsers = ({
   onEditIdChange,
   onTabChange,
 }: CreateUsersTableProps) => {
+  // We use useEffect to generate names after mount (client-only)
+  const [clientReady, setClientReady] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { showToast } = useToast();
   const { triggerRefresh } = useUpdateContent();
@@ -99,7 +101,8 @@ const CreateUsers = ({
         });
       }
 
-      if (fileToUpload) {
+      // ✅ clientReady: Ensure this code runs only on the client to prevent hydration mismatch
+      if (clientReady && fileToUpload) {
         const filePath = `avatars/${fileToUpload.name}-${Date.now()}`;
         const { error: uploadError } = await supabase.storage
           .from('avatars')
@@ -133,6 +136,10 @@ const CreateUsers = ({
   };
 
   // ----------------------------------------------------------------
+
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
 
   return (
     <SettingsTab

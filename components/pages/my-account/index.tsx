@@ -29,6 +29,8 @@ const MyAccountPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  // We use useEffect to generate names after mount (client-only)
+  const [clientReady, setClientReady] = useState(false);
 
   // Notifications
   const { showToast } = useToast();
@@ -70,7 +72,8 @@ const MyAccountPage = () => {
     try {
       // Upload the image if available
       // avatar_file came from AccountSidebar via useFormContext
-      if (data.avatar_file) {
+      // ✅ clientReady: Ensure this code runs only on the client to prevent hydration mismatch
+      if (clientReady && data.avatar_file) {
         const filePath = `${userProfile?.id}-${Date.now()}`;
         const { error: uploadError } = await supabase.storage
           .from('avatars')
@@ -124,6 +127,10 @@ const MyAccountPage = () => {
   useEffect(() => {
     reset(initialUserInfo);
   }, [userProfile, reset]);
+
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
 
   return (
     <FormProvider {...methods}>
