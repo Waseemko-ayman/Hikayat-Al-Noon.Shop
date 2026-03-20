@@ -115,6 +115,7 @@ const Header = () => {
                   title="Cata Logo"
                   width={60}
                   height={60}
+                  className="w-auto h-auto"
                 />
               </Link>
             </motion.div>
