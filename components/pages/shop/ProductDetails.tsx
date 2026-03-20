@@ -106,7 +106,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
     <Layer>
       <Container>
         <div className="flex gap-10 max-[992px]:flex-col">
-          <div className="w-[500px] max-md:w-full mx-auto relative">
+          <div className="w-full md:w-[500px] mx-auto relative">
             <div className="relative w-full h-[500px] max-md:h-[400px]">
               {!isLoaded && (
                 <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-sm" />
@@ -122,6 +122,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                 className={`w-full rounded-sm object-contain transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                 fill
                 onLoadingComplete={() => setIsLoaded(true)}
+                sizes="(max-width: 768px) 100vw, 500px"
               />
             </div>
             <PrdocutGallery

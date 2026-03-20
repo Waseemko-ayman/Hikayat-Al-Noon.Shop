@@ -47,12 +47,13 @@ const ProductCard = ({
       />
       <div onClick={handleClick} className="cursor-pointer">
         <div className="relative">
-          <div className="relative w-full max-w-[500px] md:max-w-[500px] aspect-square">
+          <div className="relative w-full md:max-w-[500px] aspect-square">
             <Image
               src={image || '/assets/no-image-available.webp'}
               alt={title}
               title={title}
               fill
+              sizes="(max-width: 768px) 100vw, 500px"
               className="object-cover rounded-[20px]"
             />
           </div>
@@ -108,7 +109,7 @@ const ProductCard = ({
               setOpen(true);
             }}
           >
-            <FaCartShopping className='text-lg md:text-xl' />
+            <FaCartShopping className="text-lg md:text-xl" />
           </Button>
         }
         open={open}
