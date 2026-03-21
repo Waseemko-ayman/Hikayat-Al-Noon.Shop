@@ -9,7 +9,10 @@ const ProvidersStatsCard = ({
   value,
 }: ProvidersStatsCardProps) => {
   return (
-    <CardWrapper contentClassName="items-center! justify-start">
+    <CardWrapper
+      contentClassName="items-center! justify-start"
+      flexVariant="row"
+    >
       <div className={`${iconBgColor} p-3 rounded-full text-white text-xl`}>
         {Icon && <Icon />}
       </div>

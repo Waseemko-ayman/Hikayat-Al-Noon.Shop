@@ -60,6 +60,8 @@ const CreateProducts = ({
 }) => {
   const [sectionsOptions, setSectionsOptions] = useState<any[]>([]);
   const [categoriesOptions, setCategoriesOptions] = useState<any[]>([]);
+  // We use useEffect to generate names after mount (client-only)
+  const [clientReady, setClientReady] = useState(false);
 
   const { showToast } = useToast();
   const { triggerRefresh } = useUpdateContent();
@@ -153,7 +155,6 @@ const CreateProducts = ({
   // ----------------------------------------------------------------
 
   const onSubmit: SubmitHandler<ProductFormData> = async (data: any) => {
-    console.log(data);
     try {
       const formData: Record<string, any> = {
         title: data.title,
@@ -167,52 +168,55 @@ const CreateProducts = ({
         category: data.category,
       };
 
-      // -------------------------------- IMAGE
-      // Uploading the main image
-      if (imageFile instanceof File) {
-        const fileName = `${Date.now()}-${imageFile.name}`;
-        const { data: uploaded, error: uploadError } = await supabase.storage
-          .from('products')
-          .upload(`images/${fileName}`, imageFile);
+      // ✅ Ensure this code runs only on the client to prevent hydration mismatch
+      if (clientReady) {
+        // -------------------------------- IMAGE
+        // Uploading the main image
+        if (imageFile instanceof File) {
+          const fileName = `${Date.now()}-${imageFile.name}`;
+          const { data: uploaded, error: uploadError } = await supabase.storage
+            .from('products')
+            .upload(`images/${fileName}`, imageFile);
 
-        // Throw an error if the upload fails
-        if (uploadError) throw uploadError;
+          // Throw an error if the upload fails
+          if (uploadError) throw uploadError;
 
-        const { data: publicData } = supabase.storage
-          .from('products')
-          .getPublicUrl(uploaded.path);
+          const { data: publicData } = supabase.storage
+            .from('products')
+            .getPublicUrl(uploaded.path);
 
-        formData.image = publicData.publicUrl;
-      } else {
-        formData.image = imageFile; // URL القديم
-      }
+          formData.image = publicData.publicUrl;
+        } else {
+          formData.image = imageFile; // URL القديم
+        }
 
-      // -------------------------------- GALLERY
-      // Array to store the URLs of uploaded images
-      if (galleryValue.length > 0) {
-        const galleryUrls = await Promise.all(
-          galleryValue.map(async (item: any) => {
-            if (item instanceof File) {
-              const fileName = `${Date.now()}-${item.name}`;
-              const { data: uploaded, error } = await supabase.storage
-                .from('products')
-                .upload(`gallery/${fileName}`, item);
+        // -------------------------------- GALLERY
+        // Array to store the URLs of uploaded images
+        if (galleryValue.length > 0) {
+          const galleryUrls = await Promise.all(
+            galleryValue.map(async (item: any) => {
+              if (item instanceof File) {
+                const fileName = `${Date.now()}-${item.name}`;
+                const { data: uploaded, error } = await supabase.storage
+                  .from('products')
+                  .upload(`gallery/${fileName}`, item);
 
-              if (error) throw error;
+                if (error) throw error;
 
-              const { data: publicData } = supabase.storage
-                .from('products')
-                .getPublicUrl(uploaded.path);
+                const { data: publicData } = supabase.storage
+                  .from('products')
+                  .getPublicUrl(uploaded.path);
 
-              return publicData.publicUrl;
-            }
-            return item; // URL قديم
-          }),
-        );
+                return publicData.publicUrl;
+              }
+              return item; // URL قديم
+            }),
+          );
 
-        formData.gallery = galleryUrls;
-      } else {
-        formData.gallery = []; // فارغ إذا لم يكن هناك صور
+          formData.gallery = galleryUrls;
+        } else {
+          formData.gallery = []; // فارغ إذا لم يكن هناك صور
+        }
       }
 
       let response: any;
@@ -272,6 +276,7 @@ const CreateProducts = ({
   useEffect(() => {
     getSections();
     getCategories();
+    setClientReady(true);
   }, []);
 
   useEffect(() => {

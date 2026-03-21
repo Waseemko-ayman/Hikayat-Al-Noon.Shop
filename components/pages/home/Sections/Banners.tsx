@@ -2,30 +2,40 @@ import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import Banner from '@/components/molecules/Banner';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
+import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
+import GridWrapper from '@/components/organism/GridWrapper';
 import { BANNERS_DATA } from '@/data';
 
 const Banners = () => {
   return (
-    <Layer>
-      <Container>
-        <div className="grid md:grid-cols-2 gap-6">
-          {BANNERS_DATA.filter((item) => item.type === 'big').map(
-            (item, index) => (
-              <AnimatedWrapper key={item.id} custom={index}>
-                <Banner
-                  key={item.id}
-                  height="h-[50vh]"
-                  otherClassNameContainer={
-                    index === 0 ? 'bg-right' : 'bg-center'
-                  }
-                  {...item}
-                />
-              </AnimatedWrapper>
-            ),
-          )}
-        </div>
+    <>
+      <Layer otherClassName="pb-0!">
+        <Container>
+          <div className="grid md:grid-cols-2 gap-6">
+            {BANNERS_DATA.filter((item) => item.type === 'big').map(
+              (item, index) => (
+                <AnimatedWrapper key={item.id} custom={index}>
+                  <Banner
+                    key={item.id}
+                    height="h-[50vh]"
+                    otherClassNameContainer={
+                      index === 0 ? 'bg-right' : 'bg-center'
+                    }
+                    {...item}
+                  />
+                </AnimatedWrapper>
+              ),
+            )}
+          </div>
+        </Container>
+      </Layer>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+      <ResponsiveWrapper otherClassName="pt-0!">
+        <GridWrapper
+          isScrollable
+          gridCols="md:grid-cols-2 lg:grid-cols-3"
+          itemClassName="max-md:min-w-[350px]"
+        >
           {BANNERS_DATA.filter((item) => item.type === 'small').map(
             (item, index) => (
               <AnimatedWrapper key={item.id} custom={index}>
@@ -44,9 +54,9 @@ const Banners = () => {
               </AnimatedWrapper>
             ),
           )}
-        </div>
-      </Container>
-    </Layer>
+        </GridWrapper>
+      </ResponsiveWrapper>
+    </>
   );
 };
 

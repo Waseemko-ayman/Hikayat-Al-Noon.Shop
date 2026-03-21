@@ -21,7 +21,7 @@ const Footer = () => {
               src="/assets/landing/logo.webp"
               alt="Wénor Shop Logo"
               title="Wénor Shop Logo"
-              className="mb-8"
+              className="mb-8 w-auto h-auto"
               width={140}
               height={40}
               initial={{ opacity: 0, y: 20 }}

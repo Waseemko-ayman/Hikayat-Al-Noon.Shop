@@ -17,7 +17,7 @@ const RepairServicesComp = ({
   buttonHref,
 }: RepairServicesProps) => {
   return (
-    <Layer otherClassName="relative min-h-[40vh] text-center flex items-center justify-center">
+    <Layer otherClassName="relative min-h-[30vh] md:min-h-[40vh] text-center flex items-center justify-center">
       <Image
         src={bgImage}
         alt={title || 'banner'}

@@ -50,19 +50,21 @@ const AuthProvidersStats = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"> */}
+      <div className="flex gap-4 overflow-x-auto scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-3">
         {isLoading
           ? Array.from({ length: 3 }).map((_, i) => (
               <StatsCardSkeleton key={i} />
             ))
           : items.map((item) => (
-              <ProvidersStatsCard
-                key={item.name}
-                iconBgColor={item.color}
-                Icon={item.icon}
-                name={item.name}
-                value={item.value}
-              />
+              <div key={item.name} className="min-w-[250px]">
+                <ProvidersStatsCard
+                  iconBgColor={item.color}
+                  Icon={item.icon}
+                  name={item.name}
+                  value={item.value}
+                />
+              </div>
             ))}
       </div>
     </div>

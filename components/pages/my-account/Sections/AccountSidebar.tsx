@@ -62,7 +62,9 @@ const AccountSidebar = ({
               src={avatarPreview || '/assets/user-avatar.png'}
               alt="user"
               fill
+              sizes="120px"
               className="object-cover rounded-full border-2 border-(--forth-color)"
+              priority
             />
             <input
               type="file"
