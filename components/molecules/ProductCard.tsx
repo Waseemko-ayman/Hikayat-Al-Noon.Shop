@@ -36,7 +36,7 @@ const ProductCard = ({
 
   return (
     <div
-      className={`relative max-w-full p-2.5 md:p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
+      className={`relative max-w-full h-full p-2.5 md:p-3.5 border border-[#cce7d0] rounded-[20px] shadow-[20px_20px_34px_rgb(0, 0, 0, 0.03)] hover:shadow-[10px_10px_54px_#ddd] hover:scale-[1.02] cursor-pointer transition-all duration-300 ${otherClassName}`}
     >
       <GlowingEffect
         spread={40}
@@ -45,7 +45,10 @@ const ProductCard = ({
         proximity={64}
         inactiveZone={0.01}
       />
-      <div onClick={handleClick} className="cursor-pointer">
+      <div
+        onClick={handleClick}
+        className="cursor-pointer flex flex-col h-full rounded-[20px] overflow-hidden"
+      >
         <div className="relative">
           <div className="relative w-full md:max-w-[500px] aspect-square">
             <Image
@@ -63,19 +66,24 @@ const ProductCard = ({
             </span>
           )}
         </div>
-        <div>
-          <span className="text-base text-(--first-color)">
-            {trade_mark && trade_mark}
-          </span>
-          <h3 className="text-(--forth-color) text-sm md:text-base mt-2 font-bold">
-            {title}
-          </h3>
-
-          <div className="flex items-center gap-1 mb-4">
-            {renderStars(averageRating)}
-            <span className="ml-1 font-semibold">
-              {averageRating.toFixed(1)}
+        <div className="flex flex-col justify-between flex-1">
+          <div>
+            <span className="text-base text-(--first-color)">
+              {trade_mark && trade_mark}
             </span>
+            <h3
+              title={title}
+              className="text-(--forth-color) text-sm md:text-base mt-2 font-bold truncate"
+            >
+              {title}
+            </h3>
+
+            <div className="flex items-center gap-1 mb-4">
+              {renderStars(averageRating)}
+              <span className="ml-1 font-semibold">
+                {averageRating.toFixed(1)}
+              </span>
+            </div>
           </div>
 
           <div className={old_price ? 'flex items-center gap-2' : ''}>

@@ -77,7 +77,7 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
           <Select value={size} onValueChange={handleSelectSize}>
             <SelectTrigger
               id="size"
-              className={`w-28 !h-10 bg-background focus:!border-(--forth-color) ${
+              className={`w-30 md:w-28 !h-10 bg-background focus:!border-(--forth-color) ${
                 errorMsgSize ? 'border-red-500' : ''
               }`}
             >
