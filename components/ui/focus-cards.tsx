@@ -22,7 +22,7 @@ export const Card = React.memo(
           alt="features"
           width={200}
           height={200}
-          className="mb-3 md:w-full mx-auto"
+          className="mb-3 mx-auto w-32 sm:w-36 md:w-40 lg:w-full"
         />
         <span
           className={`block text-sm md:text-[12px] text-(--forth-color) p-2 rounded-sm font-semibold ${card.bgColor}`}
