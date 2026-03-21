@@ -8,8 +8,8 @@ import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import ProductSkeletons from '@/components/molecules/ProductSkeletons';
-import Layer from '@/components/atoms/Layer';
-import Container from '@/components/atoms/Container';
+import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
+import GridWrapper from '@/components/organism/GridWrapper';
 
 const NewArrivals = () => {
   const router = useRouter();
@@ -24,35 +24,33 @@ const NewArrivals = () => {
   });
 
   return (
-    <Layer>
-      <Container>
-        <MainTitle
-          title="New Arrivals"
-          description="Summer Collection New Modern Design"
-        />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5">
-          {isLoading ? (
-            <ProductSkeletons count={products?.length} />
-          ) : error ? (
-            <ErrorFetching error={error} />
-          ) : (
-            products?.map((item: ProductCardProps, index: number) => (
-              <AnimatedWrapper key={item?.id} custom={index}>
-                <ProductCard
-                  key={item?.id}
-                  image={item.image}
-                  title={item.title}
-                  productData={item}
-                  handleClick={() =>
-                    item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
-                  }
-                />
-              </AnimatedWrapper>
-            ))
-          )}
-        </div>
-      </Container>
-    </Layer>
+    <ResponsiveWrapper>
+      <MainTitle
+        title="New Arrivals"
+        description="Summer Collection New Modern Design"
+      />
+      <GridWrapper isScrollable>
+        {isLoading ? (
+          <ProductSkeletons count={products?.length} />
+        ) : error ? (
+          <ErrorFetching error={error} />
+        ) : (
+          products?.map((item: ProductCardProps, index: number) => (
+            <AnimatedWrapper key={item?.id} custom={index}>
+              <ProductCard
+                key={item?.id}
+                image={item.image}
+                title={item.title}
+                productData={item}
+                handleClick={() =>
+                  item?.slug && router.push(PATHS.SHOP.ITEM(item?.slug))
+                }
+              />
+            </AnimatedWrapper>
+          ))
+        )}
+      </GridWrapper>
+    </ResponsiveWrapper>
   );
 };
 

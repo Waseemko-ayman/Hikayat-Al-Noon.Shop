@@ -4,6 +4,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import GridWrapper from '../organism/GridWrapper';
 
 export const Card = React.memo(
   ({ card, index }: { card: any; index: number }) => {
@@ -44,10 +45,10 @@ type Card = {
 
 export function FocusCards({ cards }: { cards: Card[] }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-5">
+    <GridWrapper isScrollable gridCols="lg:grid-cols-6 py-10">
       {cards.map((card, index) => (
         <Card key={card.title} card={card} index={index} />
       ))}
-    </div>
+    </GridWrapper>
   );
 }
