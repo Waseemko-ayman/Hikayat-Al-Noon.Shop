@@ -30,17 +30,16 @@ const KnowUs = () => {
               Who We Are?
             </h2>
             <p className="text-(--six-color) text-base leading-normal mt-3 mb-4">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-              sapiente, repudiandae incidunt fugit excepturi voluptatem illo sed
-              maiores perspiciatis vitae odio, iste consectetur accusamus
-              officiis praesentium voluptas pariatur dolor aspernatur. Lorem
-              ipsum dolor, sit amet consectetur adipisicing elit. Porro,
-              exercitationem libero. Quas, tempora consectetur. Unde ducimus
-              dicta eaque deserunt voluptate.
+              At Wénor Shop, we create stylish and modern clothing collections
+              that combine quality and comfort. Our mission is to provide unique
+              fashion pieces that make you feel confident and trendy every day.
+              We focus on creativity, sustainability, and delivering an
+              exceptional shopping experience for our customers.
             </p>
             <abbr className="leading-normal">
-              Crete stunnig images with as much or as little control as you like
-              tahnks to a choice of Bassic Creative modes.
+              Discover stunning designs and collections at Wénor Shop, crafted
+              with care and attention to detail to suit your style and
+              personality.
             </abbr>
           </motion.div>
         </div>
