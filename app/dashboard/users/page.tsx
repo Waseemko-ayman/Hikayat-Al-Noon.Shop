@@ -1,4 +1,4 @@
-import UsersPage from '@/components/pages/dashboard/users';
+import UsersPage from '@/features/dashboard/users';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

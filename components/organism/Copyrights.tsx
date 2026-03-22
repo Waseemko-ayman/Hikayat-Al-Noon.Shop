@@ -15,7 +15,8 @@ const Copyrights = () => {
           transition={{ duration: 0.6 }}
           className="text-base text-(--seconde-color) my-5"
         >
-          &copy; {dateNow.getFullYear()}, Programmed by Waseem Abd Elhadi
+          &copy; {dateNow.getFullYear()} Wénor Shop. Designed & coded by Waseem
+          Abd Elhadi.
         </motion.p>
       </Container>
     </div>

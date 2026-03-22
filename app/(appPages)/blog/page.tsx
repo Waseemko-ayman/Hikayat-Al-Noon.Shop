@@ -1,4 +1,4 @@
-import BlogPage from '@/components/pages/blog';
+import BlogPage from '@/features/blog';
 import { Metadata } from 'next';
 import React from 'react';
 

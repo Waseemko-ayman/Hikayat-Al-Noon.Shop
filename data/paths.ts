@@ -10,7 +10,7 @@ export const PATHS = {
   CART: '/cart',
   MY_ACCOUNT: '/my-account',
   ORDERS: '/orders',
-  PRIVACEY_POLICY: '/privacy-policy',
+  PRIVACY_POLICY: '/privacy-policy',
   HELP: '/help',
   AUTH: {
     LOGIN: '/auth/login',
@@ -24,7 +24,8 @@ export const PATHS = {
     PRODUCTS: '/dashboard/products',
     ORDERS: {
       ROOT: '/dashboard/orders',
-      ITEM: '/dashboard/orders/:id/products',
+      // ITEM: '/dashboard/orders/:id/products',
+      ITEM: (id: string) => `/dashboard/orders/${id}/products`,
     },
     RATINGS: '/dashboard/ratings',
     SETTINGS: '/dashboard/settings',

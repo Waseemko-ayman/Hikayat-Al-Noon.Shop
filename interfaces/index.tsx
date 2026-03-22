@@ -47,6 +47,7 @@ export interface ProductCardProps {
   size?: string[];
   description?: string;
   section?: string;
+  category?: string;
   productData: any;
   handleClick?: () => void;
   otherClassName?: string;

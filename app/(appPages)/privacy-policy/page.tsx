@@ -1,4 +1,4 @@
-import PrivacyPolicyPage from '@/components/pages/privacy-policy';
+import PrivacyPolicyPage from '@/features/privacy-policy';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import AboutPage from '@/components/pages/about';
+import AboutPage from '@/features/about';
 import { Metadata } from 'next';
 import React from 'react';
 

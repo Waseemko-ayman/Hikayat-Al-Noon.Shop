@@ -1,4 +1,4 @@
-import SignupPage from '@/components/pages/auth/Signup';
+import SignupPage from '@/features/auth/Signup';
 import { Metadata } from 'next';
 import React from 'react';
 

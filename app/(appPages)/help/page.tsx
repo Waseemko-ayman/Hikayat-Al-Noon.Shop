@@ -1,4 +1,4 @@
-import HelpPage from '@/components/pages/help';
+import HelpPage from '@/features/help';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import ProductsPage from '@/components/pages/dashboard/products';
+import ProductsPage from '@/features/dashboard/products';
 import { Metadata } from 'next';
 import React from 'react';
 

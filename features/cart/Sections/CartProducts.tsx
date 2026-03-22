@@ -11,7 +11,7 @@ import CartCards from '@/components/molecules/CartCards';
 import EmptyState from '@/components/molecules/EmptyState';
 import { PATHS } from '@/data/paths';
 
-const ProductsTable = () => {
+const CartProducts = () => {
   const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('cart_view_mode');
@@ -103,4 +103,4 @@ const ProductsTable = () => {
   );
 };
 
-export default ProductsTable;
+export default CartProducts;

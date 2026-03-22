@@ -1,4 +1,4 @@
-import ResetPasswordPage from '@/components/pages/auth/ResetPassword';
+import ResetPasswordPage from '@/features/auth/ResetPassword';
 import { Metadata } from 'next';
 import React from 'react';
 
