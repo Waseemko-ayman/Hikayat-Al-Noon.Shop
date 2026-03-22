@@ -53,7 +53,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
     error,
   } = useSupabaseClient(
     'products',
-    { section: product.section }, // filter by section
+    { category: product.category }, // filter by category
   );
 
   // Shuffle the array randomly

@@ -25,8 +25,8 @@ const RandomFeaturedProducts = ({
   return (
     <Layer otherClassName="!mt-10">
       <MainTitle
-        title="Featured Product"
-        description="Summer Collection New Modern Design"
+        title="Similar Products"
+        description="Explore Our Latest Collection of Featured Products"
       />
       <ProdcutsContainer>
         {isLoading ? (
