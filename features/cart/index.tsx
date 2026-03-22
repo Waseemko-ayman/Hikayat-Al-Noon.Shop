@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import RepairServices from './Sections/RepairServices';
 import { useCartContext } from '@/context/CartContext';
 
-const ProductsTable = dynamic(() => import('./Sections/ProductsTable'), {
+const CartProducts = dynamic(() => import('./Sections/CartProducts'), {
   ssr: false,
 });
 const ApplyCoupon = dynamic(() => import('./Sections/ApplyCoupon'), {
@@ -17,7 +17,7 @@ const CartPage = () => {
   return (
     <>
       <RepairServices />
-      <ProductsTable />
+      <CartProducts />
       {cartItems.length > 0 && <ApplyCoupon />}
     </>
   );
