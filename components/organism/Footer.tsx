@@ -13,7 +13,7 @@ const MotionImage = motion(Image);
 
 const Footer = () => {
   return (
-    <Layer otherClassName="overflow-hidden">
+    <Layer otherClassName="overflow-hidden pb-5">
       <footer>
         <Container otherClassName="flex items-start md:items-center justify-between flex-col md:flex-row flex-wrap gap-5">
           <div className="md:mr-20">

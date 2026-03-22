@@ -7,13 +7,13 @@ const Copyrights = () => {
   const dateNow = new Date();
   return (
     <div className="text-center">
-      <Container>
+      <Container otherClassName="border-t border-(--seven-color) py-5">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="text-base text-(--seconde-color) my-5"
+          className="text-base text-(--seconde-color)"
         >
           &copy; {dateNow.getFullYear()} Wénor Shop. Designed & coded by Waseem
           Abd Elhadi.
