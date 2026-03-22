@@ -142,6 +142,9 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
         </Breadcrumb>
         <div className="flex items-center gap-10 max-[992px]:flex-col sm:pt-[30px]">
           <div className="w-full md:w-[500px] mx-auto relative">
+            {/* Layer / Background behind the image */}
+            <div className="max-sm:hidden absolute inset-0 -z-10 rounded-lg bg-(--forth-color) opacity-20 shadow-lg -rotate-3" />
+
             <div className="relative w-full h-[500px] max-md:h-[400px]">
               {!isLoaded && (
                 <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-sm" />
@@ -160,6 +163,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                 sizes="(max-width: 768px) 100vw, 500px"
               />
             </div>
+
             {product && product?.gallery && product?.gallery?.length > 1 && (
               <PrdocutGallery
                 productDetails={product}
