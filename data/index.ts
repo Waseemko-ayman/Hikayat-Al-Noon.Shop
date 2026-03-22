@@ -22,7 +22,7 @@ import {
   Home,
   Lock,
   Mail,
-  MapPin,
+  // MapPin,
   Package,
   RotateCcw,
   Ruler,
@@ -129,7 +129,7 @@ export const FOOTER_LINKS_DATA = {
     },
     {
       id: 2,
-      url: PATHS.PRIVACEY_POLICY,
+      url: PATHS.PRIVACY_POLICY,
       text: 'Privacy Policy',
     },
     {
@@ -408,13 +408,13 @@ export const userInfoButtons = [
     icon: Package,
     text: 'Orders',
   },
+  // {
+  //   id: 3,
+  //   icon: MapPin,
+  //   text: 'Addresses',
+  // },
   {
     id: 3,
-    icon: MapPin,
-    text: 'Addresses',
-  },
-  {
-    id: 4,
     icon: Settings,
     text: 'Settings',
   },
