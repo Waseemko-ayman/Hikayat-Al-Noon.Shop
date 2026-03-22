@@ -1,4 +1,4 @@
-import VerifyOTPPage from '@/components/pages/auth/VerifyOTPPage';
+import VerifyOTPPage from '@/features/auth/VerifyOTPPage';
 import { Metadata } from 'next';
 import React from 'react';
 

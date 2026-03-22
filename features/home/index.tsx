@@ -2,8 +2,8 @@
 import dynamic from 'next/dynamic';
 
 import Hero from './Sections/Hero';
-import FeatursSec from '../../organism/FeatursSec';
 import Loading from '@/components/atoms/Loading';
+import FeatursSec from '@/components/organism/FeatursSec';
 
 const FeaturedProducts = dynamic(() => import('./Sections/FeaturedProducts'), {
   ssr: false,

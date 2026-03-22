@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ProductDetailsPage from '@/components/pages/shop/ProductDetails';
+import ProductDetailsPage from '@/features/shop/ProductDetails';
 import supabase from '@/config/api';
 import { Metadata } from 'next';
 import React from 'react';

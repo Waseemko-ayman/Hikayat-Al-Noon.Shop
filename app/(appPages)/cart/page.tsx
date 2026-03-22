@@ -1,4 +1,4 @@
-import CartPage from '@/components/pages/cart';
+import CartPage from '@/features/cart';
 import { Metadata } from 'next';
 import React from 'react';
 

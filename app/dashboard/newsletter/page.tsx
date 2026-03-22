@@ -1,4 +1,4 @@
-import NewsletterPage from '@/components/pages/dashboard/newsletter';
+import NewsletterPage from '@/features/dashboard/newsletter';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
