@@ -68,7 +68,7 @@ const DataTableBody = <T extends { id: string | number }>({
           {data.length > 0 ? (
             data.map((row) => {
               const rowLink = isOrdersPage
-                ? PATHS.DASHBOARD.ORDERS.ITEM.replace(':id', String(row.id))
+                ? PATHS.DASHBOARD.ORDERS.ITEM(String(row.id))
                 : undefined;
 
               return (
