@@ -140,7 +140,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
             ))}
           </BreadcrumbList>
         </Breadcrumb>
-        <div className="flex items-center gap-10 max-[992px]:flex-col sm:pt-[30px]">
+        <div className="flex items-center gap-10 max-[992px]:flex-col sm:pt-[50px]">
           <div className="w-full md:w-[500px] mx-auto relative">
             {/* Layer / Background behind the image */}
             <div className="max-sm:hidden absolute inset-0 -z-10 rounded-lg bg-(--forth-color) opacity-20 shadow-lg -rotate-3" />
