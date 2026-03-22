@@ -105,7 +105,42 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   return (
     <Layer>
       <Container>
-        <div className="flex gap-10 max-[992px]:flex-col">
+        <Breadcrumb>
+          <BreadcrumbList className="flex items-center md:pl-12">
+            {breadcrumbs.map((crumb, index) => (
+              <AnimatedWrapper
+                key={index}
+                custom={index}
+                direction="x"
+                distance={40}
+              >
+                <BreadcrumbItem>
+                  {index === breadcrumbs.length - 1 ? (
+                    <span className="text-(--forth-color) text-base truncate">
+                      {crumb.label
+                        .split('-')
+                        .map(
+                          (item) =>
+                            item.slice(0, 1).toUpperCase() +
+                            item.slice(1).toLowerCase(),
+                        )
+                        .join(' ')}
+                    </span>
+                  ) : (
+                    <BreadcrumbLink
+                      href={crumb.href}
+                      className="hover:text-(--forth-color) transtion-all duration-300"
+                    >
+                      {crumb.label}
+                    </BreadcrumbLink>
+                  )}
+                  {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+                </BreadcrumbItem>
+              </AnimatedWrapper>
+            ))}
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className="flex items-center gap-10 max-[992px]:flex-col sm:pt-[30px]">
           <div className="w-full md:w-[500px] mx-auto relative">
             <div className="relative w-full h-[500px] max-md:h-[400px]">
               {!isLoaded && (
@@ -125,50 +160,15 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                 sizes="(max-width: 768px) 100vw, 500px"
               />
             </div>
-            <PrdocutGallery
-              productDetails={product}
-              setTargetSrc={setTargetSrc}
-            />
+            {product && product?.gallery && product?.gallery?.length > 1 && (
+              <PrdocutGallery
+                productDetails={product}
+                setTargetSrc={setTargetSrc}
+              />
+            )}
           </div>
-          <div className="pt-[30px] w-1/2 max-[992px]:w-full">
-            <Breadcrumb>
-              <BreadcrumbList className="flex items-center">
-                {breadcrumbs.map((crumb, index) => (
-                  <AnimatedWrapper
-                    key={index}
-                    custom={index}
-                    direction="x"
-                    distance={40}
-                  >
-                    <BreadcrumbItem>
-                      {index === breadcrumbs.length - 1 ? (
-                        <span className="text-(--forth-color) text-base">
-                          {crumb.label
-                            .split('-')
-                            .map(
-                              (item) =>
-                                item.slice(0, 1).toUpperCase() +
-                                item.slice(1).toLowerCase(),
-                            )
-                            .join(' ')}
-                        </span>
-                      ) : (
-                        <BreadcrumbLink
-                          href={crumb.href}
-                          className="hover:text-(--forth-color) transtion-all duration-300"
-                        >
-                          {crumb.label}
-                        </BreadcrumbLink>
-                      )}
-                      {index < breadcrumbs.length - 1 && (
-                        <BreadcrumbSeparator />
-                      )}
-                    </BreadcrumbItem>
-                  </AnimatedWrapper>
-                ))}
-              </BreadcrumbList>
-            </Breadcrumb>
-            <h2 className="text-3xl font-bold my-[30px]">{product?.title}</h2>
+          <div className="w-1/2 max-[992px]:w-full">
+            <h2 className="text-3xl font-bold mb-[30px]">{product?.title}</h2>
             <div className="w-fit mb-2.5">
               <div className="flex items-end gap-2 mb-5">
                 <span className="block text-[33px] font-bold">
