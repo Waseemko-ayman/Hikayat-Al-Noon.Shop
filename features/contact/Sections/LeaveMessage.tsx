@@ -36,7 +36,6 @@ const LeaveMessage = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    console.log(data);
     await add({
       username: data.username,
       email: data.email,
