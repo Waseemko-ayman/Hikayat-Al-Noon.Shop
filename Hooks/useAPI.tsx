@@ -143,7 +143,25 @@ const useAPI = <T extends object>(tableName: string, isRPC = false) => {
           throw data;
         }
 
+        dispatch({ type: API_ACTIONS.POST, payload: data || [] });
         return data;
+
+      } else if (tableName === 'messages') {
+        // Special case for messages table
+        const res = await fetch('/api/leave-message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw data;
+        }
+
+        dispatch({ type: API_ACTIONS.POST, payload: data?.data || [] });
+        return data;
+
       } else {
         // Normal insert
         const { data, error } = await supabase
@@ -158,6 +176,7 @@ const useAPI = <T extends object>(tableName: string, isRPC = false) => {
       }
     } catch (error) {
       dispatch({ type: API_ACTIONS.ERROR, payload: error });
+      throw error;
     }
   };
 
