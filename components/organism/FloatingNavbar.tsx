@@ -1,0 +1,186 @@
+'use client';
+import React, { useState, useEffect } from 'react';
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from 'framer-motion';
+import { cn } from '@/lib/utils';
+import { FaAlignLeft } from 'react-icons/fa6';
+import { usePathname } from 'next/navigation';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '../ui/sheet';
+import NavLinks from '../molecules/NavLinks';
+import useIsMobile from '@/Hooks/useIsMobile';
+import NavItemLink from '../molecules/NavItemLink';
+import { navItems } from '@/data';
+import Logo from '../atoms/Logo';
+import Link from 'next/link';
+import Image from 'next/image';
+import { PATHS } from '@/data/paths';
+
+export const FloatingNav = ({ className }: { className?: string }) => {
+  const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [disableHover, setDisableHover] = useState(false);
+
+  const isMobile = useIsMobile(800);
+  const { scrollYProgress } = useScroll();
+  const pathname = usePathname();
+
+  const MobileNavbar = navItems.filter(
+    (item) => item.name === 'Login' || item.name === 'Cart',
+  );
+
+  // Variables
+  const StyledLinks = (itemName: string) =>
+    `relative py-1 text-base font-semibold cursor-pointer transition duration-200 ${
+      itemName === 'Cart'
+        ? 'text-(--fifth-color)'
+        : isMobile
+          ? 'text-white'
+          : 'text-(--fifth-color)'
+    } hover:text-(--forth-color)`;
+
+  useMotionValueEvent(scrollYProgress, 'change', (current) => {
+    // Check if current is not undefined and is a number
+    if (typeof current === 'number') {
+      const direction = current! - scrollYProgress.getPrevious()!;
+
+      if (scrollYProgress.get() < 0.05) {
+        // also set true for the initial state
+        setVisible(true);
+      } else {
+        if (direction < 0) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
+      }
+    }
+  });
+
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    setDisableHover(true);
+    setTimeout(() => setDisableHover(false), 500);
+  }, [pathname]);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{
+          opacity: 1,
+          y: -100,
+        }}
+        animate={{
+          y: visible ? 0 : -100,
+          opacity: visible ? 1 : 0,
+        }}
+        transition={{
+          duration: 0.2,
+        }}
+        className={cn(
+          'flex items-center justify-between fixed z-40 top-10 inset-x-0 mx-auto p-3 md:px-10 md:py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] gap-4',
+          isMobile ? 'w-[95%]' : 'max-w-fit md:min-w-[70vw]',
+          className,
+        )}
+        style={{
+          backdropFilter: 'blur(16px) saturate(180%)',
+          backgroundColor: 'rgba(238, 240, 243, 0.75)',
+          borderRadius: '12px',
+        }}
+      >
+        {isMobile ? (
+          <Sheet open={open} onOpenChange={setOpen}>
+            <div className="flex items-center justify-between w-full">
+              <Logo />
+              <div className="flex items-center gap-2">
+                {MobileNavbar.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: -15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 60,
+                      damping: 12,
+                      delay: idx * 0.08,
+                    }}
+                  >
+                    <NavItemLink
+                      item={item}
+                      linksStyleing={StyledLinks(item.name)}
+                    />
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 60,
+                    damping: 12,
+                    delay: 0.1,
+                  }}
+                >
+                  <SheetTrigger name="dialog">
+                    <FaAlignLeft
+                      className={cn(
+                        'text-2xl text-(--fifth-color) transition duration-200 cursor-pointer',
+                        disableHover ? '' : 'hover:text-(--forth-color)',
+                      )}
+                      aria-label="Open side menu"
+                    />
+                  </SheetTrigger>
+                </motion.div>
+              </div>
+            </div>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle className="sr-only">Hire Me</SheetTitle>
+              </SheetHeader>
+              <NavLinks isMobile={isMobile} onLinkClick={handleLinkClick} />
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <div className="flex items-center justify-between w-full">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: -20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 60,
+                damping: 12,
+                delay: 0.1,
+              }}
+            >
+              <Link href={PATHS.HOME}>
+                <Image
+                  src="/assets/landing/logo.webp"
+                  alt="Cata Logo"
+                  title="Cata Logo"
+                  width={60}
+                  height={60}
+                  className="w-auto h-auto"
+                />
+              </Link>
+            </motion.div>
+            <NavLinks />
+          </div>
+        )}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
