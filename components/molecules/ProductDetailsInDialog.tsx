@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Select,
   SelectContent,
@@ -24,6 +24,7 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
   const [size, setSize] = useState('');
   const [errorMsgSize, setErrorMsgSize] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [clientReady, setClientReady] = useState(false);
 
   const handleSelectSize = (value: string) => {
     setSize(value);
@@ -37,9 +38,25 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
       return;
     }
 
+    if (clientReady) {
+      let userId = user?.id;
+      if (!userId) {
+        userId = localStorage.getItem('guestId');
+        if (!userId) {
+          userId =
+            'guest_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+          localStorage.setItem('guestId', userId);
+        }
+      }
+    }
+
     await addToCart({ ...product, size, quantity }, user.id);
     showToast(`Add ${product.title} (${size} x${quantity}) to cart`);
   };
+
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
 
   return (
     <div className="space-y-4 px-6 max-h-[600px] overflow-y-auto scrollbar-none">
