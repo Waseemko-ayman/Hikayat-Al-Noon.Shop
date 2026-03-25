@@ -34,7 +34,7 @@ const Banners = () => {
         <GridWrapper
           isScrollable
           gridCols="md:grid-cols-2 lg:grid-cols-3"
-          itemClassName="max-md:min-w-[350px]"
+          itemClassName="max-md:min-w-[320px]"
         >
           {BANNERS_DATA.filter((item) => item.type === 'small').map(
             (item, index) => (
