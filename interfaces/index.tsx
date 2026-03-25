@@ -451,11 +451,11 @@ export interface MultiSelectInputProps {
 export interface EmptyStateProps {
   imageSrc: string;
   messageText: string;
-  buttonText: string;
+  buttonText?: string;
   description?: string;
   handleClick?: () => void;
   Icon?: React.ElementType;
-  buttonHref: string | undefined;
+  buttonHref?: string | undefined;
 }
 
 export interface AttachmentsUploaderProps {
@@ -554,4 +554,44 @@ export interface AccountInfoCardProps {
   userName?: string;
   userEmail?: string;
   emailVerified?: boolean;
+}
+
+export interface StatsItemProps {
+  Icon?: React.ElementType;
+  dot?: boolean;
+  value: number;
+  label: string;
+}
+
+export interface Message {
+  id: string;
+  username: string;
+  email: string;
+  subject: string;
+  message: string;
+  isRead?: boolean;
+  created_at?: string;
+}
+
+export interface MessagesGridProps {
+  messages: Message[];
+  onDelete?: (id: string) => void;
+  onMarkAsRead?: (id: string) => void;
+  isLoading: boolean;
+  handleReset: () => void;
+}
+
+export interface MessageCardProps {
+  message: Message;
+  onDelete?: (id: string) => void;
+  onMarkAsRead?: (id: string) => void;
+}
+
+export interface SearchFilterBarProps {
+  filters: {
+    searchQuery: string;
+    filterStatus: string;
+  };
+  setFilters: React.Dispatch<React.SetStateAction<any>>;
+  onSearchChange: (value: string) => void;
 }
