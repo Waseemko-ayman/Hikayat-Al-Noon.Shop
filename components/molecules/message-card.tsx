@@ -63,7 +63,7 @@ const MessageCard = ({ message, onDelete, onMarkAsRead }: MessageCardProps) => {
         <h4 className="mb-2 font-medium text-foreground">{message.subject}</h4>
 
         {/* Message */}
-        <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground mb-4">
+        <p className="line-clamp-3 break-all text-sm leading-relaxed text-muted-foreground mb-4">
           {message.message}
         </p>
       </div>
