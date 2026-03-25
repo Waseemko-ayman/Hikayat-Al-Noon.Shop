@@ -3,6 +3,7 @@ import React from 'react';
 import AllProducts from './Sections/AllProducts';
 import CreateProducts from './Sections/CreateProducts';
 import GenericPage from '@/components/organism/GenericPage';
+import { FaBox } from 'react-icons/fa6';
 
 const ProductsPage = () => {
   const tabsData = [
@@ -17,6 +18,7 @@ const ProductsPage = () => {
     <GenericPage
       title="Products"
       description="Create and manage products for your store"
+      Icon={FaBox}
       tabs={tabsData}
       allComponent={AllProducts}
       createComponent={CreateProducts}
