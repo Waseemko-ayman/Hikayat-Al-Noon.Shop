@@ -5,8 +5,8 @@ import ErrorFetching from './ErrorFetching';
 import DataTablePagination from './Table/DataTablePagination';
 import DataTableBody from './Table/DataTableBody';
 import DataTableHeader from './Table/DataTableHeader';
-import Loading from '../atoms/Loading';
 import { DataTableProps } from '@/interfaces';
+import TableSkeleton from '../Skeletons/TableSkeleton';
 
 function getItemsPerPageOptions(totalItems: number) {
   const fixedOptions = [6, 10, 20];
@@ -44,7 +44,7 @@ export function DataTable<T extends { id: number | string }>({
 
   const itemsPerPageOptions = useMemo(
     () => getItemsPerPageOptions(data.length),
-    [data.length]
+    [data.length],
   );
 
   // Columns
@@ -73,7 +73,7 @@ export function DataTable<T extends { id: number | string }>({
           val != null &&
           String(val).toLowerCase().includes(debouncedSearchTerm.toLowerCase())
         );
-      })
+      }),
     );
   }, [debouncedSearchTerm, sortedData, columns]);
 
@@ -117,7 +117,7 @@ export function DataTable<T extends { id: number | string }>({
         filterOptions={filterOptions}
       />
       {isLoading ? (
-        <Loading otherClassName="py-20" />
+        <TableSkeleton />
       ) : error ? (
         <ErrorFetching error={error} />
       ) : (

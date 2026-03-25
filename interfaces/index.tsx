@@ -607,3 +607,8 @@ export interface AuthAction {
     error?: string;
   };
 }
+
+export interface TableSkeletonProps {
+  rows?: number;
+  columns?: number;
+}
