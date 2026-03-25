@@ -3,6 +3,7 @@
 import MessagesGrid from '@/components/molecules/messages-grid';
 import SearchFilterBar from '@/components/molecules/search-filter-bar';
 import StatsItem from '@/components/molecules/StatsItem';
+import { useUnreadMessages } from '@/context/UnreadMessagesContext';
 import useAPI from '@/Hooks/useAPI';
 import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { Message } from '@/interfaces';
@@ -22,7 +23,7 @@ const ContactMessagesPage = () => {
 
   // API Hook
   const { del, edit } = useAPI<Message>('messages');
-
+  
   // Supabase Hook
   const { data, isLoading } = useSupabaseClient('messages', {
     subject: debouncedSearchTerm
@@ -35,6 +36,9 @@ const ContactMessagesPage = () => {
           ? true
           : false,
   });
+
+  // Context
+  const { refreshUnread } = useUnreadMessages();
 
   const handleReset = () => {
     setFilters({
@@ -49,11 +53,13 @@ const ContactMessagesPage = () => {
 
   const handleDelete = async (id: string) => {
     await del(id);
+    refreshUnread();
     setMessages((prev) => prev.filter((m) => m.id !== id));
   };
 
   const handleMarkAsRead = async (id: string) => {
     await edit(id, { isRead: true });
+    refreshUnread();
     setMessages((prev) =>
       prev.map((m) => (m.id === id ? { ...m, isRead: true } : m)),
     );

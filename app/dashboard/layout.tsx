@@ -1,4 +1,5 @@
 import MainDashboardLayout from '@/components/organism/Layouts/MainDashboardLayout';
+import { UnreadMessagesProvider } from '@/context/UnreadMessagesContext';
 import type React from 'react';
 
 export default function DashboardLayout({
@@ -6,5 +7,9 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <MainDashboardLayout>{children}</MainDashboardLayout>;
+  return (
+    <UnreadMessagesProvider>
+      <MainDashboardLayout>{children}</MainDashboardLayout>
+    </UnreadMessagesProvider>
+  );
 }
