@@ -26,7 +26,7 @@ const ContactMessagesPage = () => {
   
   // Supabase Hook
   const { data, isLoading } = useSupabaseClient('messages', {
-    subject: debouncedSearchTerm
+    message: debouncedSearchTerm
       ? debouncedSearchTerm.toLowerCase()
       : undefined,
     isRead:
