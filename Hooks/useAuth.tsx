@@ -5,26 +5,14 @@ import { useToast } from '@/lib/toast';
 import supabase from '@/config/api';
 import { PATHS } from '@/data/paths';
 import { AUTH_ACTIONS } from '@/constant/auth';
-import { LoginFormData, LoginPhoneFormData } from '@/interfaces';
-
-interface AuthState {
-  isLoading: boolean;
-  error: string | null;
-}
-
-interface Action {
-  type: string;
-  payload?: {
-    error?: string;
-  };
-}
+import { AuthAction, AuthState, LoginFormData, LoginPhoneFormData } from '@/interfaces';
 
 const initialState: AuthState = {
   isLoading: false,
   error: null,
 };
 
-const reducer = (state: AuthState, action: Action): AuthState => {
+const reducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case AUTH_ACTIONS.SET_LOADING:
       return { ...state, isLoading: true, error: null };

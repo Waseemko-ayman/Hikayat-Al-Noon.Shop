@@ -595,3 +595,15 @@ export interface SearchFilterBarProps {
   setFilters: React.Dispatch<React.SetStateAction<any>>;
   onSearchChange: (value: string) => void;
 }
+
+export interface AuthState {
+  isLoading: boolean;
+  error: string | null;
+}
+
+export interface AuthAction {
+  type: string;
+  payload?: {
+    error?: string;
+  };
+}
