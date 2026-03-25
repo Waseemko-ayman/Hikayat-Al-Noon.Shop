@@ -22,27 +22,29 @@ export const UnreadMessagesProvider = ({
   const fetchUnread = async () => {
     const { data, error } = await supabase
       .from('messages')
-      .select('id', { count: 'exact' })
+      .select('id', { count: 'exact' }) // نحتاج فقط العدد، مش البيانات نفسها
       .eq('isRead', false);
 
     if (!error && data) setUnreadCount(data.length);
   };
 
   useEffect(() => {
-    fetchUnread();
+    fetchUnread(); // عند تحميل الـ Provider لأول مرة، نجيب العدد الحالي
 
-    // Realtime subscription
+    // === إعداد الاستماع للوقت الحقيقي ===
     const subscription = supabase
-      .channel('public:messages')
+      .channel('public:messages') // إنشاء قناة للاستماع للجدول
+      // on(): تحدد نوع الأحداث اللي بدنا نسمعها
       .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'messages' },
+        'postgres_changes', // نوع الأحداث: أي تغيير في قاعدة البيانات
+        { event: '*', schema: 'public', table: 'messages' }, // جميع الأحداث على جدول messages
         () => {
-          fetchUnread(); // كل تغيير يحدث يتم تحديث عدد الرسائل
+          fetchUnread(); // كل تغيير يحصل، نحدث عدد الرسائل غير المقروءة تلقائيًا
         },
       )
-      .subscribe();
+      .subscribe(); // تفعيل الاشتراك فعليًا
 
+    // تنظيف الاشتراك عند إزالة المكون لتجنب تسرب الذاكرة
     return () => {
       supabase.removeChannel(subscription);
     };
