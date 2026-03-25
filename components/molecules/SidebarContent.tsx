@@ -7,10 +7,12 @@ import InlineError from './InlineError';
 import Loading from '../atoms/Loading';
 import { useUserInfo } from '@/context/UserInfoContext';
 import { Crown, Shield } from 'lucide-react';
+import { useUnreadMessages } from '@/context/UnreadMessagesContext';
 
 const SidebarContent = ({ pathname }: { pathname: string }) => {
   // Session Hook
   const { user, isLoading, error } = useUserInfo();
+  const { unreadCount } = useUnreadMessages();
 
   const userName = user?.display_name;
   const userRole = user?.role;
@@ -62,6 +64,9 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
                   <span className="min-sm:hidden max-lg:hidden max-md:block lg:block">
                     {link.title}
                   </span>
+                  {link.title === 'Contact Messages' && unreadCount > 0 && (
+                    <span className="ml-auto h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                  )}
                 </Link>
               ))}
             </nav>

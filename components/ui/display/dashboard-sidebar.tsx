@@ -13,15 +13,10 @@ export function DashboardSidebar() {
   const rawPathname = usePathname();
   const pathname = rawPathname.replace(/^\/(en|ar)(?=\/|$)/, '') || '/';
   const isMobile = useIsMobile(639);
-  // const { user, isLoading, error } = useUserInfo();
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
-
-  // const permissions = user?.permissions || [];
-  // const roles = user?.roles || [];
-  // const isAdmin = user?.is_admin;
 
   return (
     <>

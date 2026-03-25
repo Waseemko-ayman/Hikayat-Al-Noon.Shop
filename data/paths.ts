@@ -24,12 +24,12 @@ export const PATHS = {
     PRODUCTS: '/dashboard/products',
     ORDERS: {
       ROOT: '/dashboard/orders',
-      // ITEM: '/dashboard/orders/:id/products',
       ITEM: (id: string) => `/dashboard/orders/${id}/products`,
     },
     RATINGS: '/dashboard/ratings',
     SETTINGS: '/dashboard/settings',
     NEWSLETTER: '/dashboard/newsletter',
     USERS: '/dashboard/users',
+    CONTACT_MESSAGES: '/dashboard/contact-messages',
   },
 };

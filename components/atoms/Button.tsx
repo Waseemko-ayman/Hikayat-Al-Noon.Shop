@@ -44,7 +44,7 @@ const Button = forwardRef<
                 : variant === 'ghost'
                   ? 'text-(--forth-color) hover:bg-gray-200'
                   : ''
-    } ${Icon ? '!flex items-center gap-2 w-fit' : ''} ${disabledClasses} ${otherClassName}`;
+    } ${Icon ? 'flex! items-center gap-2 w-fit' : ''} ${disabledClasses} ${otherClassName}`;
 
     const content = (
       <>

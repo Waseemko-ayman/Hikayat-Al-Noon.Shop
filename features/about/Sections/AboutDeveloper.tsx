@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 const AboutDeveloper = () => {
   return (
     <Layer>
-      <Container>
+      <Container otherClassName="overflow-x-hidden">
         <div className="flex items-center justify-center gap-10 max-[992px]:flex-col max-[992px]:text-center">
           {/* Developer Image */}
           <motion.img

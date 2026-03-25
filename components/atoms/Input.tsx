@@ -83,6 +83,7 @@ const Input = ({
           placeholder={placeholder}
           className={`${StyledInput} py-2 resize-none`}
           aria-label={ariaLabel}
+          {...(typeof register === 'function' ? register(inputName) : {})}
         />
       ) : type === 'select' && control ? (
         <Controller

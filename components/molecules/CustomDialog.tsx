@@ -26,12 +26,10 @@ const CustomDialog: React.FC<CustomDialogDrawerProps> = ({
       <DialogContent className={contentClassName} showLastTwo={showLastTwo}>
         {(title || description) && (
           <DialogHeader className={headerClassName}>
-            {title && <DialogTitle className="sr-only">{title}</DialogTitle>}
-            {description && (
-              <DialogDescription className="sr-only">
-                {description}
-              </DialogDescription>
-            )}
+            <DialogTitle className="sr-only">{title || 'Dialog'}</DialogTitle>
+            <DialogDescription className="sr-only">
+              {description || 'Dialog description'}
+            </DialogDescription>
           </DialogHeader>
         )}
         {children}
