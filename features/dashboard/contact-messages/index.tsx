@@ -52,17 +52,17 @@ const ContactMessagesPage = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
+    setMessages((prev) => prev.filter((m) => m.id !== id));
     await del(id);
     refreshUnread();
-    setMessages((prev) => prev.filter((m) => m.id !== id));
   };
 
   const handleMarkAsRead = async (id: string) => {
-    await edit(id, { isRead: true });
-    refreshUnread();
     setMessages((prev) =>
       prev.map((m) => (m.id === id ? { ...m, isRead: true } : m)),
     );
+    await edit(id, { isRead: true });
+    refreshUnread();
   };
 
   const stats = useMemo(() => {
