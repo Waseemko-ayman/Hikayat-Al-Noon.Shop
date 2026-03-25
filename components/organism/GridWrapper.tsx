@@ -14,7 +14,7 @@ const GridWrapper = ({
   const baseClass = isScrollable
     ? disableGridOnMd
       ? `flex overflow-x-auto scroll-smooth px-2 py-4 scrollbar-none ${otherClassName ?? ''}`
-      : `flex max-md:overflow-x-auto max-md:scroll-smooth max-md:px-2 py-4 scrollbar-none md:grid md:grid-cols-3 ${gridCols} ${otherClassName ?? ''}`
+      : `flex max-md:overflow-x-auto max-md:scroll-smooth max-md:px-4 py-4 scrollbar-none md:grid md:grid-cols-3 ${gridCols} ${otherClassName ?? ''}`
     : `grid sm:grid-cols-2 md:grid-cols-3 ${gridCols} ${otherClassName ?? ''}`;
 
   return (

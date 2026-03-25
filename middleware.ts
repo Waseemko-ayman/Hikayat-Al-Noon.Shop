@@ -31,17 +31,17 @@ export async function middleware(req: NextRequest) {
   );
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!session) {
+  if (!user) {
     return NextResponse.redirect(new URL(PATHS.AUTH.LOGIN, req.url));
   }
 
   const { data: profile, error } = await supabase
     .from('profiles')
     .select('role')
-    .eq('id', session.user.id)
+    .eq('id', user.id)
     .single(); // To ensure that only one row is brought in.
 
   if (error || !profile) {

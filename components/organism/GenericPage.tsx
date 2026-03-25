@@ -26,6 +26,7 @@ interface GenericPageProps {
     onTabChange: (val: string) => void;
   }>;
   overviewTabValue?: string; // ← أضفنا هذا
+  Icon?: React.ElementType;
   // Any other component can be added in the future.
   [key: string]: any;
 }
@@ -38,13 +39,14 @@ const GenericPage = ({
   createComponent: CreateComponent,
   overviewComponent: OverviewComponent,
   overviewTabValue,
+  Icon,
 }: GenericPageProps) => {
   const [activeTab, setActiveTab] = useState(tabs[0]?.value);
   const [editId, setEditId] = useState<string | number | null>(null);
 
   return (
-    <Layer otherClassName="!my-0">
-      <PageTitle title={title} description={description} />
+    <Layer otherClassName="py-0!">
+      <PageTitle title={title} description={description} Icon={Icon} />
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsNavigation tabs={tabs} />
 

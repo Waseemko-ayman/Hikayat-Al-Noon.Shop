@@ -23,7 +23,7 @@ export default function useSupabaseClient(
               // ilike: It performs case-insensitive text search.
               // %: It will return all products where the text is part of the title; without it, it will only return the title that matches the text completely.
               supabaseRef = supabaseRef.ilike(column, `%${value}%`);
-            } else if (column === 'subject') {
+            } else if (column === 'message') {
               supabaseRef = supabaseRef.or(
                 `username.ilike.%${value}%,email.ilike.%${value}%,subject.ilike.%${value}%,message.ilike.%${value}%`,
               );

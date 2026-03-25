@@ -1,6 +1,7 @@
+'use client';
 import GenericPage from '@/components/organism/GenericPage';
-import React from 'react';
 import AllNewsletter from './AllNewsletter';
+import { FiMail } from 'react-icons/fi';
 
 const NewsletterPage = () => {
   const tabsData = [{ value: 'allNewsletter', label: 'All Newsletter' }];
@@ -9,6 +10,7 @@ const NewsletterPage = () => {
     <GenericPage
       title="Newsletter Subscribers"
       description="View and manage your newsletter subscribers"
+      Icon={FiMail}
       tabs={tabsData}
       allComponent={AllNewsletter}
     />
