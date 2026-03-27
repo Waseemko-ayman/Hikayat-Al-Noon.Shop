@@ -20,8 +20,59 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Home - Wénor Shop',
-  description: 'Welcome to the Wénor Shop Home Page',
+  metadataBase: new URL('https://wenorshop.vercel.app/'),
+
+  title: {
+    default: 'Wénor Shop | Fashion Store',
+    template: '%s | Wénor Shop',
+  },
+
+  description:
+    'Wénor Shop offers trendy and high-quality clothing for all styles. Explore our collection of fashion items online.',
+
+  keywords: [
+    'Wénor Shop',
+    'Clothing',
+    'Fashion',
+    'Online Store',
+    'Men Fashion',
+    'Women Fashion',
+    'Shop Online',
+  ],
+
+  authors: [
+    { name: 'Wénor Shop' },
+    { name: 'Waseem', url: 'https://waseem-portfolio-phi.vercel.app' },
+  ],
+  creator: 'Waseem',
+
+  openGraph: {
+    title: 'Wénor Shop',
+    description: 'Trendy and high-quality clothing online store.',
+    url: 'https://wenorshop.vercel.app/',
+    siteName: 'Wénor Shop',
+    images: [
+      {
+        url: '/assets/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Wénor Shop',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wénor Shop',
+    description: 'Trendy and high-quality clothing online store.',
+    images: ['/assets/og-image.png'],
+  },
+
+  icons: {
+    icon: '/assets/landing/tab-logo.webp',
+  },
 };
 
 export default function RootLayout({
