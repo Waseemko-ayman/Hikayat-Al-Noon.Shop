@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Button from '../atoms/Button';
 import { FaCartShopping } from 'react-icons/fa6';
 import { useToast } from '@/lib/toast';
-import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
 import { GlowingEffect } from '../ui/glowing-effect';
 import ResponsiveDialogDrawer from '../organism/ResponsiveDialogDrawer';
@@ -23,7 +22,6 @@ const ProductCard = ({
     productData;
 
   // Contexts
-  const { addToCart, user, isLoading } = useCartContext();
   const { showToast } = useToast();
   // Hooks
   const isMobile = useIsMobile();
@@ -110,12 +108,7 @@ const ProductCard = ({
             variant="circle"
             otherClassName="absolute bottom-2.5 right-2.5 flex items-center justify-center w-9! h-9! md:w-10! md:h-10!"
             ariaLabel={`Add ${productData?.title} to cart`}
-            handleClick={(e) => {
-              e.stopPropagation();
-              addToCart?.(productData, user.id);
-              showToast(`Add ${productData?.title} to cart`);
-              setOpen(true);
-            }}
+            handleClick={() => setOpen(true)}
           >
             <FaCartShopping className="text-lg md:text-xl" />
           </Button>
@@ -126,11 +119,8 @@ const ProductCard = ({
       >
         {open && productData && (
           <ProductDetailsInDialog
-            addToCart={addToCart}
-            user={user}
             productData={productData}
             showToast={showToast}
-            isLoading={isLoading}
           />
         )}
       </ResponsiveDialogDrawer>
