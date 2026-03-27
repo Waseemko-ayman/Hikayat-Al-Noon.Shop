@@ -55,22 +55,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     if (error) {
       console.error('Fetch cart items error:', error);
     } else {
-      const formatted = data
-        ?.filter((item) => item.products)
-        .map((item) => ({
-          id: item.products[0]?.id,
-          title: item.products[0]?.title,
-          price: item.products[0]?.price,
-          image: item.products[0]?.image,
-          quantity: item.quantity,
-          size: item.size,
-        }));
+      const formatted = data?.map((item: any) => ({
+        id: item.products.id,
+        title: item.products.title,
+        price: item.products.price,
+        image: item.products.image,
+        quantity: item.quantity,
+        size: item.size,
+      }));
 
       setCartItems(formatted || []);
     }
-
-    // if (error) console.error('Fetch cart items error:', error);
-    // else setCartItems(data || []);
   };
 
   useEffect(() => {
