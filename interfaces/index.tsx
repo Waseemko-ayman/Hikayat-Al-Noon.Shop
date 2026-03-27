@@ -453,6 +453,7 @@ export interface EmptyStateProps {
   messageText: string;
   buttonText?: string;
   description?: string;
+  showButton?: boolean;
   handleClick?: () => void;
   Icon?: React.ElementType;
   buttonHref?: string | undefined;
@@ -575,6 +576,7 @@ export interface Message {
 
 export interface MessagesGridProps {
   messages: Message[];
+  originalCount: number;
   onDelete?: (id: string) => void;
   onMarkAsRead?: (id: string) => void;
   isLoading: boolean;

@@ -143,6 +143,7 @@ const ContactMessagesPage = () => {
         {/* Messages Grid */}
         <MessagesGrid
           messages={messages}
+          originalCount={data?.length ?? 0}
           onDelete={handleDelete}
           onMarkAsRead={handleMarkAsRead}
           isLoading={isLoading}

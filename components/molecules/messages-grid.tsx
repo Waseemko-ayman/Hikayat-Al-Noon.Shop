@@ -8,6 +8,7 @@ import MessageCard from './message-card';
 
 const MessagesGrid = ({
   messages,
+  originalCount,
   onDelete,
   onMarkAsRead,
   isLoading,
@@ -40,9 +41,10 @@ const MessagesGrid = ({
 
       {!isLoading && messages?.length === 0 && (
         <EmptyState
-          imageSrc="no-products.png"
+          imageSrc="no-message.png"
           messageText="No messages found"
           description="Try adjusting your search or filter criteria"
+          showButton={messages.length === 0 && originalCount === 0}
           Icon={Inbox}
           buttonText="Reset filters"
           handleClick={handleReset}
