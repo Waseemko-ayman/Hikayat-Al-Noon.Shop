@@ -430,14 +430,13 @@ export interface RepairServicesProps {
   bntText?: string;
   bgImage: string;
   buttonHref?: string;
+  otherClassName?: string;
+  padding?: boolean;
 }
 
 export interface ProductDetailsInDialogProps {
-  user: any;
   productData: any;
   showToast: (message: string, type?: ToastType) => void;
-  addToCart: (item: ProductCardProps, userId: string) => void;
-  isLoading: boolean;
 }
 
 export interface MultiSelectInputProps {

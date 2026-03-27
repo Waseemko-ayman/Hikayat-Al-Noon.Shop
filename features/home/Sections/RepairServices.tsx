@@ -15,6 +15,8 @@ const RepairServices = () => {
       bntText="Explore More"
       bgImage="/assets/banner/b2.webp"
       buttonHref={PATHS.SHOP.ROOT}
+      otherClassName="md:min-h-[40vh]"
+      padding={false}
     />
   );
 };
