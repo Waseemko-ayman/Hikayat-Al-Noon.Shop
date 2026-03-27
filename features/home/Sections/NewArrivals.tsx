@@ -7,9 +7,9 @@ import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
-import ProductSkeletons from '@/components/molecules/ProductSkeletons';
 import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
 import GridWrapper from '@/components/organism/GridWrapper';
+import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 
 const NewArrivals = () => {
   const router = useRouter();
@@ -31,7 +31,11 @@ const NewArrivals = () => {
       />
       <GridWrapper isScrollable>
         {isLoading ? (
-          <ProductSkeletons count={products?.length} />
+          Array.from({ length: products?.length || 4 }).map((_, index) => (
+            <AnimatedWrapper key={index} custom={index}>
+              <ProductCardSkeleton />
+            </AnimatedWrapper>
+          ))
         ) : error ? (
           <ErrorFetching error={error} />
         ) : (

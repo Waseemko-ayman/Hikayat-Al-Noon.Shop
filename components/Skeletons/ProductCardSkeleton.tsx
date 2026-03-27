@@ -1,11 +1,10 @@
 'use client';
 
-import React from 'react';
 import { Skeleton } from '../ui/skeleton';
 
 const ProductCardSkeleton = () => {
   return (
-    <div className="relative max-w-full p-2.5 md:p-3.5 border border-gray-200 rounded-[20px] shadow-[20px_20px_34px_rgb(0,0,0,0.03)] animate-pulse">
+    <div className="relative max-w-full p-2.5 md:p-3.5 border border-gray-200 rounded-[20px] md:shadow-[20px_20px_34px_rgb(0,0,0,0.03)] animate-pulse">
       <Skeleton className="w-full md:max-w-[500px] aspect-square rounded-[20px] mb-2.5" />
 
       <div>

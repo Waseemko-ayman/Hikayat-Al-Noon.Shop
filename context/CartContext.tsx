@@ -28,49 +28,49 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Fetch basket items from the cart_items table
   const fetchCart = async (userId: string) => {
-    // First, we retrieve the user's cart
-    /**
+    setIsLoading(true);
+    try {
+      // First, we retrieve the user's cart
+      /**
       - .single() rejects if no row exists → gives {} as error.
       - Replaced .single() with .maybeSingle() when fetching user's cart
       - Prevents console errors if the user has no cart yet
       - Ensures cartItems defaults to an empty array for new users
      */
-    const { data: cartsData, error: cartError } = await supabase
-      .from('carts')
-      .select('id')
-      .eq('user_id', userId)
-      .maybeSingle();
+      const { data: cartsData, error: cartError } = await supabase
+        .from('carts')
+        .select('id')
+        .eq('user_id', userId)
+        .maybeSingle();
 
-    if (cartError) console.error('Fetch cart error:', cartError);
-    if (!cartsData) return setCartItems([]);
+      if (cartError) console.error('Fetch cart error:', cartError);
+      if (!cartsData) return setCartItems([]);
 
-    const cartId = cartsData?.id;
+      const cartId = cartsData?.id;
 
-    // Then we bring all the items related to the cart
-    const { data, error } = await supabase
-      .from('cart_items')
-      .select('quantity, size, products(id, title, price, image)')
-      .eq('cart_id', cartId);
+      // Then we bring all the items related to the cart
+      const { data, error } = await supabase
+        .from('cart_items')
+        .select('quantity, size, products(id, title, price, image)')
+        .eq('cart_id', cartId);
 
-    if (error) {
-      console.error('Fetch cart items error:', error);
-    } else {
-      const formatted = data
-        ?.filter((item) => item.products)
-        .map((item) => ({
-          id: item.products[0]?.id,
-          title: item.products[0]?.title,
-          price: item.products[0]?.price,
-          image: item.products[0]?.image,
+      if (error) {
+        console.error('Fetch cart items error:', error);
+      } else {
+        const formatted = data?.map((item: any) => ({
+          id: item.products.id,
+          title: item.products.title,
+          price: item.products.price,
+          image: item.products.image,
           quantity: item.quantity,
           size: item.size,
         }));
 
-      setCartItems(formatted || []);
+        setCartItems(formatted || []);
+      }
+    } finally {
+      setIsLoading(false);
     }
-
-    // if (error) console.error('Fetch cart items error:', error);
-    // else setCartItems(data || []);
   };
 
   useEffect(() => {

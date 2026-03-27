@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Container from '../atoms/Container';
 import { RepairServicesProps } from '@/interfaces';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 const RepairServicesComp = ({
   title,
@@ -15,9 +16,17 @@ const RepairServicesComp = ({
   bntText,
   bgImage,
   buttonHref,
+  otherClassName = '',
+  padding = true,
 }: RepairServicesProps) => {
   return (
-    <Layer otherClassName="relative min-h-[30vh] md:min-h-[45vh] text-center flex items-center justify-center pt-32! md:pt-40!">
+    <Layer
+      otherClassName={cn(
+        'relative min-h-[30vh] md:min-h-[45vh] text-center flex items-center justify-center',
+        padding && 'pt-32! md:pt-40!',
+        otherClassName,
+      )}
+    >
       <Image
         src={bgImage}
         alt={title || 'banner'}
@@ -25,7 +34,7 @@ const RepairServicesComp = ({
         className="object-cover"
         priority
       />
-      <div className="absolute top-0 left-0 w-full h-full backdrop-blur-[3px] rgb(255, 255, 255)"></div>
+      <div className="absolute top-0 left-0 w-full h-full backdrop-blur-[3px]"></div>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

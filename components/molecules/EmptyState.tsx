@@ -9,6 +9,7 @@ const EmptyState = ({
   messageText,
   buttonText,
   description,
+  showButton = true,
   handleClick,
   Icon,
   buttonHref,
@@ -36,17 +37,19 @@ const EmptyState = ({
             </p>
           </MotionSection>
         )}
-        <MotionSection index={description ? 3 : 2}>
-          <Button
-            href={buttonHref}
-            variant="primary"
-            Icon={Icon}
-            otherClassName="!py-2.5 !px-5 mt-3 mx-auto inline-flex"
-            handleClick={handleClick}
-          >
-            {buttonText}
-          </Button>
-        </MotionSection>
+        {showButton && (
+          <MotionSection index={description ? 3 : 2}>
+            <Button
+              href={buttonHref}
+              variant="primary"
+              Icon={Icon}
+              otherClassName="!py-2.5 !px-5 mt-3 mx-auto inline-flex"
+              handleClick={handleClick}
+            >
+              {buttonText}
+            </Button>
+          </MotionSection>
+        )}
       </div>
     </div>
   );

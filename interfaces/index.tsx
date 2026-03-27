@@ -91,6 +91,7 @@ export interface CartTableProps extends CartProps {
 
 export interface CartCardseProps extends CartProps {
   cartItems: ProductCardProps[];
+  isLoading: boolean;
 }
 
 export type TableRow = {
@@ -430,14 +431,13 @@ export interface RepairServicesProps {
   bntText?: string;
   bgImage: string;
   buttonHref?: string;
+  otherClassName?: string;
+  padding?: boolean;
 }
 
 export interface ProductDetailsInDialogProps {
-  user: any;
   productData: any;
   showToast: (message: string, type?: ToastType) => void;
-  addToCart: (item: ProductCardProps, userId: string) => void;
-  isLoading: boolean;
 }
 
 export interface MultiSelectInputProps {
@@ -453,6 +453,7 @@ export interface EmptyStateProps {
   messageText: string;
   buttonText?: string;
   description?: string;
+  showButton?: boolean;
   handleClick?: () => void;
   Icon?: React.ElementType;
   buttonHref?: string | undefined;
@@ -575,6 +576,7 @@ export interface Message {
 
 export interface MessagesGridProps {
   messages: Message[];
+  originalCount: number;
   onDelete?: (id: string) => void;
   onMarkAsRead?: (id: string) => void;
   isLoading: boolean;
