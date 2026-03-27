@@ -13,18 +13,22 @@ import Image from 'next/image';
 import Button from '../atoms/Button';
 import { ProductDetailsInDialogProps } from '@/interfaces';
 import ButtonLoading from '../atoms/ButtonLoading';
+import { PATHS } from '@/data/paths';
+import { LogInIcon } from 'lucide-react';
+import { useCartContext } from '@/context/CartContext';
+import { useSession } from '@/Hooks/useSession';
 
 const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
-  user,
   productData,
   showToast,
-  addToCart,
-  isLoading,
 }) => {
   const [size, setSize] = useState('');
   const [errorMsgSize, setErrorMsgSize] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [clientReady, setClientReady] = useState(false);
+
+  const { user, addToCart, isLoading } = useCartContext();
+  const session = useSession();
 
   const handleSelectSize = (value: string) => {
     setSize(value);
@@ -33,20 +37,14 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
 
   const handleAddProduct = async (product: any) => {
     if (!size) {
-      showToast('Select size first', 'error');
       setErrorMsgSize(true);
       return;
     }
 
     if (clientReady) {
-      let userId = user?.id;
-      if (!userId) {
-        userId = localStorage.getItem('guestId');
-        if (!userId) {
-          userId =
-            'guest_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-          localStorage.setItem('guestId', userId);
-        }
+      if (!user?.id) {
+        showToast('Please log in to add products to your cart', 'error');
+        return;
       }
     }
 
@@ -114,16 +112,35 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
         </div>
       </div>
       <div className="flex gap-2">
-        <Button
-          variant="primary"
-          otherClassName="!py-2 !px-4"
-          handleClick={() => handleAddProduct(productData)}
-        >
-          {isLoading ? <ButtonLoading text="Adding..." /> : 'Add To Cart'}
-        </Button>
-        <Button variant="primary" otherClassName="!py-2 !px-4">
-          Buy Now
-        </Button>
+        {session ? (
+          <>
+            <Button
+              variant="primary"
+              otherClassName="!py-2 !px-4"
+              handleClick={() => handleAddProduct(productData)}
+              disabled={isLoading}
+            >
+              {isLoading ? <ButtonLoading text="Adding..." /> : 'Add To Cart'}
+            </Button>
+
+            <Button
+              variant="outline"
+              otherClassName="!py-2 !px-4 text-(--forth-color)! hover:text-white! border-(--forth-color)!"
+            >
+              Buy Now
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="primary"
+            otherClassName="!py-2 !px-4 flex items-center gap-2"
+            href={PATHS.AUTH.LOGIN}
+            Icon={LogInIcon}
+            iconClassName="w-4 h-4"
+          >
+            Login to Buy
+          </Button>
+        )}
       </div>
       <div>
         <h3 className="font-bold text-[22px] mb-3">Product Details</h3>
