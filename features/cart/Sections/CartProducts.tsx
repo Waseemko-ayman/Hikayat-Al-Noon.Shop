@@ -10,6 +10,7 @@ import { FaBorderAll, FaCartShopping, FaTable } from 'react-icons/fa6';
 import CartCards from '@/components/molecules/CartCards';
 import EmptyState from '@/components/molecules/EmptyState';
 import { PATHS } from '@/data/paths';
+import CartTableSkeleton from '@/components/Skeletons/CartTableSkeleton';
 
 const CartProducts = () => {
   const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
@@ -20,7 +21,8 @@ const CartProducts = () => {
     return 'table';
   });
 
-  const { cartItems, updateQuantity, removeFromCart } = useCartContext();
+  const { cartItems, updateQuantity, removeFromCart, isLoading } =
+    useCartContext();
   const { showToast } = useToast();
 
   const tabeleData = {
@@ -75,18 +77,23 @@ const CartProducts = () => {
           </div>
         )}
 
-        {tabeleData.tabelContent.length > 0 ? (
+        {cartItems && cartItems.length > 0 ? (
           viewMode === 'table' ? (
-            <CartTable
-              tabeleData={tabeleData}
-              updateQuantity={updateQuantity}
-              handleDelete={handleDelete}
-            />
+            isLoading ? (
+              <CartTableSkeleton />
+            ) : (
+              <CartTable
+                tabeleData={tabeleData}
+                updateQuantity={updateQuantity}
+                handleDelete={handleDelete}
+              />
+            )
           ) : (
             <CartCards
               cartItems={cartItems}
               updateQuantity={updateQuantity}
               handleDelete={handleDelete}
+              isLoading={isLoading}
             />
           )
         ) : (

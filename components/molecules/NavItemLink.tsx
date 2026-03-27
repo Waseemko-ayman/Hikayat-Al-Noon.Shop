@@ -7,10 +7,11 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
 import { useSession } from '@/Hooks/useSession';
+import ButtonLoading from '../atoms/ButtonLoading';
 
 const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
   // API Context
-  const { cartItems } = useCartContext();
+  const { cartItems, isLoading } = useCartContext();
 
   // Session Hook
   const session = useSession();
@@ -27,7 +28,7 @@ const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
               size={25}
             />
             <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
-              {cartItems?.length}
+              {isLoading ? (<ButtonLoading />) : (cartItems?.length)}
             </span>
           </div>
         </Link>

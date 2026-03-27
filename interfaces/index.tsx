@@ -91,6 +91,7 @@ export interface CartTableProps extends CartProps {
 
 export interface CartCardseProps extends CartProps {
   cartItems: ProductCardProps[];
+  isLoading: boolean;
 }
 
 export type TableRow = {
