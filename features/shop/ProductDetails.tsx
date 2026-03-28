@@ -103,7 +103,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   }, [product]);
 
   return (
-    <Layer>
+    <Layer otherClassName="pt-40 md:pt-44">
       <Container>
         <Breadcrumb>
           <BreadcrumbList className="flex items-center md:pl-12">
@@ -174,14 +174,14 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
           <div className="w-1/2 max-[992px]:w-full">
             <h2 className="text-3xl font-bold mb-[30px]">{product?.title}</h2>
             <div className="w-fit mb-2.5">
-              <div className="flex items-end gap-2 mb-5">
-                <span className="block text-[33px] font-bold">
+              <div className="flex items-end gap-2 mb-6">
+                <span className="block text-[33px] font-bold leading-none">
                   ${product?.price}.00
                 </span>
 
                 {product?.old_price && (
                   <>
-                    <span className="text-xl line-through text-gray-400">
+                    <span className="text-xl line-through text-gray-400 leading-none">
                       ${product?.old_price}.00
                     </span>
 
@@ -238,7 +238,10 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
                     'Add To Cart'
                   )}
                 </Button>
-                <Button variant="primary" otherClassName="!py-2 !px-[15px]">
+                <Button
+                  variant="outline"
+                  otherClassName="!py-2 !px-4 text-(--forth-color)! hover:text-white! border-(--forth-color)!"
+                >
                   Buy Now
                 </Button>
               </div>
