@@ -119,6 +119,8 @@ const Header = () => {
                 />
               </Link>
             </motion.div>
+            
+            {/* Navigation Links */}
             <NavLinks />
           </div>
         </Container>
