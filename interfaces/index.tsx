@@ -614,3 +614,15 @@ export interface TableSkeletonProps {
   rows?: number;
   columns?: number;
 }
+
+export interface BannerProps {
+  height: string;
+  bgImage: string;
+  subTitle: string;
+  title: string;
+  description?: string;
+  btnText?: string;
+  overlay?: boolean;
+  type?: string;
+  otherClassNameContainer?: string;
+}

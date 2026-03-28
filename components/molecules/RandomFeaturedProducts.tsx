@@ -23,7 +23,7 @@ const RandomFeaturedProducts = ({
   const router = useRouter();
 
   return (
-    <Layer otherClassName="!mt-10">
+    <Layer otherClassName="!mt-10 pb-0">
       <MainTitle
         title="Similar Products"
         description="Explore Our Latest Collection of Featured Products"

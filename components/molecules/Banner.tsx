@@ -1,18 +1,6 @@
-import React from 'react';
 import Button from '../atoms/Button';
 import { WobbleCard } from '../ui/wobble-card';
-
-interface BannerProps {
-  height: string;
-  bgImage: string;
-  subTitle: string;
-  title: string;
-  description?: string;
-  btnText?: string;
-  overlay?: boolean;
-  type?: string;
-  otherClassNameContainer?: string;
-}
+import { BannerProps } from '@/interfaces';
 
 const Banner = ({
   height,

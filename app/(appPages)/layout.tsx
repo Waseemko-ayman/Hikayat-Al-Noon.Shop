@@ -1,4 +1,4 @@
-import MainLayout from '@/components/organism/MainLayout';
+import MainLayout from '@/components/organism/Layouts/MainLayout';
 import React, { ReactNode } from 'react';
 
 const MainAppLayout = ({ children }: { children: ReactNode }) => {
