@@ -35,8 +35,7 @@ const NavLinks = ({
     <nav className={cn('flex flex-col', isMobile ? 'h-full' : '')}>
       <ul
         className={cn(
-          'mt-5',
-          !isMobile ? 'flex items-center justify-center gap-7' : '',
+          !isMobile ? 'flex items-center justify-center gap-7' : 'mt-5',
         )}
       >
         {navItems.map((item, idx) => (
