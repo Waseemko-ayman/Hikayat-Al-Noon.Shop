@@ -101,7 +101,10 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             </div>
           )}
           <div className="min-sm:hidden max-lg:hidden max-md:block lg:block">
-            <p className="text-sm font-medium">
+            <p
+              className="text-sm font-medium truncate max-w-[140px]"
+              title={userName}
+            >
               {isLoading ? 'Loading...' : userName}
             </p>
             <div
