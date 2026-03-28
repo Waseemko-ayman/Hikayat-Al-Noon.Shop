@@ -18,7 +18,7 @@ const Hero = () => {
 
   return (
     <BackgroundLines>
-      <div className="min-h-[80vh] relative flex item-center justify-center w-full flex-col py-62">
+      <div className="min-h-[80vh] relative flex item-center justify-center w-full flex-col pt-62">
         <Container otherClassName="text-center z-10 max-sm:text-center">
           <motion.div
             initial="hidden"
