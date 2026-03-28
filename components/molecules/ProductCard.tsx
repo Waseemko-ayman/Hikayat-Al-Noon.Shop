@@ -45,10 +45,10 @@ const ProductCard = ({
       />
       <div
         onClick={handleClick}
-        className="cursor-pointer flex flex-col h-full rounded-[20px] overflow-hidden"
+        className="group flex flex-col h-full rounded-[20px] overflow-hidden"
       >
-        <div className="relative">
-          <div className="relative w-full md:max-w-[500px] aspect-square">
+        <div className="relative rounded-[20px] overflow-hidden">
+          <div className="relative w-full md:max-w-[500px] aspect-square group-hover:scale-105 transition-transform duration-300">
             <Image
               src={image || '/assets/no-image-available.webp'}
               alt={title}
