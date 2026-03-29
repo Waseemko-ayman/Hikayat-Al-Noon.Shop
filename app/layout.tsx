@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wenorshop.vercel.app/'),
+  metadataBase: new URL('https://hikayatalnoon.vercel.app/'),
 
   title: {
     default: 'Hikayat Al-Noon | Fashion Store',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Hikayat Al-Noon',
     description: 'Trendy and high-quality clothing online store.',
-    url: 'https://wenorshop.vercel.app/',
+    url: 'https://hikayatalnoon.vercel.app/',
     siteName: 'Hikayat Al-Noon',
     images: [
       {
