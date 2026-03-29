@@ -14,7 +14,7 @@ export async function generateMetadata({
   return {
     // title: `Product Details - Item ${id}`,
     // description: `Details of product with ID ${id}`,
-    title: `Product Details - Clothes Shopping`,
+    title: `Product Details - Hikayat Al-Noon`,
     description: `Details of product with ${slug}`,
   };
 }
