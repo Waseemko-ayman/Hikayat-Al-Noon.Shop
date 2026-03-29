@@ -18,11 +18,11 @@ const Footer = () => {
         <Container otherClassName="flex items-start md:items-center justify-between flex-col md:flex-row flex-wrap gap-5">
           <div className="md:mr-20">
             <MotionImage
-              src="/assets/landing/logo.webp"
-              alt="Wénor Shop Logo"
-              title="Wénor Shop Logo"
+              src="/assets/landing/noon-logo.webp"
+              alt="Hikayat Al-Noon"
+              title="Hikayat Al-Noon"
               className="mb-8 w-auto h-auto"
-              width={140}
+              width={130}
               height={40}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

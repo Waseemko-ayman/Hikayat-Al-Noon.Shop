@@ -110,16 +110,16 @@ const Header = () => {
             >
               <Link href={PATHS.HOME}>
                 <Image
-                  src="/assets/landing/logo.webp"
-                  alt="Cata Logo"
-                  title="Cata Logo"
+                  src="/assets/landing/noon-logo.webp"
+                  alt="Hikayat Al-Noon"
+                  title="Hikayat Al-Noon"
                   width={60}
                   height={60}
                   className="w-auto h-auto"
                 />
               </Link>
             </motion.div>
-            
+
             {/* Navigation Links */}
             <NavLinks />
           </div>

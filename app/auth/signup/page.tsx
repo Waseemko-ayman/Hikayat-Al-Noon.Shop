@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Signup - Wénor Shop',
+  title: 'Signup - Hikayat Al-Noon',
 };
 
 const Signup = () => <SignupPage />;

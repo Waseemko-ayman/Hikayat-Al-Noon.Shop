@@ -2,7 +2,7 @@ import DashboardPage from '@/features/dashboard';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dashboard - Wénor',
+  title: 'Dashboard - Hikayat Al-Noon',
   description:
     'Overview of your store performance, analytics, and management tools.',
 };

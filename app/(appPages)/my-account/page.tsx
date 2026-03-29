@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'My Account - Wénor Shop',
+  title: 'My Account - Hikayat Al-Noon',
   description:
     'Manage your account, view orders, and update personal details on Clothes Shipping.',
   keywords: [

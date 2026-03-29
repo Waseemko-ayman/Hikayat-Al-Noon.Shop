@@ -92,7 +92,7 @@ export const FloatingNav = ({ className }: { className?: string }) => {
           duration: 0.2,
         }}
         className={cn(
-          'flex items-center justify-between fixed z-40 top-10 inset-x-0 mx-auto p-3 md:px-10 md:py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] gap-4',
+          'flex items-center justify-between fixed z-40 top-10 inset-x-0 mx-auto p-3 md:px-10 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] gap-4',
           isMobile ? 'w-[95%]' : 'max-w-fit md:min-w-[70vw]',
           className,
         )}
@@ -168,12 +168,12 @@ export const FloatingNav = ({ className }: { className?: string }) => {
             >
               <Link href={PATHS.HOME}>
                 <Image
-                  src="/assets/landing/logo.webp"
-                  alt="Cata Logo"
-                  title="Cata Logo"
-                  width={60}
-                  height={60}
-                  className="w-auto h-auto"
+                  src="/assets/landing/noon-logo.webp"
+                  alt="Hikayat Al-Noon"
+                  title="Hikayat Al-Noon"
+                  width={90}
+                  height={90}
+                  className="w-[90px] h-[90px]"
                 />
               </Link>
             </motion.div>

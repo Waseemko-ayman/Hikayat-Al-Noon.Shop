@@ -16,8 +16,8 @@ const ResponsiveDialogDrawer: React.FC<ResponsiveDialogDrawerProps> = ({
 }) => {
   const Component = isMobile ? CustomDrawer : CustomDialog;
 
-  const title = 'Wénor Shop';
-  const description = 'Wénor Shop – Your style, your way';
+  const title = 'Hikayat Al-Noon';
+  const description = 'Hikayat Al-Noon – Your style, your way';
 
   return (
     <Component

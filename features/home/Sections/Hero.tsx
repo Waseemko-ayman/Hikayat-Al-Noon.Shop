@@ -36,7 +36,7 @@ const Hero = () => {
               transition={{ duration: 0.6 }}
             >
               <LayoutTextFlip
-                text="Wénor "
+                text="Hikayat Al-Noon "
                 words={['Collection', 'Style', 'Fashion', 'Vibe']}
               />
             </motion.div>
