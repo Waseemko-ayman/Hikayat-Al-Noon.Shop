@@ -2,9 +2,9 @@ import NewsletterPage from '@/features/dashboard/newsletter';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Newsletter - Wénor Dashboard',
+  title: 'Newsletter - Hikayat Al-Noon Dashboard',
   description:
-    'Manage and send newsletters to your subscribers from the Wénor dashboard.',
+    'Manage and send newsletters to your subscribers from the Hikayat Al-Noon dashboard.',
 };
 
 const Newsletter = () => <NewsletterPage />;

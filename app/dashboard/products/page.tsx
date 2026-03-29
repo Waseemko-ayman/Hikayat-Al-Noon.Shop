@@ -3,9 +3,9 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Products - Wénor Dashboard',
+  title: 'Products - Hikayat Al-Noon Dashboard',
   description:
-    'Manage your products, inventory, and listings in the Wénor dashboard.',
+    'Manage your products, inventory, and listings in the Hikayat Al-Noon dashboard.',
 };
 
 const Products = () => <ProductsPage />;

@@ -2,8 +2,8 @@ import HomePage from '@/features/home';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home - Wénor Shop',
-  description: 'Welcome to the Wénor Shop Home Page',
+  title: 'Home - Hikayat Al-Noon',
+  description: 'Welcome to the Hikayat Al-Noon Home Page',
 };
 
 const Home = () => <HomePage />;

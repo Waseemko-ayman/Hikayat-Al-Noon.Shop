@@ -2,8 +2,8 @@ import ShopPage from '@/features/shop';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shop - Wénor Shop',
-  description: 'Browse and purchase clothes from Wénor Shop',
+  title: 'Shop - Hikayat Al-Noon',
+  description: 'Browse and purchase clothes from Hikayat Al-Noon',
 };
 
 const Shop = async () => <ShopPage />;

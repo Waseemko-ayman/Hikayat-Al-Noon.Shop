@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Forget Password - Wénor Shop',
+  title: 'Forget Password - Hikayat Al-Noon',
 };
 
 const ForgotPassword = () => <ForgotPasswordPage />;

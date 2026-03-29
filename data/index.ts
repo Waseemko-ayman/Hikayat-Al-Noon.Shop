@@ -559,7 +559,7 @@ export const paymentMethodsData: PaymentMethod[] = [
 
 export const sidebarLinks = [
   {
-    title: 'Wénor',
+    title: 'Hikayat Al-Noon',
     href: PATHS.HOME,
     icon: Home,
   },

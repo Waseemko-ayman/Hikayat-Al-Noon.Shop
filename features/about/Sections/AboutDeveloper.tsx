@@ -33,18 +33,18 @@ const AboutDeveloper = () => {
               About the Developer
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance mb-4">
-              Hello, I&apos;m the creator behind Wénor Shop
+              Hello, I&apos;m the creator behind Hikayat Al-Noon
             </h2>
             <p className="text-(--six-color) text-base leading-relaxed mb-3">
-              At Wénor Shop, we create stylish and modern clothing collections
-              that combine quality and comfort. Our mission is to provide unique
-              fashion pieces that make you feel confident and trendy every day.
-              We focus on creativity, sustainability, and delivering an
-              exceptional shopping experience for our customers.
+              At Hikayat Al-Noon, we create stylish and modern clothing
+              collections that combine quality and comfort. Our mission is to
+              provide unique fashion pieces that make you feel confident and
+              trendy every day. We focus on creativity, sustainability, and
+              delivering an exceptional shopping experience for our customers.
             </p>
             <p className="text-(--six-color) text-base leading-relaxed font-medium">
-              Discover stunning designs and collections at Wénor Shop, crafted
-              with care and attention to detail to suit your style and
+              Discover stunning designs and collections at Hikayat Al-Noon,
+              crafted with care and attention to detail to suit your style and
               personality.
             </p>
           </motion.div>

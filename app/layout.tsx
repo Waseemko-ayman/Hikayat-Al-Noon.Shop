@@ -23,15 +23,15 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://wenorshop.vercel.app/'),
 
   title: {
-    default: 'Wénor Shop | Fashion Store',
-    template: '%s | Wénor Shop',
+    default: 'Hikayat Al-Noon | Fashion Store',
+    template: '%s | Hikayat Al-Noon',
   },
 
   description:
-    'Wénor Shop offers trendy and high-quality clothing for all styles. Explore our collection of fashion items online.',
+    'Hikayat Al-Noon offers trendy and high-quality clothing for all styles. Explore our collection of fashion items online.',
 
   keywords: [
-    'Wénor Shop',
+    'Hikayat Al-Noon',
     'Clothing',
     'Fashion',
     'Online Store',
@@ -41,22 +41,22 @@ export const metadata: Metadata = {
   ],
 
   authors: [
-    { name: 'Wénor Shop' },
+    { name: 'Hikayat Al-Noon' },
     { name: 'Waseem', url: 'https://waseem-portfolio-phi.vercel.app' },
   ],
   creator: 'Waseem',
 
   openGraph: {
-    title: 'Wénor Shop',
+    title: 'Hikayat Al-Noon',
     description: 'Trendy and high-quality clothing online store.',
     url: 'https://wenorshop.vercel.app/',
-    siteName: 'Wénor Shop',
+    siteName: 'Hikayat Al-Noon',
     images: [
       {
         url: '/assets/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Wénor Shop',
+        alt: 'Hikayat Al-Noon',
       },
     ],
     locale: 'en_US',
@@ -65,13 +65,13 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Wénor Shop',
+    title: 'Hikayat Al-Noon',
     description: 'Trendy and high-quality clothing online store.',
     images: ['/assets/og-image.png'],
   },
 
   icons: {
-    icon: '/assets/landing/tab-logo.webp',
+    icon: '/assets/landing/tap-noon-logo.webp',
   },
 };
 
@@ -83,7 +83,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/assets/landing/tab-logo.webp" sizes="any" />
+        <link
+          rel="icon"
+          href="/assets/landing/tap-noon-logo.webp"
+          sizes="any"
+        />
         <link
           rel="preconnect"
           href="https://usodykqqnbeiohqwkwfy.supabase.co"

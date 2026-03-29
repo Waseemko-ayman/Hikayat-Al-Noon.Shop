@@ -32,13 +32,13 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
               {/* Image between md and lg */}
               <source
                 media="(min-width:639px) and (max-width:1023px)"
-                srcSet="/assets/landing/tab-logo.webp"
+                srcSet="/assets/landing/tap-noon-logo.webp"
               />
 
               {/* Default image */}
               <Image
-                src="/assets/landing/logo.webp"
-                alt="Wénor Logo"
+                src="/assets/landing/noon-logo.webp"
+                alt="Hikayat Al-Noon"
                 width={100}
                 height={100}
                 priority

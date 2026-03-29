@@ -24,9 +24,9 @@ const Logo = ({ size = 60, className = '' }: LogoProps) => {
     >
       <Link href={PATHS.HOME} aria-label="Go to home page">
         <Image
-          src="/assets/landing/logo.webp"
-          alt="Wénor Shop Logo"
-          title="Wénor Shop Logo"
+          src="/assets/landing/noon-logo.webp"
+          alt="Hikayat Al-Noon"
+          title="Hikayat Al-Noon"
           width={size}
           height={size}
         />
