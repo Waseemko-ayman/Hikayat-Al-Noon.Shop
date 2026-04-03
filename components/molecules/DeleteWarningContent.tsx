@@ -18,7 +18,7 @@ export const DeleteWarningContent: React.FC<DeleteWarningContentProps> = ({
   onDelete,
 }) => {
   return (
-    <div>
+    <>
       <div
         className={cn(
           `flex gap-3 bg-red-50 border border-red-200 rounded-xl p-4`,
@@ -45,6 +45,6 @@ export const DeleteWarningContent: React.FC<DeleteWarningContentProps> = ({
           Delete
         </Button>
       </div>
-    </div>
+    </>
   );
 };

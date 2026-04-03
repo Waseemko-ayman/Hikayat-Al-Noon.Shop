@@ -25,20 +25,26 @@ const FooterLinks = ({
             viewport={{ once: true, amount: 0.2 }}
             className={`py-1 ${otherClassName ? otherClassName : ''}`}
           >
-            <Link
-              href={item.url}
-              className="text-(--seconde-color) hover:pl-1 transition-all duration-300"
-              aria-label={
-                'icon' in item ? item.ariaLabel : undefined
-              }
-            >
-              {/* By type guard To check if an item is of a type that contains icon or text */}
-              {'icon' in item ? (
-                <item.icon className="text-(--forth-color) text-lg" />
-              ) : (
-                item.text
-              )}
-            </Link>
+            {'url' in item ? (
+              <Link
+                href={item.url}
+                className="text-(--seconde-color) hover:pl-1 transition-all duration-300"
+                aria-label={'icon' in item ? item.ariaLabel : undefined}
+              >
+                {'icon' in item ? (
+                  <item.icon className="text-(--forth-color) text-lg" />
+                ) : (
+                  item.text
+                )}
+              </Link>
+            ) : (
+              <span className="mb-0.5">
+                <span className="text-(--forth-color) font-bold">
+                  {item.text}:
+                </span>{' '}
+                {item.info}
+              </span>
+            )}
           </motion.li>
         ))}
       </ul>

@@ -30,7 +30,7 @@ const OrdersData = [
 
 const Orders = () => {
   return (
-    <div>
+    <>
       <AccountSectionHeader
         title="Order History"
         description="Track and manage your orders"
@@ -43,7 +43,7 @@ const Orders = () => {
       <Button href={PATHS.ORDERS} otherClassName="inline-block mt-5">
         View All Orders
       </Button>
-    </div>
+    </>
   );
 };
 

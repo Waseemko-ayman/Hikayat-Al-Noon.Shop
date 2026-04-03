@@ -77,7 +77,7 @@ const PasswordSettings = () => {
   };
 
   return (
-    <div>
+    <>
       <AuthTemplate
         otherClassName="mt-6 !max-w-full rounded-xl"
         error={errors}
@@ -95,7 +95,7 @@ const PasswordSettings = () => {
         strong password that you don&rsquo;t use elsewhere. Consider using a
         password manager to keep your accounts secure.
       </NoticeCard>
-    </div>
+    </>
   );
 };
 

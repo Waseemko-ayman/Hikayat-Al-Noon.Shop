@@ -47,7 +47,7 @@ const AttachmentsUploader = ({
   };
 
   return (
-    <div>
+    <>
       {renderUploadTrigger()}
 
       <input
@@ -84,7 +84,7 @@ const AttachmentsUploader = ({
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

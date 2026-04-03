@@ -15,7 +15,7 @@ const MessagesGrid = ({
   handleReset,
 }: MessagesGridProps) => {
   return (
-    <div>
+    <>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {isLoading
           ? Array.from({ length: 6 }).map((_, i) => (
@@ -50,7 +50,7 @@ const MessagesGrid = ({
           handleClick={handleReset}
         />
       )}
-    </div>
+    </>
   );
 };
 

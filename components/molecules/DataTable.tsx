@@ -105,7 +105,7 @@ export function DataTable<T extends { id: number | string }>({
   }, [filteredData.length, itemsPerPage]);
 
   return (
-    <div>
+    <>
       <DataTableHeader
         totalItems={data.length}
         filteredItems={filteredData.length}
@@ -148,6 +148,6 @@ export function DataTable<T extends { id: number | string }>({
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

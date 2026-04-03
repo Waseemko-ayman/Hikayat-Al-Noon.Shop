@@ -11,9 +11,11 @@ import CartCards from '@/components/molecules/CartCards';
 import EmptyState from '@/components/molecules/EmptyState';
 import { PATHS } from '@/data/paths';
 import CartTableSkeleton from '@/components/Skeletons/CartTableSkeleton';
+import ApplyCoupon from './ApplyCoupon';
+import { viewCartMode } from '@/utils/types';
 
 const CartProducts = () => {
-  const [viewMode, setViewMode] = useState<'table' | 'cards'>(() => {
+  const [viewMode, setViewMode] = useState<viewCartMode>(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('cart_view_mode');
       return stored === 'table' || stored === 'cards' ? stored : 'table';
@@ -82,19 +84,36 @@ const CartProducts = () => {
             isLoading ? (
               <CartTableSkeleton />
             ) : (
-              <CartTable
-                tabeleData={tabeleData}
-                updateQuantity={updateQuantity}
-                handleDelete={handleDelete}
-              />
+              <>
+                <CartTable
+                  tabeleData={tabeleData}
+                  updateQuantity={updateQuantity}
+                  handleDelete={handleDelete}
+                />
+                {cartItems.length > 0 && (
+                  <div className="mt-4">
+                    <ApplyCoupon viewMode={viewMode} />
+                  </div>
+                )}
+              </>
             )
           ) : (
-            <CartCards
-              cartItems={cartItems}
-              updateQuantity={updateQuantity}
-              handleDelete={handleDelete}
-              isLoading={isLoading}
-            />
+            <div className="flex flex-wrap gap-4">
+              <div className="flex-grow min-w-[300px] max-w-full">
+                <CartCards
+                  cartItems={cartItems}
+                  updateQuantity={updateQuantity}
+                  handleDelete={handleDelete}
+                  isLoading={isLoading}
+                />
+              </div>
+
+              {cartItems.length > 0 && (
+                <div className="flex-shrink-0 w-full md:w-[400px]">
+                  <ApplyCoupon viewMode={viewMode} />
+                </div>
+              )}
+            </div>
           )
         ) : (
           <EmptyState

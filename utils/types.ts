@@ -31,5 +31,5 @@ export type InputTypes =
   | 'checkbox';
 
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
-
 export type flexVariant = 'responsive' | 'row';
+export type viewCartMode = 'table' | 'cards';

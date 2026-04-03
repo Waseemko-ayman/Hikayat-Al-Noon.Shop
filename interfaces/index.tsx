@@ -68,21 +68,22 @@ export interface ButtonProps {
   otherClassName?: string;
   variant?: ButtonVarinats;
   borderRadius?: string;
-  // handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   handleClick?: (e: any) => void;
   type?: ButtonTypes;
   Icon?: React.ElementType;
   iconPosition?: ButtonIconPosition;
   iconClassName?: string;
   disabled?: boolean;
-  // bgColor?: string;
-  // hoverBgColor?: string;
   target?: string;
 }
 
 export interface CartProps {
-  updateQuantity: (id: number, quantity: number) => void;
-  handleDelete: (id: number, itemTitle: string) => void;
+  updateQuantity: (id: number | any, quantity: number) => void;
+  handleDelete: (id: number | any, itemTitle: string) => void;
+}
+
+export interface CartCardProps extends CartProps {
+  item: ProductCardProps;
 }
 
 export interface CartTableProps extends CartProps {
@@ -467,7 +468,7 @@ export interface AttachmentsUploaderProps {
 export interface FooterLinksProps {
   secTitle: string;
   listClassName?: string;
-  listName: 'followUs' | 'About' | 'myAccount';
+  listName: 'followUs' | 'About' | 'myAccount' | 'Contact';
   otherClassName?: string;
 }
 

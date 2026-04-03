@@ -56,7 +56,7 @@ const Input = ({
     };
 
   return (
-    <div>
+    <>
       {label && (
         <label
           className={`block text-sm font-semibold text-(--seconde-color) mb-2 ${labelClassName}`}
@@ -188,7 +188,7 @@ const Input = ({
       {error && error[inputName] && (
         <p className="text-sm text-red-500 mt-1">{error[inputName].message}</p>
       )}
-    </div>
+    </>
   );
 };
 

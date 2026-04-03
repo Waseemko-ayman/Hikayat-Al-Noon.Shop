@@ -18,7 +18,7 @@ interface FormProps {
 
 const Profile = ({ errors, register, isLoading, loading }: FormProps) => {
   return (
-    <div>
+    <>
       <AccountSectionHeader
         title="Profile Information"
         description="Update your personal details"
@@ -53,7 +53,7 @@ const Profile = ({ errors, register, isLoading, loading }: FormProps) => {
           {loading ? <ButtonLoading text="save changes..." /> : 'Save Changes'}
         </Button>
       </CardWrapper>
-    </div>
+    </>
   );
 };
 
