@@ -83,6 +83,23 @@ export const FETURES = [
 ];
 
 export const FOOTER_LINKS_DATA = {
+  Contact: [
+    {
+      id: 1,
+      text: 'Address',
+      info: 'Occupied Palestine, Gaza',
+    },
+    {
+      id: 2,
+      text: 'Phone',
+      info: '+972592164680',
+    },
+    {
+      id: 3,
+      text: 'Whats app',
+      info: '+972592164680',
+    },
+  ],
   followUs: [
     {
       id: 1,
@@ -156,39 +173,6 @@ export const FOOTER_LINKS_DATA = {
     },
   ],
 };
-
-export const APP_STORE = [
-  {
-    id: 1,
-    imgSrc: '/assets/pay/app.jpg',
-    imgAlt: 'app store',
-    url: '#',
-  },
-  {
-    id: 2,
-    imgSrc: '/assets/pay/play.jpg',
-    imgAlt: 'google play',
-    url: '#',
-  },
-];
-
-export const CONTACT_INFO = [
-  {
-    id: 1,
-    title: 'Address',
-    info: 'Occupied Palestine, Gaza',
-  },
-  {
-    id: 2,
-    title: 'Phone',
-    info: '+972592164680',
-  },
-  {
-    id: 3,
-    title: 'Whats app',
-    info: '+972592164680',
-  },
-];
 
 export const NEVER_READ = [
   {
