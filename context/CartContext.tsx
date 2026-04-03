@@ -143,14 +143,14 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // Update Quantity
   const updateQuantity = async (productId: number, quantity: number) => {
     if (!user || quantity < 1) return;
-    setIsLoading(true);
-    try {
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item.id === productId ? { ...item, quantity } : item,
-        ),
-      );
 
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity } : item,
+      ),
+    );
+
+    try {
       const { data: cartData } = await supabase
         .from('carts')
         .select('id')
@@ -165,8 +165,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         .eq('product_id', productId);
 
       if (error) console.error('Update quantity error:', error);
-    } finally {
-      setIsLoading(false);
+    } catch (err) {
+      console.error('Update quantity error:', err);
+
+      // If the update fails on the server, revert to the old value
+      fetchCart(user.id);
     }
   };
 
@@ -175,10 +178,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // Remove From Cart
   const removeFromCart = async (productId: number) => {
     if (!user) return;
-    setIsLoading(true);
-    try {
-      setCartItems((prev) => prev.filter((item) => item.id !== productId));
+    
+    const previousItems = cartItems;
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
 
+    try {
       const { data: cartData } = await supabase
         .from('carts')
         .select('id')
@@ -193,12 +197,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         .eq('product_id', productId);
 
       if (error) console.error('Remove from cart error:', error);
-    } finally {
-      setIsLoading(false);
+    } catch (err) {
+      console.error('Remove from cart error:', err);
+
+      // If deletion fails, restore previous items
+      setCartItems(previousItems);
     }
   };
 
-  // مسح السلة كلها
+  // Scan the entire basket and remove all items
   const clearCart = async () => {
     if (!user) return;
     setIsLoading(true);
