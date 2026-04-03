@@ -12,7 +12,7 @@ const Footer = () => {
     <Layer otherClassName="overflow-hidden pb-5">
       <footer>
         <Container otherClassName="flex items-start md:items-center justify-between flex-col md:flex-row flex-wrap gap-5">
-          <div className="md:mr-20">
+          <div className="md:mr-10 max-md:mx-auto">
             <MotionImage
               src="/assets/landing/noon-logo.webp"
               alt="Hikayat Al-Noon"
