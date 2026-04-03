@@ -134,7 +134,7 @@ const MyAccountPage = () => {
 
   return (
     <FormProvider {...methods}>
-      <Layer otherClassName="pt-32 md:pt-40">
+      <Layer otherClassName="pt-36 md:pt-48">
         <Container>
           <div className="grid md:grid-cols-[300px_1fr] gap-8">
             {/* Sidebar */}
