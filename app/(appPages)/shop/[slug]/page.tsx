@@ -3,6 +3,7 @@ import ProductDetailsPage from '@/features/shop/ProductDetails';
 import supabase from '@/config/api';
 import { Metadata } from 'next';
 import React from 'react';
+import EmptyState from '@/components/molecules/EmptyState';
 
 export async function generateMetadata({
   params,
@@ -34,7 +35,13 @@ export default async function ProductPageWrapper({
 
   if (error) {
     console.error(error);
-    return <div>Product not found</div>;
+    return (
+      <EmptyState
+        imageSrc="no-products.png"
+        messageText="Product Not Found"
+        description={`Sorry, we couldn't find the product you're looking for.`}
+      />
+    );
   }
 
   return <ProductDetailsPage product={product} />;
