@@ -87,20 +87,21 @@ const NavLinks = ({
             ) : error ? (
               <InlineError textColor="text-black" />
             ) : (
-              <div
-                title={`${userName} - ${userRole}`}
-                className="min-sm:w-[40px] min-sm:h-[40px] max-lg:w-[40px] max-lg:h-[40px] 
-              max-md:w-[50px] max-md:h-[50px] lg:w-[50px] lg:h-[50px]
-              rounded-full overflow-hidden border-2 border-(--forth-color)"
-              >
-                <Image
-                  src={avatar || '/assets/user-avatar.png'}
-                  alt="user avatar"
-                  width={50}
-                  height={50}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              user && (
+                <div
+                  title={`${userName} - ${userRole}`}
+                  className="min-sm:w-[40px] min-sm:h-[40px] max-lg:w-[40px] max-lg:h-[40px] max-md:w-[50px] max-md:h-[50px] lg:w-[50px] lg:h-[50px] rounded-full overflow-hidden border-2 border-(--forth-color)"
+                >
+                  <Image
+                    src={avatar || '/assets/user-avatar.png'}
+                    alt="user avatar"
+                    width={50}
+                    height={50}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
+              )
             )}
             <div className="min-sm:hidden max-lg:hidden max-md:block lg:block">
               <p
