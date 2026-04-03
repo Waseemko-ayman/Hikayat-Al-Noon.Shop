@@ -5,6 +5,7 @@ import { TableRow } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { LogIn } from 'lucide-react';
 import React from 'react';
+import CardWrapper from '@/components/Template/CardWrapper';
 
 const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
   // Context
@@ -42,8 +43,12 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
       price: subTotal,
     },
   ];
+
+  const shippingCost =
+    typeof tabeleData[1].shipping === 'number' ? tabeleData[1].shipping : 0;
+
   return (
-    <div className="max-w-full w-[600px] border border-(--seven-color) p-[30px]">
+    <CardWrapper otherClassName="max-w-full w-[600px]" withFlex={false}>
       <h3 className={TitleStyle}>Cart Totals</h3>
       <table className="max-w-full w-full border-0 mb-[15px]">
         <tbody>
@@ -51,25 +56,31 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
             <tr key={row.id}>
               <td className={`${tdStyle} ${highlite(row)}`}>{row.title}</td>
               <td className={`${tdStyle} ${highlite(row)}`}>
-                {row.title.toLowerCase() === 'shipping'
-                  ? typeof row.shipping === 'string'
-                    ? row.shipping
-                    : `$${row.shipping}`
-                  : row.title.toLowerCase() === 'total'
-                    ? `$${
-                        subTotal +
-                        (typeof tabeleData[1].shipping === 'number'
-                          ? tabeleData[1].shipping
-                          : 0)
-                      }`
-                    : `$${row.price}`}
+                {row.title.toLowerCase() === 'shipping' ? (
+                  typeof row.shipping === 'string' ? (
+                    <span className="text-green-600 font-semibold">
+                      {row.shipping}
+                    </span>
+                  ) : (
+                    `$${row.shipping}`
+                  )
+                ) : row.title.toLowerCase() === 'total' ? (
+                  <span className="text-green-700 font-bold">
+                    ${subTotal + shippingCost}
+                  </span>
+                ) : (
+                  `$${row.price}`
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {session ? (
-        <Button variant="primary" otherClassName="!py-2.5 !px-5">
+        <Button
+          variant="primary"
+          otherClassName="!py-2.5 !px-5 bg-green-600 hover:bg-green-700"
+        >
           Checkout Now
         </Button>
       ) : (
@@ -83,7 +94,7 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
           Login
         </Button>
       )}
-    </div>
+    </CardWrapper>
   );
 };
 
