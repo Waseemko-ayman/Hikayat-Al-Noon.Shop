@@ -11,7 +11,7 @@ import { HelpCircle } from 'lucide-react';
 
 const HelpPage = () => {
   return (
-    <Layer otherClassName="bg-muted/30 pt-[200px]">
+    <Layer otherClassName="bg-muted/30 pt-[160px] md:pt-[200px]">
       <Container>
         <div className="mx-auto max-w-4xl space-y-8">
           {/* Header */}
