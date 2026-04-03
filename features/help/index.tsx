@@ -1,4 +1,5 @@
 'use client';
+
 import Container from '@/components/atoms/Container';
 import Layer from '@/components/atoms/Layer';
 import MainTitle from '@/components/atoms/MainTitle';
@@ -7,11 +8,10 @@ import InfoListSection from '@/components/molecules/InfoListSection';
 import { Button } from '@/components/molecules/MovingBorders';
 import { HelpContent } from '@/data';
 import { HelpCircle } from 'lucide-react';
-import React from 'react';
 
 const HelpPage = () => {
   return (
-    <Layer otherClassName="bg-muted/30">
+    <Layer otherClassName="bg-muted/30 pt-[200px]">
       <Container>
         <div className="mx-auto max-w-4xl space-y-8">
           {/* Header */}
