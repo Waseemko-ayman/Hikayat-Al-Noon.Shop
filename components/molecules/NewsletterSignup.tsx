@@ -9,7 +9,6 @@ import { motion } from 'framer-motion';
 import { useToast } from '@/lib/toast';
 import useAPI from '@/Hooks/useAPI';
 import ButtonLoading from '../atoms/ButtonLoading';
-import Image from 'next/image';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
@@ -32,13 +31,7 @@ const NewsletterSignup = () => {
     }
   };
   return (
-    <Layer otherClassName="overflow-hidden min-h-[25vh] flex">
-      <Image
-        src="/assets/banner/signUp.webp"
-        alt="Sign Up Banner"
-        fill
-        className="absolute inset-0 object-cover"
-      />
+    <Layer otherClassName="overflow-hidden min-h-[25vh] flex relative bg-(--forth-color) before:content-[''] before:absolute before:top-0 before:right-[-60px] before:md:right-[-50px] before:w-[50%] before:h-full before:bg-[#054c48] before:skew-x-[20deg]">
       <Container otherClassName="w-full flex flex-col items-center justify-center lg:flex-row lg:justify-between gap-2.5">
         <motion.div
           initial={{ opacity: 0, x: -60 }}
@@ -50,7 +43,7 @@ const NewsletterSignup = () => {
           <h2 className="text-(--white-color) text-3xl font-bold">
             Sign Up For Newsletters
           </h2>
-          <p className="text-(--first-color) text-base">
+          <p className="text-white/90 text-base">
             Get E-mail updates about our latest shop and{' '}
             <span className="text-(--third-color)">special offers</span>
           </p>
@@ -77,7 +70,7 @@ const NewsletterSignup = () => {
             <Button
               variant="primary"
               borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
-              otherClassName="w-full sm:w-fit hover:!tracking-normal"
+              otherClassName="w-full sm:w-fit hover:!tracking-normal md:border-l-0 border border-white"
               disabled={isLoading}
             >
               {isLoading ? <ButtonLoading text="Sign up..." /> : 'Sign up'}
