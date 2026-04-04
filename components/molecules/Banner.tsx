@@ -12,6 +12,7 @@ const Banner = ({
   overlay,
   type = 'big',
   otherClassNameContainer,
+  handleClick,
 }: BannerProps) => {
   const renderTitle = () =>
     type === 'big' ? (
@@ -37,7 +38,11 @@ const Banner = ({
             <span className="text-sm font-medium py-3.5">{description}</span>
           )}
           {btnText && type === 'big' && (
-            <Button variant="outline" borderRadius="rounded-none">
+            <Button
+              variant="outline"
+              borderRadius="rounded-none"
+              handleClick={handleClick}
+            >
               {btnText}
             </Button>
           )}

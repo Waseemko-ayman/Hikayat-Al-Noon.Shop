@@ -593,12 +593,13 @@ export const BANNERS_DATA = [
   {
     id: 1,
     bgImage: '/assets/banner/b4.webp',
-    subTitle: 'crazy deals',
-    title: 'buy 1 get 1 free',
-    description: 'The best classic dress is on sale at cara',
-    btnText: 'Learn More',
+    subTitle: 'big sale',
+    title: 'up to 40% off',
+    description: 'Grab your favorite items at discounted prices',
+    btnText: 'Shop Now',
     type: 'big',
     overlay: false,
+    query: '?discount=true',
   },
   {
     id: 2,
@@ -609,6 +610,7 @@ export const BANNERS_DATA = [
     btnText: 'Collection',
     type: 'big',
     overlay: false,
+    query: `?category=tshirts_summer`,
   },
   {
     id: 3,

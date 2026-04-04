@@ -626,4 +626,5 @@ export interface BannerProps {
   overlay?: boolean;
   type?: string;
   otherClassNameContainer?: string;
+  handleClick?: () => void;
 }
