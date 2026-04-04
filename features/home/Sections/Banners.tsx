@@ -5,8 +5,12 @@ import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper
 import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
 import GridWrapper from '@/components/organism/GridWrapper';
 import { BANNERS_DATA } from '@/data';
+import { PATHS } from '@/data/paths';
+import { useRouter } from 'next/navigation';
 
 const Banners = () => {
+  const router = useRouter();
+
   return (
     <>
       <Layer otherClassName="pb-0!">
@@ -20,6 +24,9 @@ const Banners = () => {
                     height="h-[50vh]"
                     otherClassNameContainer={
                       index === 0 ? 'bg-right' : 'bg-center'
+                    }
+                    handleClick={() =>
+                      router.push(`${PATHS.SHOP.ROOT}${item.query!}`)
                     }
                     {...item}
                   />

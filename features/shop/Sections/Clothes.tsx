@@ -6,7 +6,7 @@ import Layer from '@/components/atoms/Layer';
 import ProdcutsContainer from '@/components/atoms/ProdcutsContainer';
 import ProductCard from '@/components/molecules/ProductCard';
 import { PATHS } from '@/data/paths';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductFilter from './ProductFilter';
@@ -19,11 +19,15 @@ import EmptyState from '@/components/molecules/EmptyState';
 import { FaBoxOpen } from 'react-icons/fa6';
 
 const Clothes = () => {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') ?? 'all';
+  const initialDiscount = searchParams.get('discount') === 'true';
+
   const [filters, setFilters] = useState({
     searchQuery: '',
-    category: 'all',
+    category: initialCategory,
     sortBy: 'all',
-    discount: false,
+    discount: initialDiscount,
     priceRange: [0, 1000],
     isFiltersOpen: false,
   });
