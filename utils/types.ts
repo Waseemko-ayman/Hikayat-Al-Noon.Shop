@@ -10,7 +10,8 @@ export type ButtonVarinats =
   | 'forth'
   | 'fifth'
   | 'ghost'
-  | 'circle';
+  | 'circle'
+  | 'text';
 export type ButtonTypes = 'submit' | 'button' | 'reset';
 export type ButtonIconPosition = 'left' | 'right';
 export type InputTypes =

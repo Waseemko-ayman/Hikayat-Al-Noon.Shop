@@ -43,7 +43,9 @@ const Button = forwardRef<
                 ? 'w-10 h-10 !p-0 bg-[#e8f6ea] text-(--forth-color) hover:bg-(--forth-color) hover:text-(--white-color) hover:border-(--white-color) hover:rotate-[360deg] border border-[#cce7d0] !rounded-[50%] transition-all duration-200'
                 : variant === 'ghost'
                   ? 'text-(--forth-color) hover:bg-gray-200'
-                  : ''
+                  : variant === 'text'
+                    ? 'text-(--forth-color) bg-transparent hover:underline'
+                    : ''
     } ${Icon ? 'flex! items-center gap-2 w-fit' : ''} ${disabledClasses} ${otherClassName}`;
 
     const content = (
