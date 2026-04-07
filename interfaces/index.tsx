@@ -30,7 +30,7 @@ interface ProductImage {
 }
 
 export interface ProductCardProps {
-  id?: number;
+  id?: number | string | any;
   created_at?: string;
   slug?: string;
   image: string;
@@ -43,8 +43,9 @@ export interface ProductCardProps {
   quantity?: number;
   ratings?: number[];
   comment?: string;
+  comments?: string[];
   date_added?: string;
-  size?: string[];
+  size?: string[] | any;
   description?: string;
   section?: string;
   category?: string;
@@ -627,4 +628,20 @@ export interface BannerProps {
   type?: string;
   otherClassNameContainer?: string;
   handleClick?: () => void;
+}
+
+export interface ReviewProps {
+  user: string;
+  rating: number;
+  comment: string;
+}
+
+export interface ItemProductProps {
+  product: ProductCardProps;
+}
+
+export interface ProductInfoSectionProps {
+  product: ProductCardProps;
+  addToCart: (product: ProductCardProps) => Promise<void>;
+  addIsLoading: boolean;
 }
