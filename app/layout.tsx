@@ -6,6 +6,7 @@ import { UpdateContentProvider } from '@/context/updateContentContext';
 import AuthProvider from '@/context/AuthContext';
 import { UserInfoProvider } from '@/context/UserInfoContext';
 import AnalyticsProvider from '@/context/AnalyticsProvider';
+import ErrorBoundary from './ErrorBoundary';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -102,15 +103,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AnalyticsProvider>
-          <AuthProvider>
-            <UserInfoProvider>
-              <UpdateContentProvider>
-                <CartProvider>{children}</CartProvider>
-              </UpdateContentProvider>
-            </UserInfoProvider>
-          </AuthProvider>
-        </AnalyticsProvider>
+        <ErrorBoundary>
+          <AnalyticsProvider>
+            <AuthProvider>
+              <UserInfoProvider>
+                <UpdateContentProvider>
+                  <CartProvider>{children}</CartProvider>
+                </UpdateContentProvider>
+              </UserInfoProvider>
+            </AuthProvider>
+          </AnalyticsProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );
