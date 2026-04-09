@@ -12,18 +12,34 @@ const RatingsSummary: React.FC<{ ratings: number[] }> = ({ ratings }) => {
   };
   const avg =
     total > 0 ? (ratings.reduce((a, b) => a + b, 0) / total).toFixed(1) : '0.0';
+
   const ratingLabels = [
-    { id: 'excellent', label: 'Excellent', value: breakdown.excellent },
-    { id: 'good', label: 'Good', value: breakdown.good },
-    { id: 'average', label: 'Average', value: breakdown.average },
-    { id: 'poor', label: 'Poor', value: breakdown.poor },
-    { id: 'bad', label: 'Bad', value: breakdown.bad },
+    {
+      id: 'excellent',
+      label: 'Excellent',
+      value: breakdown.excellent,
+      color: 'bg-green-500',
+    },
+    { id: 'good', label: 'Good', value: breakdown.good, color: 'bg-lime-400' },
+    {
+      id: 'average',
+      label: 'Average',
+      value: breakdown.average,
+      color: 'bg-yellow-400',
+    },
+    {
+      id: 'poor',
+      label: 'Poor',
+      value: breakdown.poor,
+      color: 'bg-orange-500',
+    },
+    { id: 'bad', label: 'Bad', value: breakdown.bad, color: 'bg-red-500' },
   ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
+    <div className="flex flex-col md:flex-row gap-6 max-md:py-4">
       {/* Left (Average) */}
-      <div className="flex flex-col items-center justify-center min-w-[120px]">
+      <div className="flex flex-col items-center justify-center min-w-[120px] md:border-r border-gray-300 px-6">
         <p className="text-4xl font-bold">{avg}</p>
         <div className="flex mt-1">
           {renderRatingsStars(Number(avg), undefined, 'pointer-events-none')}
@@ -40,7 +56,7 @@ const RatingsSummary: React.FC<{ ratings: number[] }> = ({ ratings }) => {
             <div className="flex-1">
               <div className="h-2 bg-gray-200 rounded-full">
                 <div
-                  className="h-full bg-yellow-400 rounded-full transition-all"
+                  className={`h-full rounded-full transition-all ${item.color}`}
                   style={{
                     width: total > 0 ? `${(item.value / total) * 100}%` : '0%',
                   }}
