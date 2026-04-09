@@ -134,7 +134,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
         />
 
         {/* Reviews Section */}
-        <ProductReviews product={product} />
+        <ProductReviews product={product} isLoading={isLoading} />
 
         <RandomFeaturedProducts
           error={error}

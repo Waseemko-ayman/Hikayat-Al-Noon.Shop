@@ -773,3 +773,8 @@ export const CreateUsersFields = [
     type: 'file',
   },
 ];
+
+export const ProductReviewsTabsData = [
+  { value: 'comments', label: 'Comments' },
+  { value: 'ratingsSummary', label: 'Ratings Summary' },
+];
