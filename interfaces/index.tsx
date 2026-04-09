@@ -459,6 +459,7 @@ export interface EmptyStateProps {
   handleClick?: () => void;
   Icon?: React.ElementType;
   buttonHref?: string | undefined;
+  otherClassName?: string;
 }
 
 export interface AttachmentsUploaderProps {
@@ -638,6 +639,7 @@ export interface ReviewProps {
 
 export interface ItemProductProps {
   product: ProductCardProps;
+  isLoading: boolean;
 }
 
 export interface ProductInfoSectionProps {
