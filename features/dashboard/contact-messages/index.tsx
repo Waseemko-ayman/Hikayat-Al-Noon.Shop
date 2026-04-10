@@ -5,14 +5,13 @@ import SearchFilterBar from '@/components/molecules/search-filter-bar';
 import StatsItem from '@/components/molecules/StatsItem';
 import { useUnreadMessages } from '@/context/UnreadMessagesContext';
 import useAPI from '@/Hooks/useAPI';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
+import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
 import { Message } from '@/interfaces';
 import { Mail, MailOpen, MessageSquare } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 const ContactMessagesPage = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
   const [filters, setFilters] = useState({
     searchQuery: '',
     filterStatus: 'all',
@@ -23,9 +22,9 @@ const ContactMessagesPage = () => {
 
   // API Hook
   const { del, edit } = useAPI<Message>('messages');
-  
+
   // Supabase Hook
-  const { data, isLoading } = useSupabaseClient('messages', {
+  const { data, isLoading } = useSupabaseQuery('messages', {
     message: debouncedSearchTerm
       ? debouncedSearchTerm.toLowerCase()
       : undefined,
@@ -40,6 +39,8 @@ const ContactMessagesPage = () => {
   // Context
   const { refreshUnread } = useUnreadMessages();
 
+  const messages: Message[] = useMemo(() => data ?? [], [data]);
+
   const handleReset = () => {
     setFilters({
       searchQuery: '',
@@ -52,15 +53,11 @@ const ContactMessagesPage = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    setMessages((prev) => prev.filter((m) => m.id !== id));
     await del(id);
     refreshUnread();
   };
 
   const handleMarkAsRead = async (id: string) => {
-    setMessages((prev) =>
-      prev.map((m) => (m.id === id ? { ...m, isRead: true } : m)),
-    );
     await edit(id, { isRead: true });
     refreshUnread();
   };
@@ -81,12 +78,6 @@ const ContactMessagesPage = () => {
     };
   }, [messages]);
 
-  useEffect(() => {
-    if (data) {
-      setMessages(data);
-    }
-  }, [data]);
-
   return (
     <div className="max-md:mt-5">
       {/* Header */}
@@ -103,7 +94,7 @@ const ContactMessagesPage = () => {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center justify-between gap-2 md:gap-4">
+          <div className="flex items-center justify-center sm:justify-between flex-wrap gap-2 md:gap-4">
             <StatsItem Icon={Mail} value={stats.total} label="Total" />
             <StatsItem dot value={stats.unread} label="Unread" />
             <StatsItem Icon={MailOpen} value={stats.read} label="Read" />

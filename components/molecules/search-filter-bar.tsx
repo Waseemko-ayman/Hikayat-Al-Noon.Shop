@@ -29,7 +29,7 @@ const SearchFilterBar = ({
           inputName="search"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          otherClassName="w-full! pr-8 rounded-lg! focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-64 transition-colors"
+          otherClassName="w-full! pr-8 rounded-lg! focus:ring-2 focus:ring-blue-500 focus:border-transparent sm:w-64 transition-colors"
         />
         {searchQuery ? (
           <Button

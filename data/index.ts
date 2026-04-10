@@ -9,6 +9,7 @@ import {
   FaLinkedin,
   FaMap,
   FaPhone,
+  FaStar,
   FaTelegram,
   FaTwitter,
   FaUser,
@@ -572,11 +573,11 @@ export const sidebarLinks = [
     href: PATHS.DASHBOARD.CONTACT_MESSAGES,
     icon: FiMessageCircle,
   },
-  // {
-  //   title: 'ratings',
-  //   href: PATHS.DASHBOARD.RATINGS,
-  //   icon: FaStar,
-  // },
+  {
+    title: 'Ratings',
+    href: PATHS.DASHBOARD.RATINGS,
+    icon: FaStar,
+  },
   // {
   //   title: 'orders',
   //   href: PATHS.DASHBOARD.ORDERS.ROOT,
