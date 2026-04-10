@@ -40,6 +40,7 @@ export default async function ProductPageWrapper({
         imageSrc="no-products.png"
         messageText="Product Not Found"
         description={`Sorry, we couldn't find the product you're looking for.`}
+        otherClassName="pt-36 md:pt-48"
       />
     );
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -10,13 +11,13 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ProductCardProps } from '@/interfaces';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductFilter from './ProductFilter';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import { useDebounce } from 'use-debounce';
 import ProductSkeletons from '@/components/molecules/ProductSkeletons';
 import useAPI from '@/Hooks/useAPI';
 import EmptyState from '@/components/molecules/EmptyState';
 import { FaBoxOpen } from 'react-icons/fa6';
+import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
 
 const Clothes = () => {
   const searchParams = useSearchParams();
@@ -52,7 +53,7 @@ const Clothes = () => {
     data: products,
     error,
     isLoading,
-  } = useSupabaseClient(
+  } = useSupabaseQuery(
     'products',
     {
       title: debouncedSearchTerm
@@ -118,10 +119,10 @@ const Clothes = () => {
 
         <ProdcutsContainer>
           {isLoading ? (
-            <ProductSkeletons count={products?.length} />
+            <ProductSkeletons count={(products as any)?.length || 8} />
           ) : error ? (
             <ErrorFetching error={error} />
-          ) : products?.length > 0 ? (
+          ) : products && products?.length > 0 ? (
             products.map((item: ProductCardProps, index: number) => (
               <AnimatedWrapper key={item.id} custom={index}>
                 <ProductCard

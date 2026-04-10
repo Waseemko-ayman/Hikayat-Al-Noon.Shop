@@ -17,9 +17,9 @@ import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
 import { useToast } from '@/lib/toast';
 import { usePathname } from 'next/navigation';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import ProductReviews from './Sections/ProductReviews';
 import ProductInfoSection from './Sections/ProductInfoSection';
+import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
 
 const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const [, setTargetSrc] = useState('');
@@ -44,7 +44,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
     data: featuredProducts,
     isLoading,
     error,
-  } = useSupabaseClient('products', { category: product.category });
+  } = useSupabaseQuery('products', { category: product.category });
 
   // Shuffle array
   const randomFour = useMemo(() => {
@@ -134,7 +134,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
         />
 
         {/* Reviews Section */}
-        <ProductReviews product={product} />
+        <ProductReviews product={product} isLoading={isLoading} />
 
         <RandomFeaturedProducts
           error={error}

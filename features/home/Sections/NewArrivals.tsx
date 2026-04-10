@@ -3,13 +3,13 @@ import MainTitle from '@/components/atoms/MainTitle';
 import ErrorFetching from '@/components/molecules/ErrorFetching';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import ProductCard from '@/components/molecules/ProductCard';
-import useSupabaseClient from '@/Hooks/useSupabaseClient';
 import { ProductCardProps } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { useRouter } from 'next/navigation';
 import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
 import GridWrapper from '@/components/organism/GridWrapper';
 import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
+import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
 
 const NewArrivals = () => {
   const router = useRouter();
@@ -19,7 +19,7 @@ const NewArrivals = () => {
     data: products,
     error,
     isLoading,
-  } = useSupabaseClient('products', {
+  } = useSupabaseQuery('products', {
     section: 'newArrivals',
   });
 
@@ -31,7 +31,7 @@ const NewArrivals = () => {
       />
       <GridWrapper isScrollable>
         {isLoading ? (
-          Array.from({ length: products?.length || 4 }).map((_, index) => (
+          Array.from({ length: 4 }).map((_, index) => (
             <AnimatedWrapper key={index} custom={index}>
               <ProductCardSkeleton />
             </AnimatedWrapper>

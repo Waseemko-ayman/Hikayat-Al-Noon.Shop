@@ -41,7 +41,7 @@ export interface ProductCardProps {
   old_price?: number;
   discount?: number;
   quantity?: number;
-  ratings?: number[];
+  ratings?: number[] | string[] | any;
   comment?: string;
   comments?: string[];
   date_added?: string;
@@ -459,6 +459,7 @@ export interface EmptyStateProps {
   handleClick?: () => void;
   Icon?: React.ElementType;
   buttonHref?: string | undefined;
+  otherClassName?: string;
 }
 
 export interface AttachmentsUploaderProps {
@@ -562,7 +563,7 @@ export interface AccountInfoCardProps {
 export interface StatsItemProps {
   Icon?: React.ElementType;
   dot?: boolean;
-  value: number;
+  value: number | string;
   label: string;
 }
 
@@ -638,10 +639,31 @@ export interface ReviewProps {
 
 export interface ItemProductProps {
   product: ProductCardProps;
+  isLoading: boolean;
 }
 
 export interface ProductInfoSectionProps {
   product: ProductCardProps;
   addToCart: (product: ProductCardProps) => Promise<void>;
   addIsLoading: boolean;
+}
+
+export interface RatingBreakdownItemProps {
+  label: string;
+  rating: number;
+  value: number;
+  total: number;
+  color: string;
+}
+
+export interface ProductRatingCardProps {
+  product?: ProductCardProps;
+  infoHeader?: boolean;
+  ratings: number[];
+  icon?: React.ReactNode;
+}
+
+export interface RatingAverageProps {
+  avg: string;
+  total: number;
 }

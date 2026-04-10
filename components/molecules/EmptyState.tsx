@@ -13,9 +13,10 @@ const EmptyState = ({
   handleClick,
   Icon,
   buttonHref,
+  otherClassName,
 }: EmptyStateProps) => {
   return (
-    <div className="py-10">
+    <div className={`py-10 ${otherClassName || ''}`}>
       <MotionSection index={0}>
         <Image
           src={`/assets/${imageSrc}`}
