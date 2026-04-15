@@ -42,9 +42,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps> {
             </h2>
             <Button
               handleClick={this.handleClick}
-              Icon={FaArrowsRotate}
-              otherClassName="py-2 px-8 mx-auto"
+              otherClassName="py-2 px-8 mx-auto flex items-center gap-2"
             >
+              <FaArrowsRotate className="animate-spin" />
               Try Reloading the Page
             </Button>
           </div>

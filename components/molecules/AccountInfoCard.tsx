@@ -8,6 +8,7 @@ const AccountInfoCard: React.FC<AccountInfoCardProps> = ({
   userName,
   userEmail,
   emailVerified,
+  userProvider,
 }) => {
   return (
     <>
@@ -31,13 +32,21 @@ const AccountInfoCard: React.FC<AccountInfoCardProps> = ({
       )}
       <h1 className="text-(--fifth-color) font-semibold">{userName}</h1>
       <p className="text-(--six-color)">{userEmail}</p>
-      <div
-        className={`flex items-center justify-center gap-1 font-semibold mt-1 ${
-          emailVerified ? 'text-green-600' : 'text-red-600'
-        }`}
-      >
-        {emailVerified ? <CheckCircle size={16} /> : <XCircle size={16} />}
-        <p>Email {emailVerified ? 'verified' : 'not verified'}</p>
+      <div className="flex flex-col mt-1">
+        <div
+          className={`flex items-center justify-center gap-1 font-semibold ${
+            emailVerified ? 'text-green-600' : 'text-red-600'
+          }`}
+        >
+          {emailVerified ? <CheckCircle size={16} /> : <XCircle size={16} />}
+          <p>Email {emailVerified ? 'verified' : 'not verified'}</p>
+        </div>
+        <div className="flex items-center justify-center gap-1 text-gray-600 text-sm">
+          <p>Registered via: </p>
+          <span className="font-medium capitalize">
+            {userProvider === 'email' ? 'Email' : userProvider}
+          </span>
+        </div>
       </div>
     </>
   );

@@ -15,7 +15,7 @@ export const Card = React.memo(
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: index * 0.1 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="bg-white max-w-full border border-[#cce7d0] py-6 px-4 shadow-[20px_20px_34px_rgba(0,0,0,0.03)] text-center hover:shadow-[10px_10px_54px_rgba(70,62,221,0.1)] hover:-translate-y-2 transition-all duration-200"
+        className="bg-white max-w-full border border-[#cce7d0] py-4 px-4 rounded-lg shadow-[20px_20px_34px_rgba(0,0,0,0.03)] text-center hover:shadow-[10px_10px_54px_rgba(70,62,221,0.1)] hover:-translate-y-2 transition-all duration-200"
       >
         <Image
           src={card.image}

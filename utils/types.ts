@@ -34,3 +34,4 @@ export type InputTypes =
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 export type flexVariant = 'responsive' | 'row';
 export type viewCartMode = 'table' | 'cards';
+export type orderStatus = 'pending' | 'completed' | 'failed' | 'refunded';

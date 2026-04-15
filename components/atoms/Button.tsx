@@ -25,7 +25,7 @@ const Button = forwardRef<
     ref,
   ) => {
     const disabledClasses = disabled
-      ? 'opacity-50 cursor-not-allowed pointer-events-none'
+      ? 'opacity-50 disabled:cursor-not-allowed'
       : '';
 
     const classes = `${

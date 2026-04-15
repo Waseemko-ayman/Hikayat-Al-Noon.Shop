@@ -13,7 +13,7 @@ const ErrorFetching = ({ error }: { error?: any }) => {
   return (
     <div className="text-center px-3 pb-10 mt-10 relative z-20">
       <Image
-        src="/assets/cloud.png"
+        src="/assets/disconnected.png"
         alt="Cloud with a lightning bolt"
         title="Cloud with a lightning bolt"
         className="mx-auto animate-zoom"
@@ -21,7 +21,7 @@ const ErrorFetching = ({ error }: { error?: any }) => {
         height={128}
       />
       <h2 className="text-center text-lg md:text-xl lg:text-xl mt-4 mb-2">
-        {error?.response?.data.message || 'Sorry! Something went wrong.'}
+        {error?.response?.message || 'Sorry! Something went wrong.'}
       </h2>
       <Button
         handleClick={handleClick}

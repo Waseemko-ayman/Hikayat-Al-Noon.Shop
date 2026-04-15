@@ -5,6 +5,7 @@ import {
   ButtonVarinats,
   flexVariant,
   InputTypes,
+  orderStatus,
   ToastType,
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
@@ -216,7 +217,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   iconClassName?: string;
   onIconClick?: () => void;
   options?: any[];
-  register?: UseFormRegister<FormValues>;
+  register?: UseFormRegister<any>;
   // error?: FieldError;
   error?: any;
   control?: any;
@@ -231,14 +232,6 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   accept?: string;
   required?: boolean;
   FileUploadText?: string;
-}
-
-export interface AccountOrderCardProps {
-  id: string;
-  date: string;
-  status: string;
-  total: string;
-  items: number;
 }
 
 export interface AccountAddrCardProps {
@@ -460,6 +453,7 @@ export interface EmptyStateProps {
   Icon?: React.ElementType;
   buttonHref?: string | undefined;
   otherClassName?: string;
+  iconClassName?: string;
 }
 
 export interface AttachmentsUploaderProps {
@@ -532,13 +526,15 @@ export interface VisitorsStatsProps {
   today_unique_visitors: number;
 }
 
+export interface ProvidersStatsProps {
+  email: number;
+  phone: number;
+  email_phone: number;
+}
+
 export interface AuthProvidersStatsProps {
   success: boolean;
-  stats: {
-    email: number;
-    phone: number;
-    email_phone: number;
-  };
+  stats: ProvidersStatsProps;
 }
 
 export interface ProvidersStatsCardProps {
@@ -558,6 +554,7 @@ export interface AccountInfoCardProps {
   userName?: string;
   userEmail?: string;
   emailVerified?: boolean;
+  userProvider?: string;
 }
 
 export interface StatsItemProps {
@@ -666,4 +663,31 @@ export interface ProductRatingCardProps {
 export interface RatingAverageProps {
   avg: string;
   total: number;
+}
+
+export interface OrderItemProps {
+  id: string;
+  order_id: number | string;
+  price: number;
+  quantity: number;
+  title?: string;
+  image?: string;
+  size?: string;
+  shipping?: number;
+  subtotal?: number;
+}
+
+export interface OrderProps {
+  id: string;
+  amount: number;
+  status: orderStatus;
+  created_at: string;
+  items?: number;
+  order_items?: OrderItemProps[];
+  user_name?: string;
+}
+
+export interface PaymentFormValues {
+  name: string;
+  email: string;
 }

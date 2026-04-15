@@ -1,7 +1,13 @@
-import { FormValues, PaymentMethod } from '@/interfaces';
+import {
+  FormValues,
+  OrderProps,
+  PaymentMethod,
+  ProvidersStatsProps,
+} from '@/interfaces';
 import { PATHS } from './paths';
 import {
   FaBox,
+  FaCartShopping,
   FaClock,
   FaEnvelope,
   FaGithub,
@@ -14,25 +20,37 @@ import {
   FaTwitter,
   FaUser,
 } from 'react-icons/fa6';
-import { FiLogOut, FiMail, FiMessageCircle, FiUsers } from 'react-icons/fi';
+import {
+  FiLogOut,
+  FiMail,
+  FiMessageCircle,
+  FiShoppingCart,
+  FiUsers,
+} from 'react-icons/fi';
 import {
   Bell,
+  Calendar,
+  CheckCircle,
+  Clock,
   Cookie,
   CreditCard,
   FileText,
   Home,
   Lock,
   Mail,
-  // MapPin,
   Package,
   RotateCcw,
   Ruler,
   Settings,
   Shield,
+  Truck,
   User,
   Users,
+  XCircle,
 } from 'lucide-react';
 import { FaShippingFast, FaTachometerAlt } from 'react-icons/fa';
+import { formatDate } from '@/utils/formateDate';
+import { formatPrice } from '@/utils/formatPrice';
 
 export const navItems = [
   { name: 'Home', link: '/' },
@@ -369,14 +387,14 @@ export const userList = [
     link: PATHS.DASHBOARD.ROOT,
     icon: FaTachometerAlt,
   },
-  // {
-  //   id: 3,
-  //   title: 'Orders',
-  //   link: PATHS.ORDERS,
-  //   icon: IoMdPricetag,
-  // },
   {
     id: 3,
+    title: 'Orders',
+    link: PATHS.ORDERS.ROOT,
+    icon: FaCartShopping,
+  },
+  {
+    id: 4,
     title: 'logout',
     icon: FiLogOut,
   },
@@ -387,11 +405,6 @@ export const userInfoButtons = [
     id: 1,
     icon: User,
     text: 'Profile',
-  },
-  {
-    id: 2,
-    icon: Package,
-    text: 'Orders',
   },
   // {
   //   id: 3,
@@ -578,16 +591,16 @@ export const sidebarLinks = [
     href: PATHS.DASHBOARD.RATINGS,
     icon: FaStar,
   },
-  // {
-  //   title: 'orders',
-  //   href: PATHS.DASHBOARD.ORDERS.ROOT,
-  //   icon: FiShoppingCart,
-  // },
-  // {
-  //   title: 'settings',
-  //   href: PATHS.DASHBOARD.SETTINGS,
-  //   icon: Settings,
-  // },
+  {
+    title: 'Orders',
+    href: PATHS.DASHBOARD.ORDERS.ROOT,
+    icon: FiShoppingCart,
+  },
+  {
+    title: 'settings',
+    href: PATHS.DASHBOARD.SETTINGS,
+    icon: Settings,
+  },
 ];
 
 export const BANNERS_DATA = [
@@ -778,4 +791,129 @@ export const CreateUsersFields = [
 export const ProductReviewsTabsData = [
   { value: 'comments', label: 'Comments' },
   { value: 'ratingsSummary', label: 'Ratings Summary' },
+];
+
+export const TroubleshootingTips = [
+  {
+    id: 1,
+    text: 'Check your card details and expiration date',
+  },
+  {
+    id: 2,
+    text: 'Ensure you have sufficient funds available',
+  },
+  {
+    id: 3,
+    text: 'Try a different payment method',
+  },
+  {
+    id: 4,
+    text: 'Contact your bank if the issue persists',
+  },
+];
+
+export const statusConfig = {
+  paid: {
+    icon: CheckCircle,
+    className: 'bg-green-50 text-green-700 border-green-200',
+  },
+  completed: {
+    icon: CheckCircle,
+    className: 'bg-green-50 text-green-700 border-green-200',
+  },
+  pending: {
+    icon: Clock,
+    className: 'bg-amber-50 text-amber-700 border-amber-200',
+  },
+  failed: {
+    icon: XCircle,
+    className: 'bg-red-50 text-red-700 border-red-200',
+  },
+};
+
+export const OrderSummaryCard = ({ order }: { order: OrderProps }) => [
+  {
+    id: 1,
+    title: 'Date',
+    icon: Calendar,
+    value: formatDate(order?.created_at),
+  },
+  {
+    id: 2,
+    title: 'Total',
+    icon: CreditCard,
+    value: formatPrice(order?.amount),
+  },
+  {
+    id: 3,
+    title: 'Items',
+    icon: Package,
+    value: order.order_items?.length || 0,
+  },
+  {
+    id: 4,
+    title: 'Delivery',
+    icon: Truck,
+    value:
+      (order?.order_items?.[0]?.shipping ?? 0 > 0)
+        ? formatPrice(order?.order_items?.[0]?.shipping ?? 0)
+        : 'Free Shipping',
+  },
+];
+
+export const FOOTER_SUMMARY = (order: OrderProps) => [
+  {
+    id: 1,
+    title: 'Subtotal',
+    value: formatPrice(order?.order_items?.[0]?.subtotal ?? 0),
+  },
+  {
+    id: 2,
+    title: 'Shipping',
+    value:
+      (order?.order_items?.[0]?.shipping ?? 0 > 0)
+        ? formatPrice(order?.order_items?.[0]?.shipping ?? 0)
+        : 'Free',
+  },
+  {
+    id: 3,
+    title: 'Total Paid',
+    value: formatPrice(order.amount),
+  },
+];
+
+export const AuthProvidersStatsItems = (stats: ProvidersStatsProps) => [
+  {
+    name: 'Email',
+    value: stats.email,
+    icon: FaEnvelope,
+    color: 'bg-blue-500',
+  },
+  {
+    name: 'Phone',
+    value: stats.phone,
+    icon: FaPhone,
+    color: 'bg-green-500',
+  },
+  {
+    name: 'Email & Phone',
+    value: stats.email_phone,
+    icon: FaUser,
+    color: 'bg-purple-500',
+  },
+];
+
+export const paymentCheckoutInput = [
+  {
+    id: 1,
+    name: 'name',
+    type: 'text',
+    placeholder: 'Cardholder Name',
+  },
+  {
+    id: 2,
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email Address',
+  },
 ];

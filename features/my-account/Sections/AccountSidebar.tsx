@@ -24,12 +24,15 @@ const AccountSidebar = ({
   const session = useSession();
   const { setValue } = useFormContext<any>();
 
+  console.log(session?.user);
+
   const userName = userProfile?.display_name;
   const userEmail = userProfile?.email;
   const avatarUrl = userProfile?.avatar_url;
   const userRole = userProfile?.role;
   const emailVerified =
     session?.user?.identities?.[0]?.identity_data?.email_verified;
+  const userProvider = session?.user?.identities?.[0]?.provider;
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -83,6 +86,7 @@ const AccountSidebar = ({
               userName={userName}
               userEmail={userEmail}
               emailVerified={emailVerified}
+              userProvider={userProvider}
             />
           )}
         </div>
