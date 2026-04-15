@@ -9,9 +9,13 @@ export const PATHS = {
   CONTACT: '/contact',
   CART: '/cart',
   MY_ACCOUNT: '/my-account',
-  ORDERS: '/orders',
+  ORDERS: {
+    ROOT: '/orders',
+    ITEM: (id: string) => `/orders/${id}`,
+  },
   PRIVACY_POLICY: '/privacy-policy',
   HELP: '/help',
+  CHECKOUT: '/checkout',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/signup',

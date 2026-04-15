@@ -145,7 +145,6 @@ const useAPI = <T extends object>(tableName: string, isRPC = false) => {
 
         dispatch({ type: API_ACTIONS.POST, payload: data || [] });
         return data;
-
       } else if (tableName === 'messages') {
         // Special case for messages table
         const res = await fetch('/api/leave-message', {
@@ -161,7 +160,20 @@ const useAPI = <T extends object>(tableName: string, isRPC = false) => {
 
         dispatch({ type: API_ACTIONS.POST, payload: data?.data || [] });
         return data;
+      } else if (tableName === 'checkout') {
+        const res = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
 
+        const data = await res.json();
+        if (!res.ok) throw data;
+
+        dispatch({ type: API_ACTIONS.POST, payload: data?.data || [] });
+        return data;
       } else {
         // Normal insert
         const { data, error } = await supabase

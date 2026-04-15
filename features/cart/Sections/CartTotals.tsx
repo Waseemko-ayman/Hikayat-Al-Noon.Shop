@@ -4,15 +4,22 @@ import { useSession } from '@/Hooks/useSession';
 import { TableRow } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { LogIn } from 'lucide-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CardWrapper from '@/components/Template/CardWrapper';
+import useAPI from '@/Hooks/useAPI';
+import { useRouter } from 'next/navigation';
+import ButtonLoading from '@/components/atoms/ButtonLoading';
 
 const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
+  const router = useRouter();
+
   // Context
   const { cartItems } = useCartContext();
 
-  // Session Hook
+  // Hooks
   const session = useSession();
+  const { add, isLoading } = useAPI('checkout');
+  const { data: settings, get } = useAPI('settings');
 
   const subTotal = cartItems.reduce(
     (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
@@ -35,7 +42,7 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
     {
       id: 2,
       title: 'Shipping',
-      shipping: cartItems.length === 0 ? 'Free' : 10,
+      shipping: cartItems.length === 0 ? 'Free' : settings[0]?.shipping || 0,
     },
     {
       id: 3,
@@ -46,6 +53,24 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
 
   const shippingCost =
     typeof tabeleData[1].shipping === 'number' ? tabeleData[1].shipping : 0;
+
+  const total = subTotal + shippingCost;
+
+  const handleCheckout = async () => {
+    const data = await add({
+      items: cartItems,
+      userId: session?.user?.id,
+      userEmail: session?.user?.email,
+      userName: session?.user?.user_metadata.display_name,
+      userPhone: session?.user?.user_metadata.phone,
+    });
+
+    router.push(`/checkout?clientSecret=${data.clientSecret}`);
+  };
+
+  useEffect(() => {
+    get();
+  }, [get]);
 
   return (
     <CardWrapper otherClassName="max-w-full w-[600px]" withFlex={false}>
@@ -65,9 +90,7 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
                     `$${row.shipping}`
                   )
                 ) : row.title.toLowerCase() === 'total' ? (
-                  <span className="text-green-700 font-bold">
-                    ${subTotal + shippingCost}
-                  </span>
+                  <span className="text-green-700 font-bold">${total}</span>
                 ) : (
                   `$${row.price}`
                 )}
@@ -80,8 +103,14 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
         <Button
           variant="primary"
           otherClassName="!py-2.5 !px-5 bg-green-600 hover:bg-green-700"
+          handleClick={handleCheckout}
+          disabled={cartItems.length === 0 || isLoading}
         >
-          Checkout Now
+          {isLoading ? (
+            <ButtonLoading text="Checkout Now..." />
+          ) : (
+            'Checkout Now'
+          )}
         </Button>
       ) : (
         <Button

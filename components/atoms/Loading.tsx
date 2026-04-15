@@ -30,7 +30,7 @@ const Loading = ({
           size={spinnerSize}
         />
         {showText && (
-          <p className="text-xl font-medium tracking-widest">
+          <p className="text-lg font-medium tracking-widest">
             {loadingText ?? 'Loading...'}
           </p>
         )}

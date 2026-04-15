@@ -1,10 +1,10 @@
 'use client';
-import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa';
 import useAPI from '@/Hooks/useAPI';
 import { useEffect } from 'react';
 import ProvidersStatsCard from '../molecules/ProvidersStatsCard';
 import StatsCardSkeleton from '../Skeletons/StatsCardSkeleton';
 import { AuthProvidersStatsProps } from '@/interfaces';
+import { AuthProvidersStatsItems } from '@/data';
 
 const AuthProvidersStats = () => {
   const { data, get, isLoading } =
@@ -15,27 +15,6 @@ const AuthProvidersStats = () => {
     phone: 0,
     email_phone: 0,
   };
-
-  const items = [
-    {
-      name: 'Email',
-      value: stats.email,
-      icon: FaEnvelope,
-      color: 'bg-blue-500',
-    },
-    {
-      name: 'Phone',
-      value: stats.phone,
-      icon: FaPhone,
-      color: 'bg-green-500',
-    },
-    {
-      name: 'Email & Phone',
-      value: stats.email_phone,
-      icon: FaUser,
-      color: 'bg-purple-500',
-    },
-  ];
 
   useEffect(() => {
     get();
@@ -50,13 +29,12 @@ const AuthProvidersStats = () => {
         </p>
       </div>
 
-      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"> */}
       <div className="flex gap-4 overflow-x-auto scrollbar-none md:grid md:grid-cols-2 lg:grid-cols-3">
         {isLoading
           ? Array.from({ length: 3 }).map((_, i) => (
               <StatsCardSkeleton key={i} />
             ))
-          : items.map((item) => (
+          : AuthProvidersStatsItems(stats).map((item) => (
               <div key={item.name} className="min-w-[250px]">
                 <ProvidersStatsCard
                   iconBgColor={item.color}

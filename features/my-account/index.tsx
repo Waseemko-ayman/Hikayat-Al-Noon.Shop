@@ -17,7 +17,6 @@ import supabase from '@/config/api';
 import { useUserInfo } from '@/context/UserInfoContext';
 import useAPI from '@/Hooks/useAPI';
 
-const Orders = memo(dynamic(() => import('./Sections/Orders'), { ssr: false }));
 // const Addresses = memo(
 //   dynamic(() => import('./Sections/Addresses'), { ssr: false }),
 // );
@@ -156,10 +155,6 @@ const MyAccountPage = () => {
                   loading={loading}
                 />
               </form>
-            </div>
-
-            <div className={activeTab === 'orders' ? 'block' : 'hidden'}>
-              <Orders />
             </div>
 
             {/* <div className={activeTab === 'addresses' ? 'block' : 'hidden'}>

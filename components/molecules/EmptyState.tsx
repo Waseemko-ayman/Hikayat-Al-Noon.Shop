@@ -14,6 +14,7 @@ const EmptyState = ({
   Icon,
   buttonHref,
   otherClassName,
+  iconClassName,
 }: EmptyStateProps) => {
   return (
     <div className={`py-10 ${otherClassName || ''}`}>
@@ -46,6 +47,7 @@ const EmptyState = ({
               Icon={Icon}
               otherClassName="!py-2.5 !px-5 mt-3 mx-auto inline-flex"
               handleClick={handleClick}
+              iconClassName={iconClassName}
             >
               {buttonText}
             </Button>
