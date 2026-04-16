@@ -2,15 +2,26 @@
 import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import { getStatusColor, getStatusIcon } from './orderStatus';
 
 export const renderCell = (col: any, row: any) => {
   const columnKey = String(col);
   const rawValue = row[col];
 
+  if (columnKey === 'id' || columnKey === 'order_id') {
+    const value = String(row.id);
+    return (
+      <div title={value}>{value.slice(0, 8) + '...' + value.slice(-4)}</div>
+    );
+  }
+
   if (columnKey === 'status') {
     return (
-      <div className="flex items-center justify-center gap-1 p-2 rounded-xl">
-        {String(rawValue)}
+      <div
+        className={`flex items-center justify-center gap-2 py-2 px-4 rounded-xl ${getStatusColor(rawValue)}`}
+      >
+        {getStatusIcon(rawValue)}
+        <span>{String(rawValue)}</span>
       </div>
     );
   }

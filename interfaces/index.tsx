@@ -214,6 +214,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   otherClassName?: string;
   inputName: any;
   Icon?: React.ElementType;
+  iconWrapper?: string;
   iconClassName?: string;
   onIconClick?: () => void;
   options?: any[];
@@ -232,6 +233,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   accept?: string;
   required?: boolean;
   FileUploadText?: string;
+  inputClassName?: string;
 }
 
 export interface AccountAddrCardProps {
@@ -294,7 +296,7 @@ export interface GenericAllProps {
   value: string;
   title: string;
   description: string;
-  tableName: string;
+  tableName?: string;
   createTabValue?: string;
   placeholder?: string;
   onEditIdChange?: (id: string | number | null) => void;
@@ -306,6 +308,9 @@ export interface GenericAllProps {
   filterOptions?: { id: number; label: string }[];
   onFilterChange?: (filter: string) => void;
   deleteLocation?: string;
+  data?: any[];
+  isLoading?: boolean;
+  error?: any;
 }
 
 export interface DataTableHeaderProps {
@@ -690,4 +695,9 @@ export interface OrderProps {
 export interface PaymentFormValues {
   name: string;
   email: string;
+}
+
+export interface shippingSettingsProps {
+  shipping: number;
+  free_shipping_min: number;
 }

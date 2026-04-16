@@ -4,7 +4,13 @@ export const getVisibleColumns = <T extends Record<string, any>>(
   data: T[],
 ): (keyof T | string)[] => {
   return columns.reduce<(keyof T | string)[]>((acc, col) => {
-    if (col === 'updated_at' || col === 'user_id' || col === 'slug') return acc;
+    if (
+      col === 'updated_at' ||
+      col === 'user_id' ||
+      col === 'slug' ||
+      col === 'stripe_payment_intent'
+    )
+      return acc;
 
     const sampleValue = data.find((item) => item[col] != null)?.[col];
 

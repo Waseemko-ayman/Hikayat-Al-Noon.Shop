@@ -34,6 +34,7 @@ import {
   Clock,
   Cookie,
   CreditCard,
+  DollarSign,
   FileText,
   Home,
   Lock,
@@ -43,6 +44,7 @@ import {
   Ruler,
   Settings,
   Shield,
+  Tag,
   Truck,
   User,
   Users,
@@ -597,7 +599,7 @@ export const sidebarLinks = [
     icon: FiShoppingCart,
   },
   {
-    title: 'settings',
+    title: 'Settings',
     href: PATHS.DASHBOARD.SETTINGS,
     icon: Settings,
   },
@@ -915,5 +917,24 @@ export const paymentCheckoutInput = [
     name: 'email',
     type: 'email',
     placeholder: 'Email Address',
+  },
+];
+
+export const shippingSettingsInputs = [
+  {
+    id: 1,
+    label: 'Shipping Cost',
+    type: 'number',
+    name: 'shipping',
+    placeholder: '0.00',
+    icon: DollarSign,
+  },
+  {
+    id: 2,
+    label: 'Free Shipping Minimum',
+    type: 'number',
+    name: 'free_shipping_min',
+    placeholder: '0.00',
+    icon: Tag,
   },
 ];
