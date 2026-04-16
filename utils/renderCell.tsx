@@ -7,6 +7,13 @@ export const renderCell = (col: any, row: any) => {
   const columnKey = String(col);
   const rawValue = row[col];
 
+  if (columnKey === 'id' || columnKey === 'order_id') {
+    const value = String(row.id);
+    return (
+      <div title={value}>{value.slice(0, 8) + '...' + value.slice(-4)}</div>
+    );
+  }
+
   if (columnKey === 'status') {
     return (
       <div className="flex items-center justify-center gap-1 p-2 rounded-xl">
