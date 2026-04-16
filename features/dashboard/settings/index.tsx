@@ -13,6 +13,7 @@ import { shippingSettingsProps } from '@/interfaces';
 import { useToast } from '@/lib/toast';
 import Button from '@/components/atoms/Button';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
+import { formatPrice } from '@/utils/formatPrice';
 
 const SettingsPage = () => {
   const { showToast } = useToast();
@@ -124,6 +125,29 @@ const SettingsPage = () => {
                   );
                 })}
               </div>
+
+              {shippingSettingsData && (
+                <div className="mt-7 flex items-start gap-2.5 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                  <Truck
+                    size={15}
+                    className="text-blue-500 mt-0.5 shrink-0"
+                    strokeWidth={2.2}
+                  />
+                  <p className="text-sm text-blue-700 leading-relaxed">
+                    Customers will pay{' '}
+                    <span className="font-semibold">
+                      {formatPrice(shippingSettingsData[0]?.shipping || '0')}
+                    </span>{' '}
+                    for shipping. Orders over{' '}
+                    <span className="font-semibold">
+                      {formatPrice(
+                        shippingSettingsData[0]?.free_shipping_min || '0',
+                      )}
+                    </span>{' '}
+                    ship free.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between gap-4">
