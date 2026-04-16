@@ -32,7 +32,7 @@ const DataTableBody = <T extends { id: string | number }>({
   const pathname = usePathname();
   const router = useRouter();
 
-  const isOrdersPage = pathname?.includes('/dashboard/orders');
+  const isOrdersPage = pathname === '/dashboard/orders';
   const isUsersPage = pathname?.includes('/dashboard/users');
 
   // Hooks
