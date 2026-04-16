@@ -25,6 +25,9 @@ const GenericAllTable = ({
   filterOptions,
   onFilterChange,
   deleteLocation,
+  data: externalData,
+  isLoading: externalLoading,
+  error: externalError,
 }: GenericAllProps) => {
   // --- Filter State ---
   const [filter, setFilter] = useState('all');
@@ -35,8 +38,19 @@ const GenericAllTable = ({
   const { refreshFlags } = useUpdateContent();
   const refreshKey = refreshKeyProp || tableName || 'default';
 
-  const { get, data, isLoading, error } = useAPI<any>(tableName || '');
+  const {
+    get,
+    data: apiData,
+    isLoading: apiLoading,
+    error: apiError,
+  } = useAPI<any>(tableName || '');
+
   const { del } = useAPI(tableName || '');
+
+  // 👇 decide source
+  const finalData = externalData ?? apiData;
+  const finalLoading = externalLoading ?? apiLoading;
+  const finalError = externalError ?? apiError;
 
   const handleEdit = (id: string | number) => {
     onEditIdChange?.(id);
@@ -71,9 +85,9 @@ const GenericAllTable = ({
   };
 
   useEffect(() => {
-    const list = Array.isArray(data) ? data : [];
+    const list = Array.isArray(finalData) ? finalData : [];
     setRows(list);
-  }, [data]);
+  }, [finalData]);
 
   const patchRow = (id: string | number, patch: Partial<any>) => {
     setRows((prev) => prev.map((r) => (r.id === id ? { ...r, ...patch } : r)));
@@ -93,8 +107,11 @@ const GenericAllTable = ({
     }
   };
 
+  // 👇 fetch only if there is no external data
   useEffect(() => {
-    get();
+    if (!externalData && tableName) {
+      get();
+    }
   }, [tableName, refreshFlags[refreshKey]]);
 
   return (
@@ -115,8 +132,8 @@ const GenericAllTable = ({
         filter={filter}
         setFilter={handleFilterChange}
         filterOptions={filterOptions}
-        isLoading={isLoading}
-        error={error}
+        isLoading={finalLoading}
+        error={finalError}
         deleteLocation={deleteLocation}
       />
     </SettingsTab>

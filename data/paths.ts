@@ -28,7 +28,7 @@ export const PATHS = {
     PRODUCTS: '/dashboard/products',
     ORDERS: {
       ROOT: '/dashboard/orders',
-      ITEM: (id: string) => `/dashboard/orders/${id}/products`,
+      ITEM: (id: string) => `/dashboard/orders/${id}`,
     },
     RATINGS: '/dashboard/ratings',
     SETTINGS: '/dashboard/settings',

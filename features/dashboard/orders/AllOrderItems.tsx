@@ -1,4 +1,6 @@
 import GenericAllTable from '@/components/organism/GenericAllTable';
+import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
+import { useParams } from 'next/navigation';
 
 const AllOrderItems = ({
   value,
@@ -7,15 +9,21 @@ const AllOrderItems = ({
   value: string;
   onTabChange: (val: string) => void;
 }) => {
-  // const params = useParams();
-  // const orderId = String(params?.id);
+  const params = useParams();
+  const orderId = String(params?.id);
+
+  const { data, isLoading, error } = useSupabaseQuery('order_items', {
+    order_id: orderId,
+  });
 
   return (
     <GenericAllTable
       value={value}
       title="All Products"
-      tableName="order_items"
       description="Browse all products included in this order"
+      data={data}
+      isLoading={isLoading}
+      error={error}
       placeholder="Search for product..."
       onTabChange={onTabChange}
       showEdit={false}

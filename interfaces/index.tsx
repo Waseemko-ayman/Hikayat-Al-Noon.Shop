@@ -294,7 +294,7 @@ export interface GenericAllProps {
   value: string;
   title: string;
   description: string;
-  tableName: string;
+  tableName?: string;
   createTabValue?: string;
   placeholder?: string;
   onEditIdChange?: (id: string | number | null) => void;
@@ -306,6 +306,9 @@ export interface GenericAllProps {
   filterOptions?: { id: number; label: string }[];
   onFilterChange?: (filter: string) => void;
   deleteLocation?: string;
+  data?: any[];
+  isLoading?: boolean;
+  error?: any;
 }
 
 export interface DataTableHeaderProps {
