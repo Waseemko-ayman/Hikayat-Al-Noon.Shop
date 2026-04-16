@@ -25,6 +25,7 @@ const Input = ({
   onChange,
   Icon,
   options = [],
+  iconWrapper = '',
   iconClassName = 'ml-2',
   SelectValuePlaceholder = 'select...',
   disabled,
@@ -35,6 +36,7 @@ const Input = ({
   accept,
   required,
   FileUploadText,
+  inputClassName,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
   const StyledInput = `w-[280px] px-2.5 bg-(--white-color) outline-none transition-all duration-300 ${
@@ -43,7 +45,7 @@ const Input = ({
       : 'border-none rounded-l-md rounded-r-none'
   } ${otherClassName}`;
 
-  const inputClasses = `w-full h-12 bg-transparent outline-none transition-all duration-300`;
+  const inputClasses = `w-full h-12 bg-transparent outline-none transition-all duration-300 ${inputClassName}`;
 
   const ariaLabel = label || placeholder || inputName;
 
@@ -135,7 +137,7 @@ const Input = ({
           )}
         />
       ) : (
-        <div className={`flex items-center px-3 ${StyledInput}`}>
+        <div className={`relative flex items-center px-3 ${StyledInput}`}>
           {control ? (
             <Controller
               name={inputName}
@@ -174,14 +176,16 @@ const Input = ({
             />
           )}
           {Icon && (
-            <Icon
-              role="button"
-              tabIndex={0}
-              aria-label="Input action"
-              className={`${iconClassName} text-xl cursor-pointer`}
-              onClick={onIconClick}
-              onKeyDown={handleKeyboardClick(onIconClick)}
-            />
+            <div className={`absolute ${iconWrapper}`}>
+              <Icon
+                role="button"
+                tabIndex={0}
+                aria-label="Input action"
+                className={`${iconClassName} text-xl cursor-pointer`}
+                onClick={onIconClick}
+                onKeyDown={handleKeyboardClick(onIconClick)}
+              />
+            </div>
           )}
         </div>
       )}

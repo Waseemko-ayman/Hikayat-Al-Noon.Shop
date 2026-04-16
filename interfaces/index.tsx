@@ -214,6 +214,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   otherClassName?: string;
   inputName: any;
   Icon?: React.ElementType;
+  iconWrapper?: string;
   iconClassName?: string;
   onIconClick?: () => void;
   options?: any[];
@@ -232,6 +233,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   accept?: string;
   required?: boolean;
   FileUploadText?: string;
+  inputClassName?: string;
 }
 
 export interface AccountAddrCardProps {
@@ -693,4 +695,9 @@ export interface OrderProps {
 export interface PaymentFormValues {
   name: string;
   email: string;
+}
+
+export interface shippingSettingsProps {
+  shipping: number;
+  free_shipping_min: number;
 }
