@@ -1,4 +1,5 @@
 import {
+  ActionItem,
   FormValues,
   OrderProps,
   PaymentMethod,
@@ -28,6 +29,9 @@ import {
   FiUsers,
 } from 'react-icons/fi';
 import {
+  AlertCircle,
+  ArrowLeft,
+  ArrowRight,
   Bell,
   Calendar,
   CheckCircle,
@@ -44,6 +48,7 @@ import {
   Ruler,
   Settings,
   Shield,
+  ShoppingBag,
   Tag,
   Truck,
   User,
@@ -936,5 +941,35 @@ export const shippingSettingsInputs = [
     name: 'free_shipping_min',
     placeholder: '0.00',
     icon: Tag,
+  },
+];
+
+export const SuccessPageActions: ActionItem[] = [
+  {
+    label: 'Continue Shopping',
+    href: PATHS.HOME,
+    icon: ShoppingBag,
+    variant: 'primary',
+  },
+  {
+    label: 'View Order',
+    href: PATHS.ORDERS.ROOT,
+    icon: ArrowRight,
+    variant: 'secondary',
+  },
+];
+
+export const FailedPageActions: ActionItem[] = [
+  {
+    label: 'Try Again',
+    href: PATHS.HOME,
+    icon: AlertCircle,
+    variant: 'primary',
+  },
+  {
+    label: 'Back to Shopping',
+    href: PATHS.SHOP.ROOT,
+    icon: ArrowLeft,
+    variant: 'secondary',
   },
 ];
