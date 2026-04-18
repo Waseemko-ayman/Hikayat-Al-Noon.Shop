@@ -187,6 +187,10 @@ const CreateUsers = ({
                   Icon={showPasswordIcon}
                   onIconClick={hadnleShowPass}
                   FileUploadText="Personal photo"
+                  iconWrapper={
+                    isPasswordField ? 'right-3 top-1/2 -translate-y-1/2' : ''
+                  }
+                  inputClassName={isPasswordField ? 'pr-9' : ''}
                 />
               );
             },

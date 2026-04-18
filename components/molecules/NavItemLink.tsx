@@ -36,7 +36,7 @@ const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
         <Link href={item.link} aria-label={item.name}>
           {item.name === 'Cart' && isMobile ? null : item.name === 'Login' &&
             isMobile ? null : item.name === 'Login' ? (
-            <FiUser size={25} />
+            <FiUser size={30} />
           ) : (
             item.name
           )}

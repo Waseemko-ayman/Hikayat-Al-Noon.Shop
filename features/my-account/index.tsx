@@ -62,7 +62,7 @@ const MyAccountPage = () => {
     handleSubmit,
     register,
     reset,
-    formState: { errors, dirtyFields },
+    formState: { errors, dirtyFields, isDirty },
   } = methods;
 
   const onSubmit = async (data: any) => {
@@ -153,6 +153,7 @@ const MyAccountPage = () => {
                   register={register}
                   isLoading={isLoading}
                   loading={loading}
+                  isDirty={isDirty}
                 />
               </form>
             </div>

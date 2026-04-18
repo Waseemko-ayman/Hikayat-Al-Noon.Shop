@@ -10,7 +10,7 @@ import {
 } from '@/utils/types';
 import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 export interface APIRequest {
   isLoading: boolean;
@@ -700,4 +700,12 @@ export interface PaymentFormValues {
 export interface shippingSettingsProps {
   shipping: number;
   free_shipping_min: number;
+}
+
+export interface ProfleFormProps {
+  errors: FieldErrors<any>;
+  register?: UseFormRegister<any>;
+  isLoading: boolean;
+  loading: boolean;
+  isDirty?: any;
 }

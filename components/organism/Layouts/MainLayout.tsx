@@ -4,6 +4,7 @@ import Copyrights from '../Copyrights';
 import NewsletterSignup from '../../molecules/NewsletterSignup';
 import { ToastContainer } from 'react-toastify';
 import { FloatingNav } from '../FloatingNavbar';
+import FloatingButton from '../FloatingButton';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,6 +15,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Footer />
       <Copyrights />
       <ToastContainer />
+      <FloatingButton />
     </>
   );
 };

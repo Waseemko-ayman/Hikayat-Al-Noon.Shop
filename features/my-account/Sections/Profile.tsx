@@ -1,22 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import Input from '@/components/atoms/Input';
 import AccountSectionHeader from '@/components/molecules/AccountSectionHeader';
 import { profileSecInputs } from '@/data';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import Loading from '@/components/atoms/Loading';
 import Button from '@/components/atoms/Button';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
 import CardWrapper from '@/components/Template/CardWrapper';
+import { ProfleFormProps } from '@/interfaces';
 
-interface FormProps {
-  errors: FieldErrors<any>;
-  register?: UseFormRegister<any>;
-  isLoading: boolean;
-  loading: boolean;
-}
-
-const Profile = ({ errors, register, isLoading, loading }: FormProps) => {
+const Profile = ({
+  errors,
+  register,
+  isLoading,
+  loading,
+  isDirty,
+}: ProfleFormProps) => {
   return (
     <>
       <AccountSectionHeader
@@ -47,7 +45,7 @@ const Profile = ({ errors, register, isLoading, loading }: FormProps) => {
         )}
         <Button
           type="submit"
-          disabled={loading}
+          disabled={loading || !isDirty}
           otherClassName="w-full hover:shadow-lg disabled:opacity-50 mt-6"
         >
           {loading ? <ButtonLoading text="save changes..." /> : 'Save Changes'}
