@@ -6,13 +6,19 @@ import Link from 'next/link';
 import { ShoppingBag, ArrowRight, Check, Package } from 'lucide-react';
 import AnimatedWrapper from '@/components/molecules/FramerMotion/AnimatedWrapper';
 import { PATHS } from '@/data/paths';
+import { useSearchParams } from 'next/navigation';
 
 const SuccessPage = () => {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get('orderId');
+
   const { clearCart } = useCartContext();
 
   useEffect(() => {
+    if (!orderId) return;
+
     clearCart();
-  }, []);
+  }, [orderId]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4 pt-40 py-16">

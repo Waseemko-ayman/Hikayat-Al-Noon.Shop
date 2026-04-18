@@ -42,7 +42,7 @@ const OrdersPage = () => {
 
         {isLoading ? (
           <div className="space-y-4">
-            {Array.from({ length: orders?.length || 3 }).map((_, index) => (
+            {Array.from({ length: 3 }).map((_, index) => (
               <AnimatedWrapper key={index} custom={index}>
                 <OrderCardSkeleton />
               </AnimatedWrapper>

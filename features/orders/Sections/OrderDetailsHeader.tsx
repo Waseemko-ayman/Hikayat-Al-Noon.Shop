@@ -14,7 +14,7 @@ const OrderDetailsHeader = ({ order }: { order: OrderProps }) => {
 
   return (
     <AnimatedWrapper>
-      <CardWrapper>
+      <CardWrapper contentClassName="items-center!">
         {/* LEFT */}
         <div className="flex items-start sm:items-center gap-3 sm:gap-4">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 flex items-center justify-center shrink-0">

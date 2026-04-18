@@ -11,7 +11,13 @@ import { PaymentFormValues } from '@/interfaces';
 import { paymentCheckoutInput } from '@/data';
 import { checkoutSchema } from '@/validations/forms/checkout.schema';
 
-const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
+const CheckoutForm = ({
+  clientSecret,
+  orderId,
+}: {
+  clientSecret: string;
+  orderId: string | number | null;
+}) => {
   const {
     register,
     handleSubmit,
@@ -37,7 +43,6 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     if (!cardComplete) {
       setErrorMsg('Card details are incomplete');
       setLoading(false);
-      console.log(errorMsg);
       return;
     }
 
@@ -55,14 +60,15 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
 
     setLoading(false);
 
-    console.log('SUBMIT');
-
     if (error) {
       setErrorMsg(error.message || 'Payment failed');
+      router.replace(
+        `/checkout/failed?orderId=${orderId}&reason=${error.message}`,
+      );
       return;
     }
 
-    router.push('/checkout/success');
+    router.replace(`/checkout/success?orderId=${orderId}`);
   };
 
   const onError = (formErrors: any) => {

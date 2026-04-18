@@ -4,7 +4,7 @@ import { useSession } from '@/Hooks/useSession';
 import { TableRow } from '@/interfaces';
 import { PATHS } from '@/data/paths';
 import { LogIn } from 'lucide-react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import CardWrapper from '@/components/Template/CardWrapper';
 import useAPI from '@/Hooks/useAPI';
 import { useRouter } from 'next/navigation';
@@ -65,7 +65,9 @@ const CartTotals = ({ TitleStyle }: { TitleStyle: string }) => {
       userPhone: session?.user?.user_metadata.phone,
     });
 
-    router.push(`/checkout?clientSecret=${data.clientSecret}`);
+      router.replace(
+        `/checkout?clientSecret=${data.clientSecret}&orderId=${data.orderId}`,
+      );
   };
 
   useEffect(() => {

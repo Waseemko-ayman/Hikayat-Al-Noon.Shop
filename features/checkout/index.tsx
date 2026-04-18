@@ -12,12 +12,13 @@ const stripePromise = loadStripe(
 const CheckoutPage = () => {
   const searchParams = useSearchParams();
   const clientSecret = searchParams.get('clientSecret');
+  const orderId = searchParams.get('orderId');
 
   if (!clientSecret) return <p>Loading payment...</p>;
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <CheckoutForm clientSecret={clientSecret} />
+      <CheckoutForm clientSecret={clientSecret} orderId={orderId} />
     </Elements>
   );
 };

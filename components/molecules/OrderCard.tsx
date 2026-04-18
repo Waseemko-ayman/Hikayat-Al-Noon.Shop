@@ -63,6 +63,7 @@ const OrderCard = ({ order }: { order: OrderProps }) => {
             variant="text"
             Icon={ChevronRight}
             otherClassName="p-0! text-slate-400 hover:text-slate-600"
+            iconClassName="inline-block animate-[moveX_0.8s_ease-in-out_infinite]"
             handleClick={() => router.push(PATHS.ORDERS.ITEM(order?.id))}
           />
         </div>
