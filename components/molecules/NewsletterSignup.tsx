@@ -70,7 +70,7 @@ const NewsletterSignup = () => {
             <Button
               variant="primary"
               borderRadius="rounded-none sm:rounded-l-none sm:rounded-r-md"
-              otherClassName="w-full sm:w-fit hover:!tracking-normal md:border-l-0 border border-white"
+              otherClassName="w-full hover:bg-(--forth-color)! max-md:border max-md:border-white"
               disabled={isLoading}
             >
               {isLoading ? <ButtonLoading text="Sign up..." /> : 'Sign up'}
