@@ -24,8 +24,6 @@ const AccountSidebar = ({
   const session = useSession();
   const { setValue } = useFormContext<any>();
 
-  console.log(session?.user);
-
   const userName = userProfile?.display_name;
   const userEmail = userProfile?.email;
   const avatarUrl = userProfile?.avatar_url;
