@@ -11,6 +11,7 @@ const AllOrders = ({ value }: { value: string }) => {
       placeholder="Search for order..."
       deleteLocation="Orders"
       showEdit={false}
+      showActionsColumn={false}
     />
   );
 };
