@@ -24,7 +24,7 @@ const EmptyState = ({
           alt="Empty State Image"
           width={150}
           height={150}
-          className="mx-auto"
+          className="mx-auto w-24 h-24 md:w-[150px] md:h-[150px]"
           priority
         />
       </MotionSection>
