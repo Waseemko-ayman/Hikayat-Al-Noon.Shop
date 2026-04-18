@@ -79,5 +79,6 @@ export async function POST(req: Request) {
 
   return Response.json({
     clientSecret: paymentIntent.client_secret,
+    orderId: order.id,
   });
 }
