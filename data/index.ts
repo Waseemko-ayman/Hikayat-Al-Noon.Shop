@@ -43,6 +43,7 @@ import {
   Home,
   Lock,
   Mail,
+  MessageCircleQuestion,
   Package,
   RotateCcw,
   Ruler,
@@ -179,6 +180,11 @@ export const FOOTER_LINKS_DATA = {
       id: 3,
       url: PATHS.CONTACT,
       text: 'Contact Us',
+    },
+    {
+      id: 4,
+      url: PATHS.FAQ,
+      text: 'FAQ',
     },
   ],
   myAccount: [
@@ -602,6 +608,11 @@ export const sidebarLinks = [
     title: 'Orders',
     href: PATHS.DASHBOARD.ORDERS.ROOT,
     icon: FiShoppingCart,
+  },
+  {
+    title: 'FAQ',
+    href: PATHS.DASHBOARD.FAQ,
+    icon: MessageCircleQuestion,
   },
   {
     title: 'Settings',
