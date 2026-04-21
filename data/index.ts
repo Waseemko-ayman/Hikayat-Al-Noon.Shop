@@ -984,3 +984,11 @@ export const FailedPageActions: ActionItem[] = [
     variant: 'secondary',
   },
 ];
+
+export const faqCategories = [
+  { id: 'orders', label: 'Orders' },
+  { id: 'payments', label: 'Payments' },
+  { id: 'shipping', label: 'Shipping' },
+  { id: 'returns', label: 'Returns & Refunds' },
+  { id: 'general', label: 'General' },
+];

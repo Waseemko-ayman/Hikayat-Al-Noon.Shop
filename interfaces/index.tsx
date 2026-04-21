@@ -729,3 +729,10 @@ export interface PaymentResultLayoutProps {
   footerText?: string;
   supportTextColor?: string;
 }
+
+export interface SupportContactProps {
+  title: string;
+  description: string;
+  buttonLabel?: string;
+  href?: string;
+}
