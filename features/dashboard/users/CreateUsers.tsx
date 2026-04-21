@@ -61,7 +61,7 @@ const CreateUsers = ({
     handleSubmit,
     control,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<any, any>({
     resolver: yupResolver(createUsersSchema),
     defaultValues: initialUserInfo,
@@ -197,7 +197,7 @@ const CreateUsers = ({
           )}
         </div>
 
-        <Button type="submit" disabled={addLoading}>
+        <Button type="submit" disabled={addLoading || !isDirty}>
           {addLoading ? (
             <ButtonLoading text="Save Changes..." />
           ) : (
