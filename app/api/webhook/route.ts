@@ -146,7 +146,7 @@ export async function POST(req: Request) {
                       <table role="presentation">
                         <tr>
                           <td style="border-radius:6px; background:linear-gradient(135deg,#16a34a 0%,#15803d 100%);">
-                            <a href="https://your-site.com/orders"
+                            <a href="https://hikayatalnoon.vercel.app/orders/${orders.id}"
                               style="display:inline-block; padding:14px 40px; font-size:15px; font-weight:600; color:#fff; text-decoration:none; border-radius:6px;">
                               View your order
                             </a>
