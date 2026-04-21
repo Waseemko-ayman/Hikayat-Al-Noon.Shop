@@ -16,6 +16,7 @@ export const PATHS = {
   PRIVACY_POLICY: '/privacy-policy',
   HELP: '/help',
   CHECKOUT: '/checkout',
+  FAQ: '/faq',
   AUTH: {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/signup',
@@ -35,5 +36,6 @@ export const PATHS = {
     NEWSLETTER: '/dashboard/newsletter',
     USERS: '/dashboard/users',
     CONTACT_MESSAGES: '/dashboard/contact-messages',
+    FAQ: '/dashboard/faq',
   },
 };

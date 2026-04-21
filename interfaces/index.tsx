@@ -709,3 +709,30 @@ export interface ProfleFormProps {
   loading: boolean;
   isDirty?: any;
 }
+
+export interface ActionItem {
+  label: string;
+  href: string;
+  icon?: React.ElementType;
+  variant?: 'primary' | 'secondary';
+}
+
+export interface PaymentResultLayoutProps {
+  HeaderIcon: React.ElementType;
+  title: string;
+  description: string;
+  headerGradient: string;
+  iconBg: string;
+  iconWrapper: string;
+  mainContent: React.ReactNode;
+  actions: ActionItem[];
+  footerText?: string;
+  supportTextColor?: string;
+}
+
+export interface SupportContactProps {
+  title: string;
+  description: string;
+  buttonLabel?: string;
+  href?: string;
+}

@@ -1,4 +1,5 @@
 import {
+  ActionItem,
   FormValues,
   OrderProps,
   PaymentMethod,
@@ -28,6 +29,9 @@ import {
   FiUsers,
 } from 'react-icons/fi';
 import {
+  AlertCircle,
+  ArrowLeft,
+  ArrowRight,
   Bell,
   Calendar,
   CheckCircle,
@@ -39,11 +43,13 @@ import {
   Home,
   Lock,
   Mail,
+  MessageCircleQuestion,
   Package,
   RotateCcw,
   Ruler,
   Settings,
   Shield,
+  ShoppingBag,
   Tag,
   Truck,
   User,
@@ -174,6 +180,11 @@ export const FOOTER_LINKS_DATA = {
       id: 3,
       url: PATHS.CONTACT,
       text: 'Contact Us',
+    },
+    {
+      id: 4,
+      url: PATHS.FAQ,
+      text: 'FAQ',
     },
   ],
   myAccount: [
@@ -599,6 +610,11 @@ export const sidebarLinks = [
     icon: FiShoppingCart,
   },
   {
+    title: 'FAQ',
+    href: PATHS.DASHBOARD.FAQ,
+    icon: MessageCircleQuestion,
+  },
+  {
     title: 'Settings',
     href: PATHS.DASHBOARD.SETTINGS,
     icon: Settings,
@@ -937,4 +953,42 @@ export const shippingSettingsInputs = [
     placeholder: '0.00',
     icon: Tag,
   },
+];
+
+export const SuccessPageActions: ActionItem[] = [
+  {
+    label: 'Continue Shopping',
+    href: PATHS.HOME,
+    icon: ShoppingBag,
+    variant: 'primary',
+  },
+  {
+    label: 'View Order',
+    href: PATHS.ORDERS.ROOT,
+    icon: ArrowRight,
+    variant: 'secondary',
+  },
+];
+
+export const FailedPageActions: ActionItem[] = [
+  {
+    label: 'Try Again',
+    href: PATHS.HOME,
+    icon: AlertCircle,
+    variant: 'primary',
+  },
+  {
+    label: 'Back to Shopping',
+    href: PATHS.SHOP.ROOT,
+    icon: ArrowLeft,
+    variant: 'secondary',
+  },
+];
+
+export const faqCategories = [
+  { id: 'orders', label: 'Orders' },
+  { id: 'payments', label: 'Payments' },
+  { id: 'shipping', label: 'Shipping' },
+  { id: 'returns', label: 'Returns & Refunds' },
+  { id: 'general', label: 'General' },
 ];

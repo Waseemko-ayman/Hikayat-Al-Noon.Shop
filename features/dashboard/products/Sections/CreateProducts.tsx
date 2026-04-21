@@ -143,7 +143,7 @@ const CreateProducts = ({
     reset,
     setValue,
     watch,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<any, any>({
     resolver: yupResolver(createSchema),
   });
@@ -345,7 +345,7 @@ const CreateProducts = ({
               )}
             </div>
 
-            <Button type="submit">
+            <Button type="submit" disabled={addLoading || !isDirty}>
               {addLoading ? (
                 <ButtonLoading text="Save Changes..." />
               ) : (
