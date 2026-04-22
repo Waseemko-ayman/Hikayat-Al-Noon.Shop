@@ -29,16 +29,16 @@ export const FloatingNav = ({ className }: { className?: string }) => {
   const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
   const [disableHover, setDisableHover] = useState(false);
+  const [isTop, setIsTop] = useState(true);
 
   const isMobile = useIsMobile(800);
-  const { scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
   const pathname = usePathname();
 
   const MobileNavbar = navItems.filter(
     (item) => item.name === 'Login' || item.name === 'Cart',
   );
 
-  // Variables
   const StyledLinks = (itemName: string) =>
     `relative py-1 text-base font-semibold cursor-pointer transition duration-200 ${
       itemName === 'Cart'
@@ -48,28 +48,21 @@ export const FloatingNav = ({ className }: { className?: string }) => {
           : 'text-(--fifth-color)'
     } hover:text-(--forth-color)`;
 
-  useMotionValueEvent(scrollYProgress, 'change', (current) => {
-    // Check if current is not undefined and is a number
-    if (typeof current === 'number') {
-      const direction = current! - scrollYProgress.getPrevious()!;
+  // scroll show/hide (اختياري تبعك)
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    setIsTop(y < 50);
 
-      if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
+    if (y < 50) {
+      setVisible(true);
+    } else {
+      const direction = y - scrollY.getPrevious()!;
+      if (direction < 0) setVisible(true);
+      else setVisible(false);
     }
   });
 
   const handleLinkClick = () => {
-    if (isMobile) {
-      setOpen(false);
-    }
+    if (isMobile) setOpen(false);
   };
 
   useEffect(() => {
@@ -80,26 +73,28 @@ export const FloatingNav = ({ className }: { className?: string }) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
+        initial={{ opacity: 1, y: -100 }}
         animate={{
           y: visible ? 0 : -100,
           opacity: visible ? 1 : 0,
+          width: isMobile ? '95%' : isTop ? '100%' : '70vw',
+          top: isTop ? 0 : 40,
         }}
-        transition={{
-          duration: 0.2,
-        }}
+        transition={{ duration: 0.25, ease: 'easeInOut' }}
         className={cn(
-          'flex items-center justify-between fixed z-40 top-10 inset-x-0 mx-auto p-3 md:px-10 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] gap-4',
-          isMobile ? 'w-[95%]' : 'max-w-fit md:min-w-[70vw]',
+          'flex items-center justify-between fixed z-40 inset-x-0 mx-auto p-3 md:px-10 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] gap-4 transition-all duration-300',
+          isMobile
+            ? isTop
+              ? 'w-full! rounded-none'
+              : 'w-[95%]'
+            : isTop
+              ? 'w-full md:w-full rounded-none top-0'
+              : '',
           className,
         )}
         style={{
           backdropFilter: 'blur(16px) saturate(180%)',
           backgroundColor: 'rgba(238, 240, 243, 0.75)',
-          borderRadius: '12px',
         }}
       >
         {isMobile ? (
@@ -118,6 +113,7 @@ export const FloatingNav = ({ className }: { className?: string }) => {
                       damping: 12,
                       delay: idx * 0.08,
                     }}
+                    layout
                   >
                     <NavItemLink
                       item={item}
@@ -141,7 +137,6 @@ export const FloatingNav = ({ className }: { className?: string }) => {
                         'text-2xl text-(--fifth-color) transition duration-200 cursor-pointer',
                         disableHover ? '' : 'hover:text-(--forth-color)',
                       )}
-                      aria-label="Open side menu"
                     />
                   </SheetTrigger>
                 </motion.div>
@@ -149,7 +144,7 @@ export const FloatingNav = ({ className }: { className?: string }) => {
             </div>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle className="sr-only">Hire Me</SheetTitle>
+                <SheetTitle className="sr-only">Menu</SheetTitle>
               </SheetHeader>
               <NavLinks isMobile={isMobile} onLinkClick={handleLinkClick} />
             </SheetContent>
@@ -170,10 +165,9 @@ export const FloatingNav = ({ className }: { className?: string }) => {
                 <Image
                   src="/assets/landing/noon-logo.webp"
                   alt="Hikayat Al-Noon"
-                  title="Hikayat Al-Noon"
-                  width={90}
-                  height={90}
-                  className="w-[90px] h-[90px]"
+                  width={75}
+                  height={75}
+                  className="w-[75px] h-[75px]"
                 />
               </Link>
             </motion.div>

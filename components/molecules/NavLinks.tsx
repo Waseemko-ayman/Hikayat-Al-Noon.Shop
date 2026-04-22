@@ -82,7 +82,7 @@ const NavLinks = ({
               <Loading
                 showText={false}
                 spinnerSize={30}
-                otherClassName="bg-transparent!"
+                otherClassName="bg-transparent! p-0!"
               />
             ) : error ? (
               <InlineError textColor="text-black" />
