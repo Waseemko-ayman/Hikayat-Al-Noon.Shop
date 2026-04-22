@@ -26,7 +26,7 @@ const UserPopover = () => {
           <Loading
             showText={false}
             spinnerSize={25}
-            otherClassName="bg-transparent!"
+            otherClassName="bg-transparent! p-0!"
           />
         ) : (
           <div className="w-[40px] h-[40px] rounded-full overflow-hidden border-2 border-(--forth-color)">
