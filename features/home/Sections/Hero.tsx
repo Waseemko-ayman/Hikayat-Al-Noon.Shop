@@ -102,6 +102,7 @@ const Hero = () => {
                 y={yButton}
               >
                 <Button
+                  ariaLabel="Shop now and browse all products"
                   otherClassName="group flex items-center gap-3 rounded-full px-8 text-base font-semibold text-background transition-all hover:shadow-xl hover:scale-105"
                   iconClassName="h-5 w-5"
                   Icon={ShoppingBag}
@@ -111,6 +112,7 @@ const Hero = () => {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
                 <Button
+                  ariaLabel="Explore summer t-shirts collection"
                   variant="outline"
                   otherClassName="border-(--forth-color)! text-(--forth-color)! hover:text-white! w-fit!"
                   href={{

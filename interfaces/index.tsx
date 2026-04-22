@@ -77,6 +77,8 @@ export interface ButtonProps {
   iconClassName?: string;
   disabled?: boolean;
   target?: string;
+  href?: string | any;
+  ariaLabel?: string;
 }
 
 export interface CartProps {

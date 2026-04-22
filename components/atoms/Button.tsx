@@ -4,7 +4,7 @@ import { ButtonProps } from '@/interfaces';
 
 const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps & { href?: string; ariaLabel?: string }
+  ButtonProps
 >(
   (
     {
