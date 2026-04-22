@@ -1,5 +1,4 @@
 'use client';
-// import { useToggleLocale } from '@/hook/useToggleLocale';
 import { AnimatedWrapperProps } from '@/interfaces';
 import { motion, Variants, Transition, easeOut } from 'framer-motion';
 import React from 'react';
@@ -12,10 +11,7 @@ const AnimatedWrapper: React.FC<AnimatedWrapperProps> = ({
   distance = 40,
   duration = 0.7,
 }) => {
-  // const { isArabic } = useToggleLocale();
-
-  const localizedDistance =
-    direction === 'x' ? -distance : distance;
+  const localizedDistance = direction === 'x' ? -distance : distance;
 
   const dynamicVariants: Variants = {
     hidden: {
