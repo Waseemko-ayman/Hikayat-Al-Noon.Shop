@@ -992,3 +992,19 @@ export const faqCategories = [
   { id: 'returns', label: 'Returns & Refunds' },
   { id: 'general', label: 'General' },
 ];
+
+export const HeroStats = (avgRating: number) => [
+  {
+    title: 'Personal Project',
+    subtitle: 'Built with Next.js & TypeScript',
+  },
+  {
+    title: 'UI/UX Focused',
+    subtitle: 'Responsive & Modern Design',
+  },
+  {
+    title: avgRating.toString() ?? 4.5,
+    subtitle: 'Design Quality Rating',
+    className: 'hidden sm:block',
+  },
+];
