@@ -164,7 +164,7 @@ const Hero = () => {
                   <p className="text-xs font-medium text-muted-foreground">
                     Free Shipping
                   </p>
-                  <p className="mt-1 font-semibold text-foreground">
+                  <div className="mt-1 font-semibold text-foreground">
                     Orders over{' '}
                     {settingsData &&
                       (settingsLoading ? (
@@ -180,7 +180,7 @@ const Hero = () => {
                       ) : (
                         `$${freeShippingMin}`
                       ))}
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
