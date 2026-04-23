@@ -9,6 +9,7 @@ import useAPI from '@/Hooks/useAPI';
 import { ItemProductProps, ReviewProps } from '@/interfaces';
 import CommentCardSkeleton from '@/components/Skeletons/CommentCardSkeleton';
 import CommentCard from '@/components/molecules/CommentCard';
+import { useQueryClient } from '@tanstack/react-query';
 
 const CommentsTabContent: React.FC<ItemProductProps> = ({
   product,
@@ -18,6 +19,8 @@ const CommentsTabContent: React.FC<ItemProductProps> = ({
   const [newComment, setNewComment] = useState('');
   const [newRating, setNewRating] = useState(0);
   const [showAll, setShowAll] = useState(false);
+
+  const queryClient = useQueryClient();
 
   const { user } = useCartContext();
   const { showToast } = useToast();
@@ -57,6 +60,19 @@ const CommentsTabContent: React.FC<ItemProductProps> = ({
 
     try {
       await edit(product?.id, updatedProduct);
+
+      /**
+       * 🧠 Meaning
+       * Consider the product data stored in the cache as outdated.
+        Therefore:
+        ✔ React Query performs an automatic refetch
+        ✔ Retrieves the data from Supabase again
+        ✔ Updates all components that use the same query
+       */
+      queryClient.invalidateQueries({
+        queryKey: ['supabase', 'products'],
+      });
+
       setReviews([
         ...reviews,
         {

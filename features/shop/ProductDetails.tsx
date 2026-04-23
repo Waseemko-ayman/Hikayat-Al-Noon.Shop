@@ -21,7 +21,11 @@ import ProductReviews from './Sections/ProductReviews';
 import ProductInfoSection from './Sections/ProductInfoSection';
 import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
 
-const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
+const ProductDetailsPage = ({
+  product: initialProduct,
+}: {
+  product: ProductCardProps;
+}) => {
   const [, setTargetSrc] = useState('');
   const [size] = useState('');
   const [, setErrorMsgSize] = useState(false);
@@ -41,8 +45,17 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   const { addToCart, user, isLoading: addIsLoading } = useCartContext();
 
   const { data, isLoading, error } = useSupabaseQuery('products', {
-    category: product.category,
+    category: initialProduct.category,
   });
+
+  const { data: relatedData, isLoading: relatedLoading } = useSupabaseQuery(
+    'products',
+    {
+      slug: initialProduct.slug,
+    },
+  );
+
+  const product = relatedData?.data?.[0] ?? initialProduct;
 
   const featuredProducts = data?.data;
 
@@ -134,7 +147,7 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
         />
 
         {/* Reviews Section */}
-        <ProductReviews product={product} isLoading={isLoading} />
+        <ProductReviews product={product} isLoading={relatedLoading} />
 
         <RandomFeaturedProducts
           error={error}
