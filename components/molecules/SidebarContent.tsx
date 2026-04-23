@@ -38,8 +38,8 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
             <Image
               src="/assets/landing/noon-logo.webp"
               alt="Hikayat Al-Noon"
-              width={100}
-              height={100}
+              width={90}
+              height={90}
               priority
             />
           </picture>
