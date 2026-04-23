@@ -9,7 +9,7 @@ export const renderRatingsStars = (
     <FaStar
       key={star}
       className={`cursor-pointer text-xl transition ${
-        star <= rating ? 'text-yellow-500' : 'text-gray-300'
+        star <= rating ? 'text-yellow-400' : 'text-gray-300'
       } ${otherClassName || ''}`}
       onClick={() => onClick && onClick(star)}
     />
