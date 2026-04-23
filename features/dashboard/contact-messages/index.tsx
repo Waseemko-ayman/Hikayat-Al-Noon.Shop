@@ -39,7 +39,7 @@ const ContactMessagesPage = () => {
   // Context
   const { refreshUnread } = useUnreadMessages();
 
-  const messages: Message[] = useMemo(() => data ?? [], [data]);
+  const messages: Message[] = useMemo(() => data?.data ?? [], [data?.data]);
 
   const handleReset = () => {
     setFilters({
@@ -134,7 +134,7 @@ const ContactMessagesPage = () => {
         {/* Messages Grid */}
         <MessagesGrid
           messages={messages}
-          originalCount={data?.length ?? 0}
+          originalCount={data?.count ?? 0}
           onDelete={handleDelete}
           onMarkAsRead={handleMarkAsRead}
           isLoading={isLoading}

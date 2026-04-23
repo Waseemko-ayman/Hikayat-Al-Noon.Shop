@@ -18,6 +18,7 @@ import useAPI from '@/Hooks/useAPI';
 import EmptyState from '@/components/molecules/EmptyState';
 import { FaBoxOpen } from 'react-icons/fa6';
 import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
+import Pagination from '@/components/molecules/Pagination';
 
 const Clothes = () => {
   const searchParams = useSearchParams();
@@ -32,6 +33,9 @@ const Clothes = () => {
     priceRange: [0, 1000],
     isFiltersOpen: false,
   });
+
+  const [page, setPage] = useState(1);
+  const limit = 8;
 
   const { searchQuery, category, sortBy, discount, priceRange } = filters;
   const [debouncedSearchTerm] = useDebounce(searchQuery, 700);
@@ -49,11 +53,7 @@ const Clothes = () => {
   }>('categories');
 
   // Supabase Hook
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useSupabaseQuery(
+  const { data, error, isLoading } = useSupabaseQuery(
     'products',
     {
       title: debouncedSearchTerm
@@ -72,7 +72,14 @@ const Clothes = () => {
             : undefined,
     },
     priceRange as [number, number],
+    page,
+    limit,
   );
+
+  const products = data?.data;
+  const total = data?.count ?? 0;
+
+  const totalPages = Math.ceil(total / limit);
 
   const handleReset = () => {
     setFilters({
@@ -101,6 +108,14 @@ const Clothes = () => {
     getSections();
     getCategories();
   }, []);
+
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearchTerm, category, sortBy, discount, priceRange]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
 
   return (
     <Layer>
@@ -154,6 +169,14 @@ const Clothes = () => {
             handleClick={hasActiveFilters ? handleReset : undefined}
           />
         )}
+
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          totalItems={total}
+          itemsPerPage={limit}
+          onPageChange={(newPage) => setPage(newPage)}
+        />
       </Container>
     </Layer>
   );

@@ -25,13 +25,11 @@ const FAQPage = () => {
   const [activeCategory, setActiveCategory] = useState('orders');
 
   // Supabase Hook
-  const {
-    data: items,
-    isLoading,
-    error,
-  } = useSupabaseQuery('faqs', {
+  const { data, isLoading, error } = useSupabaseQuery('faqs', {
     category: activeCategory,
   });
+
+  const items = data?.data;
 
   return (
     <Layer otherClassName="bg-muted/30 pt-[160px] md:pt-40">

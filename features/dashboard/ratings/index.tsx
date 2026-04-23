@@ -23,12 +23,14 @@ const RatingsPage = () => {
   const [debouncedSearchTerm] = useDebounce(searchQuery, 700);
 
   // Supabase Hook
-  const { data: products, isLoading } = useSupabaseQuery(
+  const { data, isLoading } = useSupabaseQuery(
     'products',
     debouncedSearchTerm
       ? { title: debouncedSearchTerm.toLowerCase() }
       : undefined,
   );
+
+  const products = data?.data;
 
   const handleSearchChange = useCallback((value: string) => {
     setSearchQuery(value);

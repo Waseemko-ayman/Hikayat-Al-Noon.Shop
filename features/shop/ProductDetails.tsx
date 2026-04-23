@@ -40,11 +40,11 @@ const ProductDetailsPage = ({ product }: { product: ProductCardProps }) => {
   // Context
   const { addToCart, user, isLoading: addIsLoading } = useCartContext();
 
-  const {
-    data: featuredProducts,
-    isLoading,
-    error,
-  } = useSupabaseQuery('products', { category: product.category });
+  const { data, isLoading, error } = useSupabaseQuery('products', {
+    category: product.category,
+  });
+
+  const featuredProducts = data?.data;
 
   // Shuffle array
   const randomFour = useMemo(() => {

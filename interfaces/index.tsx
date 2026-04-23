@@ -738,3 +738,12 @@ export interface SupportContactProps {
   buttonLabel?: string;
   href?: string;
 }
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  totalItems: number;
+  itemsPerPage: number;
+  className?: string;
+}
