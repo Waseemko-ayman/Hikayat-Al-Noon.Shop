@@ -3,10 +3,17 @@
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import useIsMobile from '@/Hooks/useIsMobile';
 import { Button } from '../button';
 import SidebarContent from '@/components/molecules/SidebarContent';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export function DashboardSidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +37,15 @@ export function DashboardSidebar() {
               </Button>
             </SheetTrigger>
             <SheetContent className="p-0 w-64 bg-white" closeIconColor="black">
+              <VisuallyHidden>
+                <SheetTitle>Dashboard Sidebar</SheetTitle>
+              </VisuallyHidden>
+
+              <VisuallyHidden>
+                <SheetDescription>
+                  Navigation sidebar for dashboard sections
+                </SheetDescription>
+              </VisuallyHidden>
               <SidebarContent pathname={pathname} />
             </SheetContent>
           </Sheet>
