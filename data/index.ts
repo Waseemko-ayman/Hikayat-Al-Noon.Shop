@@ -1001,10 +1001,10 @@ export const HeroStats = (avgRating: number) => [
   {
     title: 'UI/UX Focused',
     subtitle: 'Responsive & Modern Design',
+    className: 'hidden sm:block',
   },
   {
     title: avgRating.toString() ?? 4.5,
     subtitle: 'Design Quality Rating',
-    className: 'hidden sm:block',
   },
 ];

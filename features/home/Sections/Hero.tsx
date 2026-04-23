@@ -9,6 +9,7 @@ import useAPI from '@/Hooks/useAPI';
 import { HeroStats } from '@/data';
 import Loading from '@/components/atoms/Loading';
 import { PATHS } from '@/data/paths';
+import { FaStar } from 'react-icons/fa6';
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -132,9 +133,16 @@ const Hero = () => {
                 {HeroStats(avgRating).map((item, index) => (
                   <React.Fragment key={index}>
                     <div className={item.className || ''}>
-                      <p className="text-xl font-bold text-foreground">
-                        {item.title}
-                      </p>
+                      <div
+                        className={index === 2 ? 'flex items-center gap-1' : ''}
+                      >
+                        {index === 2 && (
+                          <FaStar className="w-5 h-5 text-yellow-400" />
+                        )}
+                        <p className="text-xl font-bold text-foreground">
+                          {item.title}
+                        </p>
+                      </div>
                       <p className="mt-1 text-sm text-muted-foreground">
                         {item.subtitle}
                       </p>
