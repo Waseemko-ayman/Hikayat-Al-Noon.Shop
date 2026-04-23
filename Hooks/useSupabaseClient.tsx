@@ -5,8 +5,20 @@ const fetchSupabaseData = async (
   tableName: string,
   filters?: Record<string, any>,
   priceRange?: [number, number],
+  page = 1,
+  limit = 8,
 ) => {
-  let supabaseRef = supabase.from(tableName).select('*');
+  let supabaseRef = supabase.from(tableName).select('*', { count: 'exact' });
+
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  // He says to Supabase: Give me the products from index X to Y only
+  supabaseRef = supabaseRef.range(from, to);
+
+  supabaseRef = supabaseRef.order('created_at', {
+    ascending: false,
+  });
 
   if (filters) {
     for (const [column, value] of Object.entries(filters)) {
@@ -43,11 +55,11 @@ const fetchSupabaseData = async (
       supabaseRef = supabaseRef.lte('price', maxPrice);
   }
 
-  const { data, error } = await supabaseRef;
+  const { data, error, count } = await supabaseRef;
 
   if (error) throw error;
 
-  return data;
+  return { data, count };
 };
 
 export default fetchSupabaseData;

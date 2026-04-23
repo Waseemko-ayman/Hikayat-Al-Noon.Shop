@@ -8,14 +8,14 @@ export const renderStars = (rating: number) => {
   // Full stars
   for (let i = 0; i < fullStars; i++) {
     stars.push(
-      <FaStar key={`full-${i}`} className="text-sm md:text-lg text-yellow-500" />,
+      <FaStar key={`full-${i}`} className="text-sm md:text-lg text-yellow-400" />,
     );
   }
 
   // Half star if available
   if (hasHalfStar) {
     stars.push(
-      <FaStarHalfStroke key="half" className="text-sm md:text-lg text-yellow-500" />,
+      <FaStarHalfStroke key="half" className="text-sm md:text-lg text-yellow-400" />,
     );
   }
 

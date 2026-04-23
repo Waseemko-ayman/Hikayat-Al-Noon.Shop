@@ -15,13 +15,11 @@ const NewArrivals = () => {
   const router = useRouter();
 
   // Supabase Hook
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useSupabaseQuery('products', {
+  const { data, error, isLoading } = useSupabaseQuery('products', {
     section: 'newArrivals',
   });
+
+  const products = data?.data;
 
   return (
     <ResponsiveWrapper>

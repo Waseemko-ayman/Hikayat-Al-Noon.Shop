@@ -24,7 +24,7 @@ export const LayoutTextFlip = ({
   }, []);
 
   return (
-    <>
+    <div>
       <motion.span
         layoutId="subtext"
         className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight drop-shadow-lg text-balance"
@@ -34,7 +34,7 @@ export const LayoutTextFlip = ({
 
       <motion.span
         layout
-        className="relative w-fit overflow-hidden rounded-md border border-transparent bg-white px-4 py-2 font-sans text-2xl md:text-5xl font-bold tracking-tight text-black shadow-sm ring shadow-black/5 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10"
+        className="inline-block ml-2 mt-2 sm:mt-0 relative w-fit overflow-hidden rounded-md border border-transparent bg-white px-4 py-2 font-sans text-2xl md:text-5xl font-bold tracking-tight text-black shadow-sm ring shadow-black/5 ring-black/10 drop-shadow-lg dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10"
       >
         <AnimatePresence mode="popLayout">
           <motion.span
@@ -54,6 +54,6 @@ export const LayoutTextFlip = ({
           </motion.span>
         </AnimatePresence>
       </motion.span>
-    </>
+    </div>
   );
 };

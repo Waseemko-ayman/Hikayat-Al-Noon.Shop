@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { ItemProductProps } from '@/interfaces';
 import CardWrapper from '@/components/Template/CardWrapper';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
@@ -11,11 +11,13 @@ import RatingsSummarySkeleton from '@/components/Skeletons/RatingsSummarySkeleto
 import { ProductReviewsTabsData } from '@/data';
 
 const ProductReviews: React.FC<ItemProductProps> = ({ product, isLoading }) => {
+  const [tab, setTab] = useState('ratingsSummary');
+
   return (
     <div className="mt-16">
       <h3 className="font-bold text-[22px] mb-3">Customer Reviews</h3>
       <CardWrapper contentClassName="p-0!" otherClassName="hover:shadow-none">
-        <Tabs defaultValue="ratingsSummary" className="w-full">
+        <Tabs value={tab} onValueChange={setTab} className="w-full">
           <TabsNavigation tabs={ProductReviewsTabsData} />
 
           {/* Comments */}

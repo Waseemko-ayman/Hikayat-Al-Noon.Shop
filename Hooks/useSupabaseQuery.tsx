@@ -6,6 +6,8 @@ export const useSupabaseQuery = (
   tableName: string,
   filters?: Record<string, any>,
   priceRange?: [number, number],
+  page = 1,
+  limit = 8,
 ) => {
   return useQuery({
     // queryKey: This is the “identity name” of the request within the cache.
@@ -29,8 +31,9 @@ export const useSupabaseQuery = (
       - ✔ Data type (tableName)
       - ✔ Everything that changes the result (filters, search, pagination)
      */
-    queryKey: ['supabase', tableName, filters, priceRange],
-    queryFn: () => fetchSupabaseData(tableName, filters, priceRange),
+    queryKey: ['supabase', tableName, filters, priceRange, page],
+    queryFn: () =>
+      fetchSupabaseData(tableName, filters, priceRange, page, limit),
     staleTime: 1000 * 60,
   });
 };

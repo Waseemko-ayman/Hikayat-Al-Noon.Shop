@@ -19,58 +19,56 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
   const avatar = user?.avatar_url;
 
   return (
-    <div className="flex flex-col justify-between min-sm:items-center max-lg:items-center max-md:items-stretch lg:items-stretch h-full overflow-x-hidden">
-      <div>
-        <div className="flex items-center justify-center border-b border-b-gray-300 p-4">
-          <Link
-            href={PATHS.HOME}
-            className="flex items-center gap-2 font-semibold"
-          >
-            {/* <picture> is used to display different images depending on the screen size. The browser decides which image to load before loading, so performance is better than solutions that rely on JavaScript. */}
-            {/* <picture>: It is a container that allows the identification of multiple image sources. */}
-            <picture>
-              {/* Image between md and lg */}
-              <source
-                media="(min-width:639px) and (max-width:1023px)"
-                srcSet="/assets/landing/tap-noon-logo.webp"
-              />
+    <div className="flex flex-col overflow-hidden min-sm:items-center max-lg:items-center max-md:items-stretch lg:items-stretch h-full">
+      <div className="flex items-center justify-center border-b border-b-gray-300 p-4">
+        <Link
+          href={PATHS.HOME}
+          className="flex items-center gap-2 font-semibold"
+        >
+          {/* <picture> is used to display different images depending on the screen size. The browser decides which image to load before loading, so performance is better than solutions that rely on JavaScript. */}
+          {/* <picture>: It is a container that allows the identification of multiple image sources. */}
+          <picture>
+            {/* Image between md and lg */}
+            <source
+              media="(min-width:639px) and (max-width:1023px)"
+              srcSet="/assets/landing/tap-noon-logo.webp"
+            />
 
-              {/* Default image */}
-              <Image
-                src="/assets/landing/noon-logo.webp"
-                alt="Hikayat Al-Noon"
-                width={100}
-                height={100}
-                priority
-              />
-            </picture>
-          </Link>
-        </div>
+            {/* Default image */}
+            <Image
+              src="/assets/landing/noon-logo.webp"
+              alt="Hikayat Al-Noon"
+              width={90}
+              height={90}
+              priority
+            />
+          </picture>
+        </Link>
+      </div>
 
-        <div className="flex-1 overflow-auto p-2">
-          <div className="flex flex-col items-center gap-4">
-            <nav className="text-sm font-medium max-md:w-full lg:w-full space-y-2">
-              {sidebarLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  title={link.title}
-                  className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-black hover:bg-muted',
-                    pathname === link.href && 'bg-muted text-black',
-                  )}
-                >
-                  <link.icon className="h-5 w-5 max-md:h-4 max-md:w-4 lg:h-4 lg:w-4" />
-                  <span className="min-sm:hidden max-lg:hidden max-md:block lg:block">
-                    {link.title}
-                  </span>
-                  {link.title === 'Contact Messages' && unreadCount > 0 && (
-                    <span className="ml-auto h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                  )}
-                </Link>
-              ))}
-            </nav>
-          </div>
+      <div className="flex-1 min-h-0 overflow-y-auto p-2">
+        <div className="flex flex-col items-center gap-4">
+          <nav className="text-sm font-medium max-md:w-full lg:w-full space-y-2">
+            {sidebarLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                title={link.title}
+                className={cn(
+                  'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-black hover:bg-muted',
+                  pathname === link.href && 'bg-muted text-black',
+                )}
+              >
+                <link.icon className="h-5 w-5 max-md:h-4 max-md:w-4 lg:h-4 lg:w-4" />
+                <span className="min-sm:hidden max-lg:hidden max-md:block lg:block">
+                  {link.title}
+                </span>
+                {link.title === 'Contact Messages' && unreadCount > 0 && (
+                  <span className="ml-auto h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                )}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
 
