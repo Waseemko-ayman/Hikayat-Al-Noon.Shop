@@ -5,7 +5,6 @@ import Container from '@/components/atoms/Container';
 import Input from '@/components/atoms/Input';
 import Layer from '@/components/atoms/Layer';
 import { INPUT_TYPE } from '@/data';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormValues } from '@/interfaces';
@@ -51,12 +50,9 @@ const LeaveMessage = () => {
       <Container otherClassName="flex items-start justify-between">
         <div className="max-w-[1025px] mx-auto flex-1 py-5 md:py-8 px-5 border border-(--seven-color) gap-10 max-[992px]:flex-wrap max-[992px]:gap-10 rounded-md">
           <div className="space-y-2 mb-7">
-            <Link
-              href="#"
-              className="text-(--six-color) opacity-[0.5] uppercase hover:text-(--forth-color) hover:opacity-[1] transition-all duration-300 block max-md:text-center"
-            >
+            <div className="w-fit uppercase text-(--forth-color) block max-md:text-center">
               Leave A Message
-            </Link>
+            </div>
             <h2 className="text-(--fifth-color) text-2xl md:text-3xl font-bold max-md:text-center">
               We love to hear from you
             </h2>
