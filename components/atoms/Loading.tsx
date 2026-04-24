@@ -4,12 +4,14 @@ import { FaSpinner } from 'react-icons/fa6';
 const Loading = ({
   MainHightScreen,
   otherClassName,
+  spinnerClassName,
   spinnerSize = 36,
   showText = true,
   loadingText = 'Loading fashion...',
 }: {
   MainHightScreen?: boolean;
   otherClassName?: string;
+  spinnerClassName?: string;
   spinnerSize?: number;
   showText?: boolean;
   loadingText?: string;
@@ -26,7 +28,7 @@ const Loading = ({
         } animate-pulse`}
       >
         <FaSpinner
-          className="animate-spin text-(--forth-color)"
+          className={`animate-spin text-(--forth-color) ${spinnerClassName}`}
           size={spinnerSize}
         />
         {showText && (

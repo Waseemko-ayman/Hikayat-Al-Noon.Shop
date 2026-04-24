@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import UserPopover from './UserPopover';
 import { useCartContext } from '@/context/CartContext';
 import Link from 'next/link';
@@ -7,7 +6,7 @@ import { FaCartShopping } from 'react-icons/fa6';
 import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
 import { useSession } from '@/Hooks/useSession';
-import ButtonLoading from '../atoms/ButtonLoading';
+import Loading from '../atoms/Loading';
 
 const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
   // API Context
@@ -28,7 +27,16 @@ const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
               size={25}
             />
             <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
-              {isLoading ? (<ButtonLoading />) : (cartItems?.length)}
+              {isLoading ? (
+                <Loading
+                  otherClassName="p-0! py-1!"
+                  spinnerClassName="text-white!"
+                  spinnerSize={14}
+                  showText={false}
+                />
+              ) : (
+                cartItems?.length
+              )}
             </span>
           </div>
         </Link>
