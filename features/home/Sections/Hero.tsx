@@ -26,7 +26,11 @@ const Hero = () => {
     error: settingsError,
   } = useAPI('settings');
 
-  const { get: getProducts, data: productsData } = useAPI('products');
+  const {
+    get: getProducts,
+    data: productsData,
+    isLoading,
+  } = useAPI('products');
 
   const freeShippingMin = settingsData?.[0]?.free_shipping_min ?? 300;
 
@@ -139,9 +143,18 @@ const Hero = () => {
                         {index === 2 && (
                           <FaStar className="w-5 h-5 text-yellow-400" />
                         )}
-                        <p className="text-xl font-bold text-foreground">
-                          {item.title}
-                        </p>
+                        {index === 2 && isLoading ? (
+                          <Loading
+                            showText={false}
+                            spinnerSize={20}
+                            otherClassName="p-0! bg-transparent!"
+                            spinnerClassName="text-black!"
+                          />
+                        ) : (
+                          <p className="text-xl font-bold text-foreground">
+                            {item.title}
+                          </p>
+                        )}
                       </div>
                       <p className="mt-1 text-sm text-muted-foreground">
                         {item.subtitle}
@@ -180,6 +193,7 @@ const Hero = () => {
                           showText={false}
                           spinnerSize={20}
                           otherClassName="bg-transparent! p-0!"
+                          spinnerClassName="text-black!"
                         />
                       ) : settingsError ? (
                         <span className="text-muted-foreground text-sm">
