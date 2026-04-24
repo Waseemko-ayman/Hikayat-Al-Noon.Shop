@@ -3,7 +3,7 @@ import { Check, Circle, Clock, RotateCcw, X } from 'lucide-react';
 
 export const getStatusColor = (status: OrderProps['status']) => {
   switch (status) {
-    case 'completed':
+    case 'paid':
       return 'bg-emerald-100 text-emerald-700 border-emerald-200';
     case 'pending':
       return 'bg-amber-100 text-amber-700 border-amber-200';
@@ -18,7 +18,7 @@ export const getStatusColor = (status: OrderProps['status']) => {
 
 export const getStatusIcon = (status: OrderProps['status']) => {
   switch (status) {
-    case 'completed':
+    case 'paid':
       return <Check className="w-4 h-4 text-green-600" />;
 
     case 'pending':
