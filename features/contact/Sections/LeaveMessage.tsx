@@ -24,7 +24,7 @@ const LeaveMessage = () => {
     handleSubmit,
     reset,
     register,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<FormValues>({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -79,7 +79,7 @@ const LeaveMessage = () => {
                 />
               </div>
             ))}
-            <Button variant="primary" disabled={isLoading}>
+            <Button variant="primary" disabled={isLoading || !isDirty}>
               {isLoading ? <ButtonLoading text="Submit" /> : 'Submit'}
             </Button>
           </form>
