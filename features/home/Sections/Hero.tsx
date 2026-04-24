@@ -114,7 +114,7 @@ const Hero = () => {
                   href={PATHS.SHOP.ROOT}
                 >
                   Shop Now
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 animate-[moveX_0.8s_ease-in-out_infinite]" />
                 </Button>
                 <Button
                   ariaLabel="Explore summer t-shirts collection"
