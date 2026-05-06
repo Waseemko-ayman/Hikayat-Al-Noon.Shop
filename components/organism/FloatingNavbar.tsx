@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   motion,
   AnimatePresence,
@@ -7,7 +7,6 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { FaAlignLeft } from 'react-icons/fa6';
 import { usePathname } from 'next/navigation';
 import {
   Sheet,
@@ -24,6 +23,7 @@ import Logo from '../atoms/Logo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PATHS } from '@/data/paths';
+import { MenuIcon } from 'lucide-react';
 
 export const FloatingNav = ({ className }: { className?: string }) => {
   const [visible, setVisible] = useState(true);
@@ -93,7 +93,7 @@ export const FloatingNav = ({ className }: { className?: string }) => {
           className,
         )}
         style={{
-          backdropFilter: 'blur(16px) saturate(180%)',
+          backdropFilter: 'blur(8px) saturate(180%)',
           backgroundColor: 'rgba(238, 240, 243, 0.75)',
         }}
       >
@@ -130,13 +130,15 @@ export const FloatingNav = ({ className }: { className?: string }) => {
                     damping: 12,
                     delay: 0.1,
                   }}
+                  className='flex items-center'
                 >
                   <SheetTrigger name="dialog">
-                    <FaAlignLeft
+                    <MenuIcon
                       className={cn(
-                        'text-2xl text-(--fifth-color) transition duration-200 cursor-pointer',
+                        'text-(--fifth-color) transition duration-200 cursor-pointer',
                         disableHover ? '' : 'hover:text-(--forth-color)',
                       )}
+                      size={27}
                     />
                   </SheetTrigger>
                 </motion.div>
@@ -165,9 +167,9 @@ export const FloatingNav = ({ className }: { className?: string }) => {
                 <Image
                   src="/assets/landing/noon-logo.webp"
                   alt="Hikayat Al-Noon"
-                  width={75}
-                  height={75}
-                  className="w-[75px] h-[75px]"
+                  width={60}
+                  height={60}
+                  className="w-[60px] h-[60px]"
                 />
               </Link>
             </motion.div>
