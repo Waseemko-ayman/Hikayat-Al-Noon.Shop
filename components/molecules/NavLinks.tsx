@@ -76,7 +76,7 @@ const NavLinks = ({
         ))}
       </ul>
       {isMobile && (
-        <div className="mt-auto pb-5 w-full">
+        <div className="mt-auto pb-10 w-full">
           <div className="flex items-center gap-2 rounded-lg min-sm:border-none max-lg:border-none max-md:border max-md:border-gray-300 lg:border lg:border-gray-300">
             {isLoading ? (
               <Loading
