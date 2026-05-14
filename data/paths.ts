@@ -4,7 +4,10 @@ export const PATHS = {
     ROOT: '/shop',
     ITEM: (slug: string) => `/shop/${slug}`,
   },
-  BLOG: '/blog',
+  BLOG: {
+    ROOT: '/blog',
+    POST: (slug: string) => `/blog/${slug}`,
+  },
   ABOUT: '/about',
   CONTACT: '/contact',
   CART: '/cart',
@@ -37,5 +40,6 @@ export const PATHS = {
     USERS: '/dashboard/users',
     CONTACT_MESSAGES: '/dashboard/contact-messages',
     FAQ: '/dashboard/faq',
+    POSTS: '/dashboard/posts',
   },
 };

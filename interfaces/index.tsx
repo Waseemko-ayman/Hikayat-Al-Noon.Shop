@@ -3,6 +3,7 @@ import {
   ButtonIconPosition,
   ButtonTypes,
   ButtonVarinats,
+  CategoryCardIconTypes,
   flexVariant,
   InputTypes,
   orderStatus,
@@ -525,6 +526,7 @@ export interface CardWrapperProps {
   contentClassName?: string;
   withFlex?: boolean;
   flexVariant?: flexVariant;
+  handleClick?: () => void;
 }
 
 export interface VisitorsStatsProps {
@@ -746,4 +748,32 @@ export interface PaginationProps {
   totalItems: number;
   itemsPerPage: number;
   className?: string;
+}
+
+export interface CategoryCardProps {
+  title: string;
+  description: string;
+  icon: CategoryCardIconTypes;
+  count: number;
+}
+
+export interface BlogPostCardProps {
+  id?: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+  readTime: string;
+  href?: string | any;
+}
+
+export interface PostsProps {
+  id: string;
+  title: string;
+  excerpt: string | null;
+  image: string | null;
+  category: string | null;
+  date: string | null;
+  body: string | null;
 }

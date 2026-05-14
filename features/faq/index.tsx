@@ -32,7 +32,7 @@ const FAQPage = () => {
   const items = data?.data;
 
   return (
-    <Layer otherClassName="bg-muted/30 pt-[160px] md:pt-40">
+    <Layer otherClassName="bg-muted/30 pt-[160px]">
       <Container>
         <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:pb-20 lg:px-8">
           <div className="text-center">
@@ -46,7 +46,7 @@ const FAQPage = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 mt-7 px-4 sm:px-0">
+        <div className="flex flex-wrap justify-center gap-2 px-4 sm:px-0">
           {faqCategories.map((category) => (
             <Button
               key={category.id}
@@ -85,7 +85,7 @@ const FAQPage = () => {
                       className="w-full px-4 sm:px-8"
                     >
                       <AccordionTrigger className="text-left text-sm sm:text-base font-medium py-4 sm:py-6 hover:no-underline group">
-                        <span className="group-hover:text-muted-foreground transition-colors pr-4">
+                        <span className="pr-4">
                           {item.question}
                         </span>
                       </AccordionTrigger>

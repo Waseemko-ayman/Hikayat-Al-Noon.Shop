@@ -106,33 +106,33 @@ export const FileUpload = ({
               <motion.div
                 layoutId="file-upload"
                 className={cn(
-                  'relative overflow-hidden border border-(--seven-color) z-40 bg-white flex items-center justify-between gap-3 md:min-h-24 p-4 w-full rounded-md',
-                  'shadow-sm',
+                  'relative overflow-hidden w-full min-w-0 border border-(--seven-color) z-40 bg-white flex flex-col md:flex-row items-start md:items-center gap-3 p-4 rounded-md shadow-sm',
                 )}
               >
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex justify-between w-full items-center gap-4">
-                    <p className="text-base text-neutral-700 truncate max-w-xs">
+                    <p className="text-base text-neutral-700 truncate max-w-[200px]">
                       {fileName}
                     </p>
                     <p className="rounded-lg px-2 py-1 w-fit shrink-0 text-sm text-neutral-600 shadow-input">
                       {fileSize}
                     </p>
                   </div>
-                  <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600">
+                  <div className="flex text-sm items-start md:items-center w-full mt-2 justify-between text-neutral-600">
                     <p className="px-2 py-1 rounded-md bg-gray-100">
                       {fileType}
                     </p>
                     <p>modified {fileModified}</p>
                   </div>
                 </div>
-                <Image
-                  src={preview}
-                  alt="preview"
-                  width={90}
-                  height={90}
-                  className="w-[90px] h-[90px] rounded-md mx-auto"
-                />
+                <div className="group relative w-full md:w-[90px] h-[150px] md:h-[90px] shrink-0 overflow-hidden rounded-md border border-(--seven-color)">
+                  <Image
+                    src={preview}
+                    alt="preview"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
               </motion.div>
             ) : (
               <motion.div

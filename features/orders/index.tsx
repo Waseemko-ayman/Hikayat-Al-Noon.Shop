@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import Button from '@/components/atoms/Button';
 import EmptyState from '@/components/molecules/EmptyState';
@@ -72,7 +73,7 @@ const OrdersPage = () => {
           />
         ) : (
           <div className="space-y-4">
-            {orders.map((order, index) => (
+            {orders.map((order: any, index: number) => (
               <AnimatedWrapper key={order.id} custom={index}>
                 <OrderCard order={order} />
               </AnimatedWrapper>

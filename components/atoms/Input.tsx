@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { FileUpload } from '../ui/file-upload';
+import { FaCheck } from 'react-icons/fa6';
 
 const Input = ({
   type,
@@ -49,6 +50,8 @@ const Input = ({
 
   const ariaLabel = label || placeholder || inputName;
 
+  const isCheckbox = type === 'checkbox';
+
   const handleKeyboardClick =
     (callback?: () => void) => (e: React.KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -58,8 +61,8 @@ const Input = ({
     };
 
   return (
-    <div>
-      {label && (
+    <div className={isCheckbox ? 'flex items-center gap-2' : ''}>
+      {!isCheckbox && label && (
         <label
           className={`block text-sm font-semibold text-(--seconde-color) mb-2 ${labelClassName}`}
         >
@@ -67,7 +70,28 @@ const Input = ({
           {isRequired && <span className="text-red-500"> *</span>}
         </label>
       )}
-      {type === 'textarea' && control ? (
+      {type === 'checkbox' ? (
+        <Controller
+          name={inputName}
+          control={control}
+          render={({ field }) => (
+            <label className="flex items-center cursor-pointer select-none gap-3">
+              <input
+                type="checkbox"
+                checked={field.value}
+                onChange={(e) => field.onChange(e.target.checked)}
+                className="peer sr-only"
+              />
+
+              <div className="w-6 h-6 rounded-lg border border-gray-300 peer-checked:bg-green-600 flex items-center justify-center transition-colors">
+                {field.value && <FaCheck className="w-3 h-3 text-white" />}
+              </div>
+
+              <span className="text-sm">{label}</span>
+            </label>
+          )}
+        />
+      ) : type === 'textarea' && control ? (
         <Controller
           name={inputName}
           control={control}

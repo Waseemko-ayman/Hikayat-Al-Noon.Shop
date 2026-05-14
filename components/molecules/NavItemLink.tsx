@@ -1,13 +1,12 @@
 'use client';
-import React from 'react';
 import UserPopover from './UserPopover';
 import { useCartContext } from '@/context/CartContext';
 import Link from 'next/link';
-import { FaCartShopping } from 'react-icons/fa6';
 import { FiUser } from 'react-icons/fi';
 import { NavItemLinkProps } from '@/interfaces';
 import { useSession } from '@/Hooks/useSession';
-import ButtonLoading from '../atoms/ButtonLoading';
+import Loading from '../atoms/Loading';
+import { ShoppingCart } from 'lucide-react';
 
 const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
   // API Context
@@ -22,13 +21,23 @@ const NavItemLink = ({ item, linksStyleing, isMobile }: NavItemLinkProps) => {
         <UserPopover />
       ) : item.name === 'Cart' && !isMobile ? (
         <Link href={item.link} aria-label="My Cart">
-          <div className="flex items-center gap-1">
-            <FaCartShopping
-              className={`${linksStyleing} text-[var(--fifth-color)] text-base`}
-              size={25}
+          <div className="relative flex items-center gap-1 mt-2 mr-2">
+            <ShoppingCart
+              className={`${linksStyleing} text-(--fifth-color)`}
+              size={30}
             />
-            <span className="text-[var(--white-color)] bg-[var(--forth-color)] w-fit py-0.5 px-2 rounded-sm text-sm text-center font-bold">
-              {isLoading ? (<ButtonLoading />) : (cartItems?.length)}
+
+            <span className="absolute -top-2 -right-2 bg-(--forth-color) text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md">
+              {isLoading ? (
+                <Loading
+                  otherClassName="p-0! py-1!"
+                  spinnerClassName="text-white!"
+                  spinnerSize={12}
+                  showText={false}
+                />
+              ) : (
+                cartItems?.length
+              )}
             </span>
           </div>
         </Link>

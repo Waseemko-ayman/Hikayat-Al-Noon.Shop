@@ -12,12 +12,12 @@ const Layer = ({
   } & React.HTMLAttributes<HTMLElement>
 >) => {
   return (
-    <div
+    <section
       className={`relative py-12 ${otherClassName ? otherClassName : ''}`}
       {...props}
     >
       {children}
-    </div>
+    </section>
   );
 };
 

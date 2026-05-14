@@ -63,7 +63,7 @@ import { formatPrice } from '@/utils/formatPrice';
 export const navItems = [
   { name: 'Home', link: '/' },
   { name: 'Shop', link: PATHS.SHOP.ROOT },
-  { name: 'Blog', link: PATHS.BLOG },
+  { name: 'Blog', link: PATHS.BLOG.ROOT },
   { name: 'About', link: PATHS.ABOUT },
   { name: 'Contact', link: PATHS.CONTACT },
   { name: 'Cart', link: PATHS.CART },
@@ -615,6 +615,11 @@ export const sidebarLinks = [
     icon: MessageCircleQuestion,
   },
   {
+    title: 'Posts',
+    href: PATHS.DASHBOARD.POSTS,
+    icon: FileText,
+  },
+  {
     title: 'Settings',
     href: PATHS.DASHBOARD.SETTINGS,
     icon: Settings,
@@ -1006,5 +1011,47 @@ export const HeroStats = (avgRating: number) => [
   {
     title: avgRating.toString() ?? 4.5,
     subtitle: 'Design Quality Rating',
+  },
+];
+
+export const BlogSidebarTags = [
+  'Street Style',
+  'Minimalist',
+  'Vintage',
+  'Casual',
+  'Formal',
+  'Sustainable',
+  'Luxury',
+  'Budget',
+];
+
+export const BlogCategories = [
+  {
+    title: 'Fashion Tips',
+    description:
+      'Expert advice to elevate your personal style and wardrobe essentials.',
+    icon: 'tips' as const,
+    count: 45,
+  },
+  {
+    title: 'Trends',
+    description:
+      'Stay ahead with the latest fashion trends and seasonal must-haves.',
+    icon: 'trends' as const,
+    count: 32,
+  },
+  {
+    title: 'Outfit Ideas',
+    description:
+      'Curated looks for every occasion, from casual to formal events.',
+    icon: 'outfits' as const,
+    count: 58,
+  },
+  {
+    title: 'Buying Guides',
+    description:
+      'Smart shopping advice and investment pieces worth your money.',
+    icon: 'guides' as const,
+    count: 27,
   },
 ];
