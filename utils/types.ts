@@ -35,3 +35,4 @@ export type ToastType = 'success' | 'error' | 'info' | 'warning';
 export type flexVariant = 'responsive' | 'row';
 export type viewCartMode = 'table' | 'cards';
 export type orderStatus = 'pending' | 'paid' | 'failed' | 'refunded';
+export type CategoryCardIconTypes = 'tips' | 'trends' | 'outfits' | 'guides';

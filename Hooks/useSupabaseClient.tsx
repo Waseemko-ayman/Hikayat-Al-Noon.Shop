@@ -20,10 +20,17 @@ const fetchSupabaseData = async (
     ascending: false,
   });
 
+  let orderColumn: string | null = null;
+  let orderAscending = false;
+
   if (filters) {
     for (const [column, value] of Object.entries(filters)) {
       if (value !== undefined && value !== null) {
-        if (column === 'title') {
+        if (column === 'order') {
+          orderColumn = value;
+        } else if (column === 'ascending') {
+          orderAscending = value;
+        } else if (column === 'title') {
           supabaseRef = supabaseRef.ilike(column, `%${value}%`);
         } else if (column === 'message') {
           supabaseRef = supabaseRef.or(
@@ -44,6 +51,12 @@ const fetchSupabaseData = async (
         }
       }
     }
+  }
+
+  if (orderColumn) {
+    supabaseRef = supabaseRef.order(orderColumn, {
+      ascending: orderAscending,
+    });
   }
 
   if (priceRange) {
