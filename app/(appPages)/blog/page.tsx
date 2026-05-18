@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Blog - Hikayat Al-Noon',
+  title: 'Blog',
   description: 'Read the latest articles on Hikayat Al-Noon',
 };
 

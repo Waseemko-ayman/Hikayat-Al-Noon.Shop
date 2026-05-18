@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   return {
-    title: `Product Details - Hikayat Al-Noon`,
+    title: `Product Details - ${slug}`,
     description: `Details of product with ${slug}`,
   };
 }

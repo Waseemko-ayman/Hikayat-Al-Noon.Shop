@@ -12,7 +12,7 @@ export async function generateMetadata({
   const resolvedParams = await params;
 
   return {
-    title: `Post Details - Hikayat Al-Noon`,
+    title: `Post Details`,
     description: `Details of post with ${resolvedParams.slug}`,
   };
 }

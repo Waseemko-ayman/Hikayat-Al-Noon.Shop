@@ -2,7 +2,7 @@ import ShopPage from '@/features/shop';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shop - Hikayat Al-Noon',
+  title: 'Shop',
   description: 'Browse and purchase clothes from Hikayat Al-Noon',
 };
 
