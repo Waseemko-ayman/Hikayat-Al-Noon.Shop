@@ -44,7 +44,7 @@ const PostDetailsPage = ({ post }: { post: PostsProps }) => {
         </motion.div>
 
         {/* Header Content */}
-        <div className="relative mx-auto max-w-3xl px-6 -mt-32 md:-mt-40">
+        <div className="relative mx-auto max-w-3xl px-6 -mt-10 md:-mt-40">
           <motion.div
             variants={fadeInUp}
             initial="initial"
