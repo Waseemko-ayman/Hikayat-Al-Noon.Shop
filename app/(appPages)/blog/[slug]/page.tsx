@@ -30,6 +30,9 @@ export default async function BlogDetails({
     .maybeSingle();
 
   if (error || !post) {
+    const handleClick = () => {
+      location.reload();
+    };
     return (
       <EmptyState
         imageSrc="no-post.png"
@@ -39,6 +42,7 @@ export default async function BlogDetails({
         buttonText="Try Again"
         Icon={RefreshCcw}
         iconClassName="h-5 w-5"
+        handleClick={handleClick}
       />
     );
   }

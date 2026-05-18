@@ -4,6 +4,7 @@ import supabase from '@/config/api';
 import { Metadata } from 'next';
 import React from 'react';
 import EmptyState from '@/components/molecules/EmptyState';
+import { RefreshCcw } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -31,14 +32,19 @@ export default async function ProductPageWrapper({
     .eq('slug', resolvedParams.slug)
     .single();
 
-  if (error) {
-    console.error(error);
+  if (error || !product) {
+    const handleClick = () => {
+      location.reload();
+    };
     return (
       <EmptyState
         imageSrc="no-products.png"
         messageText="Product Not Found"
         description={`Sorry, we couldn't find the product you're looking for.`}
         otherClassName="pt-36 md:pt-48"
+        buttonText="Try Again"
+        Icon={RefreshCcw}
+        handleClick={handleClick}
       />
     );
   }
