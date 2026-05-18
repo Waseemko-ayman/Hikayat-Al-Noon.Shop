@@ -34,6 +34,7 @@ const BlogPosts = () => {
           <Button
             variant="outline"
             otherClassName="rounded-full! border border-(--forth-color)! bg-transparent px-5 py-2 text-sm font-medium text-primary"
+            handleClick={() => router.push(PATHS.BLOG.POSTS)}
           >
             View All Posts
           </Button>
@@ -49,7 +50,7 @@ const BlogPosts = () => {
             blogPosts?.data?.map((post) => (
               <BlogPostCard
                 key={post.title}
-                handleClick={() => router.push(PATHS.BLOG.POST(post?.slug))}
+                href={PATHS.BLOG.POST(post?.slug)}
                 {...post}
               />
             ))
