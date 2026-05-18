@@ -35,8 +35,8 @@ const PostsPage = () => {
   return (
     <>
       <RepairServicesComp
-        subTitle="#Fashion Blog"
-        description="Discover the latest trends, style tips, and outfit inspiration. Your go-to destination for all things fashion and lifestyle."
+        subTitle="#Posts"
+        description="Explore our latest articles, insights, and updates covering design, development, and digital experiences."
         bgImage="/assets/banner/b8.webp"
       />
       <Layer>
