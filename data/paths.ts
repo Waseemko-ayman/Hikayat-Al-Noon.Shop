@@ -7,6 +7,7 @@ export const PATHS = {
   BLOG: {
     ROOT: '/blog',
     POST: (slug: string) => `/blog/${slug}`,
+    POSTS: '/blog/posts',
   },
   ABOUT: '/about',
   CONTACT: '/contact',
