@@ -51,6 +51,10 @@ export default async function OrderPageWrapper({
     .single();
 
   if (error || !order) {
+    const handleClick = () => {
+      location.reload();
+    };
+
     return (
       <EmptyState
         imageSrc="no-products.png"
@@ -59,6 +63,7 @@ export default async function OrderPageWrapper({
         otherClassName="pt-36 md:pt-48"
         buttonText="Try Again"
         Icon={RefreshCcw}
+        handleClick={handleClick}
       />
     );
   }

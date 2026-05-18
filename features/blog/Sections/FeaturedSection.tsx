@@ -73,7 +73,9 @@ const FeaturedSection = () => {
                     : 'Oops! There are no posts.'
                 }
                 showButton={hasActiveFilters}
-                buttonText={hasActiveFilters ? 'Reset filters' : ''}
+                buttonText={
+                  hasActiveFilters ? 'Reset filters' : 'Go to Home page'
+                }
                 buttonHref={!hasActiveFilters ? PATHS.HOME : undefined}
                 handleClick={hasActiveFilters ? handleReset : undefined}
               />
