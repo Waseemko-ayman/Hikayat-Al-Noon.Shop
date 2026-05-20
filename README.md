@@ -128,8 +128,8 @@ This project demonstrates a **production-ready e-commerce platform** built with 
 ## 📫 Contact
 
 - Portfolio: https://waseemabdelhadi.vercel.app/en  
-- LinkedIn: https://www.linkedin.com/in/waseem-abd-elhadi-1b293624b  
-- Email: mailto:wasimabdelhadi78@gmail.com
+- LinkedIn: [https://www.linkedin.com/in/waseem-abd-elhadi-1b293624b ](https://www.linkedin.com/in/waseem-abd-elhadi-%F0%9F%87%B5%F0%9F%87%B8-1b293624b/) 
+- Email: wasimabdelhadi78@gmail.com
 
 ---
 
