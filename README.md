@@ -13,6 +13,8 @@ A modern full-stack e-commerce platform built with **Next.js 16, TypeScript, Sup
 
 Hikayat Al-Noon is a complete e-commerce system that combines a modern shopping experience with a powerful admin dashboard.
 
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/ce143b42-55dc-4af8-997a-c6ed87a22562" />
+
 It includes:
 - A responsive storefront for browsing and purchasing products  
 - Secure authentication system (Email/Password + OTP)  
