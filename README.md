@@ -1,6 +1,6 @@
 # 🛍️ Hikayat Al-Noon | Fashion Store
 
-![Next.js](https://img.shields.io/badge/Next.js-15.3.1-blue)
+![Next.js](https://img.shields.io/badge/Next.js-16.1.6-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1.10-green)
 ![Vercel](https://img.shields.io/badge/deploy-vercel-black)
