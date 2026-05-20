@@ -1055,3 +1055,10 @@ export const BlogCategories = [
     count: 27,
   },
 ];
+
+export const postsScope = [
+  { id: 'all', name: 'All Posts Scope' },
+  { id: 'is_featured', name: 'Featured' },
+  { id: 'latest', name: 'Latest' },
+  { id: 'popular', name: 'Popular' },
+];

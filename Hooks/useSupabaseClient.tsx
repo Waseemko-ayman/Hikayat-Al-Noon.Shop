@@ -30,8 +30,10 @@ const fetchSupabaseData = async (
           orderColumn = value;
         } else if (column === 'ascending') {
           orderAscending = value;
-        } else if (column === 'title') {
+        } else if (column === 'title' || column === 'category') {
           supabaseRef = supabaseRef.ilike(column, `%${value}%`);
+        } else if (column === 'category') {
+          supabaseRef = supabaseRef.eq(column, value);
         } else if (column === 'message') {
           supabaseRef = supabaseRef.or(
             `username.ilike.%${value}%,email.ilike.%${value}%,subject.ilike.%${value}%,message.ilike.%${value}%`,

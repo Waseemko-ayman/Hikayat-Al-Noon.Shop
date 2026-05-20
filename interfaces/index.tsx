@@ -373,6 +373,19 @@ export interface ProductFilterProps {
   categories?: { id: string; name: string }[];
 }
 
+export interface PostsFiltersProps {
+  filters: {
+    searchQuery: string;
+    postScope: string;
+    category: string;
+  };
+  setFilters: React.Dispatch<React.SetStateAction<any>>;
+  onSearchChange: (value: string) => void;
+  handleReset: () => void;
+  hasActiveFilters: boolean;
+  categories?: { id: string; name: string }[];
+}
+
 export interface LoginFormData {
   email: string;
   password: string;
@@ -776,4 +789,10 @@ export interface PostsProps {
   category: string | null;
   date: string | null;
   body: string | null;
+}
+
+export interface PostFiltersProps {
+  searchQuery: string;
+  postScope: string;
+  category: string;
 }
