@@ -1,8 +1,9 @@
-"use client";
+'use client';
 import GenericPage from '@/components/organism/GenericPage';
 import AllPosts from './AllPosts';
 import { FileText } from 'lucide-react';
 import CreatePosts from './CreatePosts';
+import CreatePostsCategories from './CreatePostsCategories';
 
 const PostsPage = () => {
   const tabsData = [
@@ -10,6 +11,10 @@ const PostsPage = () => {
     {
       value: 'createPosts',
       label: 'Create New Post',
+    },
+    {
+      value: 'createPostsCategories',
+      label: 'Create New Post Category',
     },
   ];
 
@@ -21,6 +26,8 @@ const PostsPage = () => {
       tabs={tabsData}
       allComponent={AllPosts}
       createComponent={CreatePosts}
+      overviewComponent={CreatePostsCategories}
+      overviewTabValue="createPostsCategories"
     />
   );
 };
