@@ -131,7 +131,7 @@ const Hero = () => {
 
               {/* Stats */}
               <MotionFade
-                className="mt-16 flex items-center gap-8 border-t border-border/50 pt-8"
+                className="mt-8 flex items-center gap-8 border-t border-border/50 pt-8"
                 y={yButton}
               >
                 {HeroStats(avgRating).map((item, index) => (
