@@ -22,6 +22,7 @@ import { createPostsSchema } from '@/validations/forms/posts.schema';
 const initialState = {
   title: '',
   excerpt: '',
+  body: '',
   image: null,
   category: '',
   date: '',
@@ -52,6 +53,13 @@ const CreatePosts = ({
   // API
   const { isLoading, error, getSingle, edit } = useAPI<PostsProps>('posts');
   const { isLoading: addLoading, add } = useAPI<PostsProps>('posts');
+  const { get: getCategories, data: categories } = useAPI('posts_categories');
+
+  const mappedCategories = categories?.map((cat: any) => ({
+    id: cat.id,
+    name: cat.name,
+    value: cat.name, // optional but safe
+  }));
 
   // ----------------------------------------------------------------
 
@@ -76,6 +84,7 @@ const CreatePosts = ({
       const formData: Record<string, any> = {
         title: data.title,
         excerpt: data.excerpt,
+        body: data.body,
         category: data.category,
         date: new Date(data.date).toISOString().split('T')[0],
         is_featured: data.is_featured ?? false,
@@ -128,6 +137,7 @@ const CreatePosts = ({
           reset({
             title: res[0]?.title ?? '',
             excerpt: res[0]?.excerpt ?? '',
+            body: res[0]?.body ?? '',
             category: res[0]?.category ?? '',
             date: res[0]?.date ?? '',
             image: res[0]?.image ?? null,
@@ -136,6 +146,10 @@ const CreatePosts = ({
       })();
     }
   }, [editId]);
+
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
 
   // ----------------------------------------------------------------
 
@@ -165,6 +179,9 @@ const CreatePosts = ({
                       register={register}
                       otherClassName="w-full"
                       control={control}
+                      options={
+                        name === 'category' ? mappedCategories : undefined
+                      }
                       error={errors}
                       FileUploadText="Main image"
                     />

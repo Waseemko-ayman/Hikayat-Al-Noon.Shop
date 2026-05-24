@@ -10,7 +10,7 @@ export const CreatePostsFields = [
     id: 2,
     name: 'category',
     label: 'Category',
-    type: 'text',
+    type: 'select',
     placeholder: 'e.g. Outfit Ideas',
   },
   {
@@ -29,12 +29,19 @@ export const CreatePostsFields = [
   },
   {
     id: 5,
+    name: 'body',
+    label: 'Body',
+    type: 'textarea',
+    placeholder: 'Enter post content',
+  },
+  {
+    id: 6,
     name: 'image',
     label: 'Image',
     type: 'file',
   },
   {
-    id: 6,
+    id: 7,
     name: 'is_featured',
     label: "Featured Post (Editor's Pick)",
     type: 'checkbox',
