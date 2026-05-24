@@ -55,7 +55,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
                 href={link.href}
                 title={link.title}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-black hover:bg-muted',
+                  'relative flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-black hover:bg-muted',
                   pathname === link.href && 'bg-muted text-black',
                 )}
               >
@@ -64,7 +64,7 @@ const SidebarContent = ({ pathname }: { pathname: string }) => {
                   {link.title}
                 </span>
                 {link.title === 'Contact Messages' && unreadCount > 0 && (
-                  <span className="ml-auto h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse ml-auto relative max-lg:absolute max-lg:top-1 max-lg:right-1 max-lg:ml-0 max-md:static max-md:ml-auto max-md:top-auto max-md:right-auto" />
                 )}
               </Link>
             ))}
