@@ -6,6 +6,8 @@ import { AuthTemplateProps } from '@/interfaces';
 import Form from '../molecules/Form';
 import { FiShield } from 'react-icons/fi';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { PATHS } from '@/data/paths';
 
 const AuthTemplate: React.FC<AuthTemplateProps> = ({
   error,
@@ -37,7 +39,21 @@ const AuthTemplate: React.FC<AuthTemplateProps> = ({
             {formChildren ? (
               formChildren
             ) : (
-              <Form fieldsTypes={fieldsTypes} error={error} register={register} />
+              <>
+                <Form
+                  fieldsTypes={fieldsTypes}
+                  error={error}
+                  register={register}
+                />
+                {isLogin && (
+                  <Link
+                    href={PATHS.AUTH.FORGOT_PASSWORD}
+                    className="group inline-flex items-center gap-1 hover:underline transition-colors text-sm text-(--forth-color)"
+                  >
+                    Forgot Password ?
+                  </Link>
+                )}
+              </>
             )}
             <Button
               type="submit"

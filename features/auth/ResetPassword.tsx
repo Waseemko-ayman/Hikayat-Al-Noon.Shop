@@ -15,57 +15,46 @@ import { PATHS } from '@/data/paths';
 import AuthTemplate from '@/components/Template/AuthTemplate';
 import StatusPassword from '@/components/molecules/StatusPassword';
 import supabase from '@/config/api';
+import { ArrowLeft } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { resetPassScheme } from '@/validations/forms/resetPass.scheme';
 
 const ResetPasswordPage = () => {
   const router = useRouter();
-  const [password] = useState('');
-  const [confirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error] = useState('');
   const [success, setSuccess] = useState(false);
   const [validToken, setValidToken] = useState(true);
 
   // Notifications
   const { showToast } = useToast();
 
-  useEffect(() => {
-    const hashParams = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = hashParams.get('access_token');
-    const type = hashParams.get('type');
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(resetPassScheme),
+    defaultValues: { password: '', password_confirmation: '' },
+    mode: 'onChange',
+  });
 
-    if (type === 'recovery' && accessToken) {
-      setValidToken(true);
-    }
-  }, []);
-
-  const handleResetPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: {
+    password: string;
+    password_confirmation: string;
+  }) => {
     setLoading(true);
-    showToast('');
-
-    if (password !== confirmPassword) {
-      showToast('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
-    if (password.length < 6) {
-      showToast('Password must be at least 6 characters');
-      setLoading(false);
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.updateUser({
-        password: password,
+        password: data.password,
       });
 
       if (error) throw error;
 
+      await supabase.auth.signOut();
+
       setSuccess(true);
-      setTimeout(() => {
-        router.push('/login');
-      }, 2000);
+      router.replace(PATHS.AUTH.LOGIN);
     } catch (error: any) {
       showToast(error.message || 'Failed to reset password');
     } finally {
@@ -73,14 +62,33 @@ const ResetPasswordPage = () => {
     }
   };
 
+  // It is confirmed that the user entered the page via a valid email link (Supabase recovery link) and not a normal login.
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    /**
+     * Reading the hash from the link
+     *ُ Ex: /reset-password#access_token=123&type=recovery
+     */
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = hashParams.get('access_token');
+    const type = hashParams.get('type');
+
+    if (!accessToken || type !== 'recovery') {
+      setValidToken(false);
+    }
+  }, []);
+
   if (success) {
-    <StatusPassword
-      icon="check"
-      title="Password Reset Successfully!"
-      description="Your password has been reset. Redirecting to login..."
-      linkText="Back to Login"
-      linkHref="/login"
-    />;
+    return (
+      <StatusPassword
+        icon="check"
+        title="Password Reset Successfully!"
+        description="Your password has been reset. Redirecting to login..."
+        linkText="Back to Login"
+        linkHref={PATHS.AUTH.LOGIN}
+      />
+    );
   }
 
   if (!validToken) {
@@ -92,7 +100,7 @@ const ResetPasswordPage = () => {
         title="Invalid or Expired Link"
         description="This password reset link is invalid or has expired. Please request a new one."
         linkText="Request New Link"
-        linkHref="/forgot-password"
+        linkHref={PATHS.AUTH.FORGOT_PASSWORD}
       />
     );
   }
@@ -101,18 +109,23 @@ const ResetPasswordPage = () => {
     <AuthTemplate
       headerTitle="Reset Password"
       headerDescription="Enter your new password below"
-      handleFormSubmit={handleResetPassword}
-      error={error}
+      handleFormSubmit={handleSubmit(onSubmit)}
+      register={register}
+      error={errors}
       submitBtnText="Reset Password"
       loadingText="Resetting password..."
       loading={loading}
       fieldsTypes={resetInputs}
     >
-      <div className="mt-8 text-center">
+      <div className="text-center">
         <Link
           href={PATHS.AUTH.LOGIN}
-          className="text-sm hover:underline transition-colors text-(--forth-color)"
+          className="group inline-flex items-center gap-2 font-semibold hover:underline transition-colors text-(--forth-color)"
         >
+          <ArrowLeft
+            size={17}
+            className="text-(--forth-color) animate-bounce-horizontal"
+          />
           Back to Login
         </Link>
       </div>

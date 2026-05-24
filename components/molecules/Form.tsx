@@ -4,6 +4,7 @@ import Input from '../atoms/Input';
 import { Eye, EyeOff } from 'lucide-react';
 import { InputTypes } from '@/utils/types';
 import { FormProps } from '@/interfaces';
+import { usePathname } from 'next/navigation';
 
 const passwordFields = [
   'password',
@@ -26,6 +27,9 @@ const Form = ({ error, register, fieldsTypes }: FormProps) => {
     newPassword: false,
     confirmNewPassword: false,
   });
+
+  const pathname = usePathname();
+  const isLogin = pathname.includes('login');
 
   const isPasswordField = (name: string): name is PasswordField =>
     passwordFields.includes(name as PasswordField);
@@ -69,6 +73,7 @@ const Form = ({ error, register, fieldsTypes }: FormProps) => {
             isRequired
             register={register}
             error={error}
+            parentDivClassName={isLogin && isPasswordField(name) ? 'mb-1' : ''}
           />
         );
       })}

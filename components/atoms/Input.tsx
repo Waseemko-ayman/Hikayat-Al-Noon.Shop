@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select';
 import { FileUpload } from '../ui/file-upload';
 import { FaCheck } from 'react-icons/fa6';
+import { cn } from '@/lib/utils';
 
 const Input = ({
   type,
@@ -38,6 +39,7 @@ const Input = ({
   required,
   FileUploadText,
   inputClassName,
+  parentDivClassName,
   ...props
 }: React.PropsWithChildren<InputProps>) => {
   const StyledInput = `w-[280px] px-2.5 bg-(--white-color) outline-none transition-all duration-300 ${
@@ -61,7 +63,7 @@ const Input = ({
     };
 
   return (
-    <div className={isCheckbox ? 'flex items-center gap-2' : ''}>
+    <div className={cn(isCheckbox && 'flex items-center gap-2', parentDivClassName)}>
       {!isCheckbox && label && (
         <label
           className={`block text-sm font-semibold text-(--seconde-color) mb-2 ${labelClassName}`}

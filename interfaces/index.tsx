@@ -237,6 +237,7 @@ export interface InputProps extends React.HTMLAttributes<HTMLElement> {
   required?: boolean;
   FileUploadText?: string;
   inputClassName?: string;
+  parentDivClassName?: string;
 }
 
 export interface AccountAddrCardProps {
@@ -795,4 +796,8 @@ export interface PostFiltersProps {
   searchQuery: string;
   postScope: string;
   category: string;
+}
+
+export interface ForgotPasswordFormValues {
+  email: string;
 }
