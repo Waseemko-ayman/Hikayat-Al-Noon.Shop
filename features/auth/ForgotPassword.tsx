@@ -1,42 +1,65 @@
 'use client';
 
 import { useState } from 'react';
-// import { supabase } from '@/lib/supabase';
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Label } from '@/components/ui/label';
-// import { Card } from '@/components/ui/card';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import Input from '@/components/atoms/Input';
 import AuthRedirect from '@/components/molecules/AuthRedirect';
-import { PATHS } from '@/data/paths';
 import AuthTemplate from '@/components/Template/AuthTemplate';
 import StatusPassword from '@/components/molecules/StatusPassword';
 
+import { PATHS } from '@/data/paths';
+import { useToast } from '@/lib/toast';
+
+import { forgotPassScheme } from '@/validations/forms/forgotPass.scheme';
+import supabase from '@/config/api';
+import { ForgotPasswordFormValues } from '@/interfaces';
+
 const ForgotPasswordPage = () => {
-  const [email, setEmail] = useState('');
-  const [loading] = useState(false);
-  const [error] = useState('');
-  const [success] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  // const handleResetRequest = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError('');
+  const { showToast } = useToast();
 
-  //   try {
-  //     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-  //       redirectTo: `${window.location.origin}/reset-password`,
-  //     });
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm<ForgotPasswordFormValues>({
+    resolver: yupResolver(forgotPassScheme),
+    defaultValues: {
+      email: '',
+    },
+    mode: 'onChange',
+  });
 
-  //     if (error) throw error;
+  const email = watch('email');
 
-  //     setSuccess(true);
-  //   } catch (error: any) {
-  //     setError(error.message || 'Failed to send reset email');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const onSubmit = async (data: ForgotPasswordFormValues) => {
+    try {
+      setLoading(true);
+
+      const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}${PATHS.AUTH.RESET_PASSWORD}`,
+      });
+
+      if (error) {
+        showToast(error.message, 'error');
+        return;
+      }
+
+      setSuccess(true);
+
+      showToast('Password reset email sent successfully');
+    } catch (error) {
+      console.error(error);
+      showToast('Something went wrong. Please try again.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (success) {
     return (
@@ -52,36 +75,37 @@ const ForgotPasswordPage = () => {
   }
 
   const formContent = (
-    <>
-      <div className="space-y-2">
-        <label htmlFor="email" className="text-(--fifth-color)">
-          Email Address
-        </label>
-        <Input
-          id="email"
-          type="email"
-          inputName="email"
-          placeholder="you@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          otherClassName="w-full !rounded-md"
-        />
-        <p className="text-xs mt-2 text-(--six-color)">
-          We&rsquo;ll send a password reset link to this email
-        </p>
-      </div>
-    </>
+    <div className="space-y-2">
+      <Input
+        id="email"
+        type="email"
+        label="Email Address"
+        inputName="email"
+        placeholder="you@example.com"
+        otherClassName="w-full !rounded-md"
+        {...register('email')}
+      />
+
+      {errors.email && (
+        <p className="text-sm text-red-500">{errors.email.message}</p>
+      )}
+
+      <p className="text-xs mt-2 text-(--six-color)">
+        We&rsquo;ll send a password reset link to this email
+      </p>
+    </div>
   );
 
   return (
     <AuthTemplate
       headerTitle="Forgot Password?"
       headerDescription="No worries! Enter your email and we'll send you reset instructions"
-      error={error}
+      error={errors}
       formChildren={formContent}
       submitBtnText="Send Reset Link"
       loadingText="Sending..."
       loading={loading}
+      handleFormSubmit={handleSubmit(onSubmit)}
     >
       <AuthRedirect
         text="Remember your password?"
