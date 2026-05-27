@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/breadcrumb';
 import { useCartContext } from '@/context/CartContext';
 import { ProductCardProps } from '@/interfaces';
-import { useToast } from '@/lib/toast';
 import { usePathname } from 'next/navigation';
 import ProductReviews from './Sections/ProductReviews';
 import ProductInfoSection from './Sections/ProductInfoSection';
@@ -27,9 +26,6 @@ const ProductDetailsPage = ({
   product: ProductCardProps;
 }) => {
   const [, setTargetSrc] = useState('');
-  const [size] = useState('');
-  const [, setErrorMsgSize] = useState(false);
-  const [quantity] = useState(1);
 
   // Reviews state
   const [, setReviews] = useState<
@@ -38,8 +34,6 @@ const ProductDetailsPage = ({
 
   const pathname = usePathname();
   const pathParts = pathname.split('/').slice(1);
-
-  const { showToast } = useToast();
 
   // Context
   const { addToCart, user, isLoading: addIsLoading } = useCartContext();
@@ -78,15 +72,6 @@ const ProductDetailsPage = ({
       href: accumulatedPath,
     });
   });
-
-  const handleAddProduct = async (product: any) => {
-    if (!size) {
-      setErrorMsgSize(true);
-      return;
-    }
-    await addToCart({ ...product, size, quantity }, user.id);
-    showToast(`Add ${product.title} (${size} x${quantity}) to cart`, 'success');
-  };
 
   useEffect(() => {
     if (product?.gallery?.length) {
@@ -142,7 +127,8 @@ const ProductDetailsPage = ({
         {/* Product Image & Info */}
         <ProductInfoSection
           product={product}
-          addToCart={(item) => handleAddProduct(item)}
+          addToCart={addToCart}
+          user={user}
           addIsLoading={addIsLoading}
         />
 
