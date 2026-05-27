@@ -15,6 +15,9 @@ import ButtonLoading from '@/components/atoms/ButtonLoading';
 import PrdocutGallery from '@/components/molecules/PrdocutGallery';
 import { ProductInfoSectionProps } from '@/interfaces';
 import { useToast } from '@/lib/toast';
+import { useSession } from '@/Hooks/useSession';
+import useAPI from '@/Hooks/useAPI';
+import { useRouter } from 'next/navigation';
 
 const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   product,
@@ -31,6 +34,38 @@ const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   const [quantity, setQuantity] = useState(1);
 
   const { showToast } = useToast();
+  const router = useRouter();
+
+  const session = useSession();
+  const { add, isLoading } = useAPI('checkout');
+
+  const orderItem = {
+    productId: product.id,
+    title: product.title,
+    image: product.image,
+    price: product.price,
+    size: size,
+    quantity,
+    total: (product.price ?? 0) * quantity,
+  };
+
+  const handleCheckout = async () => {
+    if (!size) {
+      setErrorMsgSize(true);
+      return;
+    }
+    const data = await add({
+      items: [orderItem],
+      userId: session?.user?.id,
+      userEmail: session?.user?.email,
+      userName: session?.user?.user_metadata.display_name,
+      userPhone: session?.user?.user_metadata.phone,
+    });
+
+    router.replace(
+      `/checkout?clientSecret=${data.clientSecret}&orderId=${data.orderId}`,
+    );
+  };
 
   const handleSelectSize = (value: string) => {
     setSize(value);
@@ -136,8 +171,17 @@ const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
           <Button
             variant="outline"
             otherClassName="!py-2 !px-4 text-(--forth-color)! hover:text-white! border-(--forth-color)!"
+            handleClick={handleCheckout}
+            disabled={isLoading}
           >
-            Buy Now
+            {isLoading ? (
+              <ButtonLoading
+                text="Processing..."
+                borderColor="text-(--forth-color)"
+              />
+            ) : (
+              'Buy Now'
+            )}
           </Button>
         </div>
 
