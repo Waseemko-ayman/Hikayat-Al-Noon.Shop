@@ -664,8 +664,9 @@ export interface ItemProductProps {
 
 export interface ProductInfoSectionProps {
   product: ProductCardProps;
-  addToCart: (product: ProductCardProps) => Promise<void>;
+  addToCart: any;
   addIsLoading: boolean;
+  user: any;
 }
 
 export interface RatingBreakdownItemProps {

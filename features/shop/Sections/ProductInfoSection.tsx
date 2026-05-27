@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ProductInfoSection.tsx
 'use client';
 import React, { useState } from 'react';
@@ -13,11 +14,13 @@ import Button from '@/components/atoms/Button';
 import ButtonLoading from '@/components/atoms/ButtonLoading';
 import PrdocutGallery from '@/components/molecules/PrdocutGallery';
 import { ProductInfoSectionProps } from '@/interfaces';
+import { useToast } from '@/lib/toast';
 
 const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   product,
   addToCart,
   addIsLoading,
+  user,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [targetSrc, setTargetSrc] = useState(
@@ -27,17 +30,20 @@ const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   const [errorMsgSize, setErrorMsgSize] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
+  const { showToast } = useToast();
+
   const handleSelectSize = (value: string) => {
     setSize(value);
     setErrorMsgSize(false);
   };
 
-  const handleAddProduct = async () => {
+  const handleAddProduct = async (product: any) => {
     if (!size) {
       setErrorMsgSize(true);
       return;
     }
-    await addToCart({ ...product, size, quantity });
+    await addToCart({ ...product, size, quantity }, user?.id);
+    showToast(`Add ${product.title} (${size} x${quantity}) to cart`, 'success');
   };
 
   return (
@@ -123,7 +129,7 @@ const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
           <Button
             variant="primary"
             otherClassName="!py-2 !px-[15px]"
-            handleClick={handleAddProduct}
+            handleClick={() => handleAddProduct(product)}
           >
             {addIsLoading ? <ButtonLoading text="Adding..." /> : 'Add To Cart'}
           </Button>
