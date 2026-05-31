@@ -116,7 +116,7 @@ const NavLinks = ({
                     ? 'bg-red-100 text-red-700'
                     : userRole === 'MANAGER'
                       ? 'bg-blue-100 text-blue-700'
-                      : 'bg-gray-100 text-gray-600'
+                      : ''
                 }`}
               >
                 {userRole === 'ADMIN' && <Shield size={14} />}
