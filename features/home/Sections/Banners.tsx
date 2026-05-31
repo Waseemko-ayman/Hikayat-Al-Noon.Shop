@@ -6,11 +6,12 @@ import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
 import GridWrapper from '@/components/organism/GridWrapper';
 import { BANNERS_DATA } from '@/data';
 import { PATHS } from '@/data/paths';
+import useIsMobile from '@/Hooks/useIsMobile';
 import { useRouter } from 'next/navigation';
 
 const Banners = () => {
   const router = useRouter();
-
+  const isMobile = useIsMobile();
   return (
     <>
       <Layer otherClassName="pb-0!">
@@ -45,7 +46,11 @@ const Banners = () => {
         >
           {BANNERS_DATA.filter((item) => item.type === 'small').map(
             (item, index) => (
-              <AnimatedWrapper key={item.id} custom={index}>
+              <AnimatedWrapper
+                key={item.id}
+                custom={index}
+                direction={isMobile ? 'x' : 'y'}
+              >
                 <Banner
                   key={item.id}
                   height="h-[35vh]"

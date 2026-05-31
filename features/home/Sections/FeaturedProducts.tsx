@@ -11,9 +11,11 @@ import ResponsiveWrapper from '@/components/molecules/ResponsiveWrapper';
 import GridWrapper from '@/components/organism/GridWrapper';
 import ProductCardSkeleton from '@/components/Skeletons/ProductCardSkeleton';
 import { useSupabaseQuery } from '@/Hooks/useSupabaseQuery';
+import useIsMobile from '@/Hooks/useIsMobile';
 
 const FeaturedProducts = () => {
   const router = useRouter();
+  const isMobile = useIsMobile();
 
   // Supabase Hook
   const { data, error, isLoading } = useSupabaseQuery('products', {
@@ -39,7 +41,11 @@ const FeaturedProducts = () => {
           <ErrorFetching error={error} />
         ) : (
           products?.map((item: ProductCardProps, index: number) => (
-            <AnimatedWrapper key={item?.id} custom={index}>
+            <AnimatedWrapper
+              key={item?.id}
+              custom={index}
+              direction={isMobile ? 'x' : 'y'}
+            >
               <ProductCard
                 key={item?.id}
                 image={item.image}
