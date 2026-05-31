@@ -17,6 +17,8 @@ import { PATHS } from '@/data/paths';
 import { LogInIcon } from 'lucide-react';
 import { useCartContext } from '@/context/CartContext';
 import { useSession } from '@/Hooks/useSession';
+import useAPI from '@/Hooks/useAPI';
+import { useRouter } from 'next/navigation';
 
 const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
   productData,
@@ -29,6 +31,37 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
 
   const { user, addToCart, isLoading } = useCartContext();
   const session = useSession();
+  const router = useRouter();
+
+  const { add, isLoading: isCheckoutLoading } = useAPI('checkout');
+
+  const orderItem = {
+    productId: productData.id,
+    title: productData.title,
+    image: productData.image,
+    price: productData.price,
+    size: size,
+    quantity,
+    total: (productData.price ?? 0) * quantity,
+  };
+
+  const handleCheckout = async () => {
+    if (!size) {
+      setErrorMsgSize(true);
+      return;
+    }
+    const data = await add({
+      items: [orderItem],
+      userId: session?.user?.id,
+      userEmail: session?.user?.email,
+      userName: session?.user?.user_metadata.display_name,
+      userPhone: session?.user?.user_metadata.phone,
+    });
+
+    router.replace(
+      `/checkout?clientSecret=${data.clientSecret}&orderId=${data.orderId}`,
+    );
+  };
 
   const handleSelectSize = (value: string) => {
     setSize(value);
@@ -125,9 +158,19 @@ const ProductDetailsInDialog: React.FC<ProductDetailsInDialogProps> = ({
 
             <Button
               variant="outline"
-              otherClassName="!py-2 !px-4 text-(--forth-color)! hover:text-white! border-(--forth-color)!"
+              otherClassName="group !py-2 !px-4 text-(--forth-color)! hover:text-white! border-(--forth-color)!"
+              handleClick={handleCheckout}
+              disabled={isCheckoutLoading}
             >
-              Buy Now
+              {isCheckoutLoading ? (
+                <ButtonLoading
+                  text="Processing..."
+                  borderColor="text-(--forth-color) group-hover:!border-t-transparent"
+                  otherClassName="group-hover:!border-white"
+                />
+              ) : (
+                'Buy Now'
+              )}
             </Button>
           </>
         ) : (

@@ -114,6 +114,7 @@ export interface AnimatedWrapperProps {
   direction?: 'x' | 'y';
   distance?: number;
   duration?: number;
+  mobileDirectionOnly?: boolean;
 }
 
 export interface QuantityControllerProps {
