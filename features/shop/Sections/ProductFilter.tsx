@@ -16,6 +16,7 @@ import Input from '@/components/atoms/Input';
 import FilteringBadge from '@/components/atoms/FilteringBadge';
 import { ProductFilterProps } from '@/interfaces';
 import { Switch } from '@/components/ui/switch';
+import { memo } from 'react';
 
 const ProductFilter = ({
   filters,
@@ -192,4 +193,4 @@ const ProductFilter = ({
   );
 };
 
-export default ProductFilter;
+export default memo(ProductFilter);
