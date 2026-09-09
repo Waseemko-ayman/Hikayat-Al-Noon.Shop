@@ -132,13 +132,13 @@ const Clothes = () => {
           />
         )}
 
-        <ProdcutsContainer>
-          {isLoading ? (
-            <ProductSkeletons count={(products as any)?.length || 8} />
-          ) : error ? (
-            <ErrorFetching error={error} />
-          ) : products && products?.length > 0 ? (
-            products.map((item: ProductCardProps, index: number) => (
+        {isLoading ? (
+          <ProductSkeletons count={(products as any)?.length || 8} />
+        ) : error ? (
+          <ErrorFetching error={error} />
+        ) : products && products?.length > 0 ? (
+          <ProdcutsContainer>
+            {products.map((item: ProductCardProps, index: number) => (
               <AnimatedWrapper key={item.id} custom={index}>
                 <ProductCard
                   key={item.id}
@@ -150,9 +150,9 @@ const Clothes = () => {
                   }
                 />
               </AnimatedWrapper>
-            ))
-          ) : null}
-        </ProdcutsContainer>
+            ))}
+          </ProdcutsContainer>
+        ) : null}
 
         {/* EmptyState خارج الـ container */}
         {!isLoading && !error && products?.length === 0 && (
