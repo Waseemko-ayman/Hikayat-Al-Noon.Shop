@@ -29,17 +29,17 @@ const NewArrivals = () => {
         title="New Arrivals"
         description="Summer Collection New Modern Design"
       />
-      <GridWrapper isScrollable>
-        {isLoading ? (
-          Array.from({ length: 4 }).map((_, index) => (
-            <AnimatedWrapper key={index} custom={index}>
-              <ProductCardSkeleton />
-            </AnimatedWrapper>
-          ))
-        ) : error ? (
-          <ErrorFetching error={error} />
-        ) : (
-          products?.map((item: ProductCardProps, index: number) => (
+      {isLoading ? (
+        Array.from({ length: 4 }).map((_, index) => (
+          <AnimatedWrapper key={index} custom={index}>
+            <ProductCardSkeleton />
+          </AnimatedWrapper>
+        ))
+      ) : error ? (
+        <ErrorFetching error={error} />
+      ) : (
+        <GridWrapper isScrollable>
+          {products?.map((item: ProductCardProps, index: number) => (
             <AnimatedWrapper
               key={item?.id}
               custom={index}
@@ -55,9 +55,9 @@ const NewArrivals = () => {
                 }
               />
             </AnimatedWrapper>
-          ))
-        )}
-      </GridWrapper>
+          ))}
+        </GridWrapper>
+      )}
     </ResponsiveWrapper>
   );
 };
