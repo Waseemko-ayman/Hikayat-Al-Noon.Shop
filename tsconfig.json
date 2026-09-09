@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "config/api.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "shopify.liquid"  ],
   "exclude": ["node_modules"]
 }
